@@ -1,0 +1,26 @@
+<main class="p-5 md:p-20 h-screen py-5 container mx-auto font-text">
+  <a routerLink="/menu">Volver</a>
+  <h1 class="font-title text-5xl gradient">Lockes</h1>
+  <div class="py-10 grid grid-cols-2 font-semibold">
+    <div class="flex flex-row gap-2 items-center">
+      <button class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl">
+        Lockes Completos
+      </button>
+      <button class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl">
+        Lockes Incompletos
+      </button>
+    </div>
+
+    <div class="flex justify-end">
+      <button
+        type="button"
+        class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+      >
+        Crear Locke
+      </button>
+    </div>
+  </div>
+  <app-locke-list></app-locke-list>
+</main>

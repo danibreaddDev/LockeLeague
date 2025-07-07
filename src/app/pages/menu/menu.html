@@ -1,0 +1,69 @@
+<main class="p-5 md:p-20 container mx-auto font-text">
+  <h1 class="py-5 font-title gradient">Menu</h1>
+  <section class="h-screen flex flex-col">
+    <div class="h-full grid grid-cols-6 grid-rows-6 menu gap-4">
+      <div class="col-span-full row-auto md:row-span-5 md:col-span-3 menu-item">
+        <a routerLink="/lockes">
+          <div
+            class="h-full p-2 border border-slate-300 rounded-3xl flex flex-row overflow-hidden relative"
+          >
+            <div class="p-3 flex flex-col gap-2">
+              <h2 class="font-extrabold font-title gradient">Tus lockes</h2>
+              <p class="text-muted text-secondary">
+                Aqui puedes ver los lockes activos.
+              </p>
+            </div>
+            <div class="image-locke absolute bottom-0 end-0"></div>
+          </div>
+        </a>
+      </div>
+      <div
+        class="col-span-full row-auto md:col-start-4 md:col-span-3 md:row-span-full menu-item"
+      >
+        <a routerLink="">
+          <div
+            class="h-full p-2 border border-slate-300 rounded-3xl flex flex-row overflow-hidden relative"
+          >
+            <div class="p-3 flex flex-col gap-2">
+              <h2 class="font-extrabold font-title gradient">Clasificacion</h2>
+              <p class="text-muted text-secondary">
+                Escala en la clasificacion.
+              </p>
+            </div>
+            <div class="image-qualifier absolute"></div>
+          </div>
+        </a>
+      </div>
+      <div
+        class="col-span-full row-auto sm:row-span-1 md:row-start-6 md:col-span-2 menu-item"
+      >
+        <a routerLink="/profile">
+          <div
+            class="h-full p-2 border border-slate-300 rounded-3xl flex flex-row overflow-hidden relative"
+          >
+            <div class="p-3 flex flex-col gap-2">
+              <h2 class="font-extrabold font-title gradient">Perfil</h2>
+              <p class="text-muted text-secondary"></p>
+            </div>
+            <div class="image-profile absolute bottom-0 end-0"></div>
+          </div>
+        </a>
+      </div>
+      <div
+        class="col-span-full row-auto sm:row-span-1 md:row-start-6 md:col-auto menu-item"
+      >
+        <a href="index.html">
+          <div
+            class="h-full p-2 border border-slate-300 rounded-3xl flex flex-row overflow-hidden relative"
+          >
+            <div class="p-3 flex flex-col gap-2">
+              <h2 class="font-extrabold font-title gradient">Salir</h2>
+            </div>
+            <div class="image-salir absolute"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<router-outlet />

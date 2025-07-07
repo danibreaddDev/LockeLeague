@@ -1,0 +1,10 @@
+header {
+    width: 100%;
+  }
+  header svg {
+    transition: all 0.2s ease-in-out;
+  }
+  header svg:hover {
+    transform: rotate(-12deg);
+    cursor: pointer;
+  }
