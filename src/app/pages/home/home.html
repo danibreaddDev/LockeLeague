@@ -1,9 +1,12 @@
 <app-header></app-header>
-  <main class="container p-5 md:p-20 mx-auto font-text">
-    <!--HERO-->
-   <app-hero></app-hero>
-   
-    <!--FAQS-->
-    
-  </main>
-<app-footer></app-footer>  
+<main class="container p-5 md:p-20 mx-auto font-text">
+  <!--HERO-->
+  <app-hero
+    (clickLogin)="authWithDiscord()"
+    (clickLogOut)="logOut()"
+    [user]="user$ | async"
+  ></app-hero>
+
+  <!--FAQS-->
+</main>
+<app-footer></app-footer>
