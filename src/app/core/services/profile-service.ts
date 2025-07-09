@@ -1,16 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { SupabaseService } from './supabase-service';
 import { AuthService } from './auth-service';
-import {
-  catchError,
-  filter,
-  firstValueFrom,
-  from,
-  map,
-  of,
-  switchMap,
-  throwError,
-} from 'rxjs';
+import { filter, firstValueFrom } from 'rxjs';
 interface profile {
   id: string;
   created_at: string;
