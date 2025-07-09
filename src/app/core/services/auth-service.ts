@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { SupabaseService } from './supabase-service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { User } from '@supabase/supabase-js';
 
 @Injectable({
@@ -10,6 +10,10 @@ export class AuthService {
   private _clientSupabase = inject(SupabaseService).clientSupabase;
   private userSubject = new BehaviorSubject<User | null>(null);
   user$ = this.userSubject.asObservable();
+  // Observable que indica si la sesión inicial ya está cargada
+  private sessionLoadedSubject = new ReplaySubject<boolean>(1);
+  sessionLoaded$ = this.sessionLoadedSubject.asObservable();
+
   constructor() {
     this.getSession();
   }
@@ -23,7 +27,8 @@ export class AuthService {
     // Cargar la sesión inicial (si la hay en localStorage)
     const { data } = await this._clientSupabase.auth.getSession();
     this.userSubject.next(data.session?.user ?? null);
-
+    // Avisamos que la sesión ya se cargó
+    this.sessionLoadedSubject.next(true);
     // Actualizar en tiempo real
     this._clientSupabase.auth.onAuthStateChange((_event, session) => {
       this.userSubject.next(session?.user ?? null);

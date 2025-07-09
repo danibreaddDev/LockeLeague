@@ -1,0 +1,76 @@
+<main class="p-5 md:p-20 container mx-auto font-text">
+  <div class="grid-profile">
+    <div class="user-info-container border border-slate-300 rounded-3xl p-2">
+      <app-profile-general-info></app-profile-general-info>
+    </div>
+    <div class="victories-container border border-slate-300 rounded-3xl p-2">
+      <span class="font-bold">Lockes ganados</span
+      ><span class="font-title text-xl font-extrabold">3</span>
+    </div>
+
+    <div
+      class="tournament-victories-container border border-slate-300 rounded-3xl p-2"
+    >
+      <span class="font-bold">Torneos ganados</span
+      ><span class="font-title text-xl font-extrabold">3</span>
+    </div>
+
+    <div class="tabla-container border border-slate-300 rounded-3xl p-2">
+      <span class="font-bold">Tus mejores lockes </span>
+      <div class="border border-slate-300 rounded-3xl p-2">
+        Pokemon platino
+        <div class="flex flex-row flex-wrap justify-center gap-2">
+          <button
+            class="btn-pokemon"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            <img
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
+              alt=""
+            />
+          </button>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png"
+            alt=""
+          />
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png"
+            alt=""
+          />
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/470.png"
+            alt=""
+          />
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
+            alt=""
+          />
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
+            alt=""
+          />
+
+          <div class="health flex flex-row gap-2 items-center font-title">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="red"
+                d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
+              />
+            </svg>
+
+            <span class="text-red-600">19/30</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="other-container border border-slate-300 rounded-3xl p-2">
+      clasificacion Proximamente
+    </div>
+  </div>
+</main>

@@ -16,4 +16,10 @@ export const routes: Routes = [
     path: '',
     loadChildren: () => import('./pages/lockes/lockes.routes'),
   },
+  {
+    canActivate: [authGuard],
+    path: 'profile',
+    loadComponent: () =>
+      import('./pages/profile/profile').then((m) => m.Profile),
+  },
 ];
