@@ -47,8 +47,6 @@ export class ProfileService {
         .eq('id', user.id)
         .single();
       if (data) {
-        console.log(data);
-
         this._state.update((state) => ({
           ...state,
           profile: data,
@@ -65,5 +63,16 @@ export class ProfileService {
         loading: false,
       }));
     }
+  }
+  async getInfo() {
+    const user = await firstValueFrom(
+      this._currentUser$.pipe(filter((user) => !!user))
+    );
+    const { data } = await this._clientSupabase
+      .from('users')
+      .select('*')
+      .eq('id', user.id)
+      .single();
+    return { data };
   }
 }
