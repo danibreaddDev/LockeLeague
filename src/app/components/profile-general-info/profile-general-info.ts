@@ -19,5 +19,5 @@ interface profile {
 })
 export class ProfileGeneralInfo {
   @Input() profileInfo!: WritableSignal<profile | null>;
-  profileService = inject(ProfileService);
+  //profileService = inject(ProfileService);
 }
