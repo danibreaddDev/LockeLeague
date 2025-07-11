@@ -71,8 +71,6 @@ div.grid-profile {
   grid-area: other;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .tournament-victories-container {
   grid-area: tournament-victories;

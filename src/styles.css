@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap");
 @import "tailwindcss";
-@theme{
-    --font-title: "Press Start 2P", system-ui;
-    --font-text: "Figtree", sans-serif;
+@theme {
+  --font-title: "Press Start 2P", system-ui;
+  --font-text: "Figtree", sans-serif;
 }
 @view-transition {
-    navigation: auto;
+  navigation: auto;
 }
 :root {
   --gradient-primary-color: #ffea00;
@@ -16,17 +16,17 @@
   --discord-color: #5663f7;
 }
 .gradient {
-    color: var(--blue-color);
-    text-shadow: 2px 2px var(--yellow-color);
+  color: var(--blue-color);
+  text-shadow: 2px 2px var(--yellow-color);
+}
+button.btn-iniciar {
+  transition: all 0.3s ease-in-out;
+}
+button.btn-iniciar:hover {
+  transform: translateY(-5px);
+  background: var(--yellow-color);
+  color: rgb(94, 94, 94);
+  svg path {
+    fill: white;
   }
-  button.btn-iniciar {
-    transition: all 0.3s ease-in-out;
-  }
-  button.btn-iniciar:hover {
-    transform: translateY(-5px);
-    background: var(--yellow-color);
-    color: rgb(94, 94, 94);
-    svg path {
-      fill: white;
-    }
-  }
+}

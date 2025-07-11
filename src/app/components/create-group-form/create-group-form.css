@@ -1,0 +1,10 @@
+.form {
+  width: 500px;
+  height: fit-content;
+}
+input {
+  padding: 10px;
+  border: 1px solid rgb(150, 147, 147);
+  border-radius: 10px;
+  outline-color: rgb(137, 137, 137);
+}
