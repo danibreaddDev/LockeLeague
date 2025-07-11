@@ -26,9 +26,10 @@ export class Profile {
     private userService: UserService,
     private groupService: GroupService
   ) {
+    this.getInfoProfile();
+    this.getGroupsCreated();
     effect(() => {
-      this.getInfoProfile();
-      this.getGroupsCreated();
+      console.log('Grupo seleccionado:', this.groupSelected());
     });
   }
   openModalCreateGroup() {

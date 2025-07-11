@@ -9,10 +9,11 @@ import {
 import { UserSelect } from '../user-select/user-select';
 import { profile } from '../../interfaces/user';
 import { Loader } from '../../shared/components/loader/loader';
+import { TableClasification } from './components/table-clasification/table-clasification';
 
 @Component({
   selector: 'app-profile-clasification',
-  imports: [UserSelect, Loader],
+  imports: [UserSelect, Loader, TableClasification],
   templateUrl: './profile-clasification.html',
   styleUrl: './profile-clasification.css',
 })
