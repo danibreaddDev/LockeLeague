@@ -33,4 +33,11 @@ export class GroupService {
     return { data, error };
   }
   async getGroupsJoined() {}
+  async getGroupStats(id: string) {
+    const { data, error } = await this._clientSupabase
+      .from('group_stats')
+      .select('*')
+      .eq('group_id', id);
+    return { data, error };
+  }
 }

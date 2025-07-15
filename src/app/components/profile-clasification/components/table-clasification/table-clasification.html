@@ -1,3 +1,16 @@
 <table>
-  <th></th>
+  <tr>
+    <th>User</th>
+    <th>locke wins</th>
+    <th>tournamet wins</th>
+    <th>rank</th>
+  </tr>
+  @for (stat of stats; track $index) {
+  <tr>
+    <td>{{ stat.user_id }}</td>
+    <td>{{ stat.locke_wins }}</td>
+    <td>{{ stat.tournament_wins }}</td>
+    <td>{{ stat.rank }}</td>
+  </tr>
+  }
 </table>

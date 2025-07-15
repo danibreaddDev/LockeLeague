@@ -24,7 +24,9 @@ export class ProfileClasification {
   @Input() groupSelected!: WritableSignal<any>;
   isMyGrouposShowed: boolean = true;
   isOtherGrouposShowed: boolean = false;
-
+  constructor() {
+    console.log('dentro de padre', this.groupSelected);
+  }
   clickModal() {
     this.clickOpenModal.emit();
   }
