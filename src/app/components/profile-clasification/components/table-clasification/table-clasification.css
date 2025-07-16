@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+th {
+  padding: 10px 0;
+}
+td {
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+}

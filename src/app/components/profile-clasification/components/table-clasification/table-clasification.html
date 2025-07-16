@@ -1,16 +1,33 @@
-<table>
-  <tr>
-    <th>User</th>
-    <th>locke wins</th>
-    <th>tournamet wins</th>
-    <th>rank</th>
+@if (stats()=== null) {
+<app-loader class="flex justify-center-safe"></app-loader>
+} @else if ((!stats() || !stats()?.length) && stats() !== null) {
+<div class="mt-8 flex justify-center">
+  <span class="text-3xl font-semibold"> no hay datos disponibles. </span>
+</div>
+} @else {
+<table class="mt-12">
+  <tr class="border-0 border-b border-b-slate-300">
+    <th>Nombre de usuario</th>
+    <th>Ranking</th>
+    <th>Lockes ganados</th>
+    <th>Torneos ganados</th>
   </tr>
-  @for (stat of stats; track $index) {
-  <tr>
-    <td>{{ stat.user_id }}</td>
+  @for (stat of stats(); track $index) {
+  <tr class="border-0 border-b border-b-slate-300 font-title text-sm">
+    <td>
+      <div class="flex flex-row gap-5 justify-center items-center w-full">
+        <img
+          [src]="stat.avatar_url"
+          [alt]="stat.name"
+          class="size-12 rounded-full"
+        />
+        <span>{{ stat.name }}</span>
+      </div>
+    </td>
+    <td>{{ stat.rank }}pts</td>
     <td>{{ stat.locke_wins }}</td>
     <td>{{ stat.tournament_wins }}</td>
-    <td>{{ stat.rank }}</td>
   </tr>
   }
 </table>
+}

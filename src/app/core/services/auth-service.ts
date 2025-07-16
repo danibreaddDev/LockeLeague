@@ -32,7 +32,6 @@ export class AuthService {
     // Actualizar en tiempo real
     this._clientSupabase.auth.onAuthStateChange((_event, session) => {
       this.userSubject.next(session?.user ?? null);
-      console.log('en el servicio', this.getCurrentUser());
     });
   }
 
@@ -40,7 +39,6 @@ export class AuthService {
     return this.userSubject.value;
   }
   async logOut() {
-    console.log('que pasa');
     const { error } = await this._clientSupabase.auth.signOut();
     return { error };
   }

@@ -8,10 +8,24 @@ import { ProfileClasification } from '../../components/profile-clasification/pro
 import { profile } from '../../interfaces/user';
 import { UserService } from '../../core/services/user-service';
 import { GroupService } from '../../core/services/group-service';
+import { ProfileLockeWins } from '../../components/profile-locke-wins/profile-locke-wins';
+import { ProfileTournamentsWins } from '../../components/profile-tournaments-wins/profile-tournaments-wins';
+import { LockeService } from '../../core/services/locke-service';
+import { ProfileBestLockes } from '../../components/profile-best-lockes/profile-best-lockes';
+import { HttpClient } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
-  imports: [ProfileGeneralInfo, CommonModule, ProfileClasification],
+  imports: [
+    RouterLink,
+    ProfileGeneralInfo,
+    CommonModule,
+    ProfileClasification,
+    ProfileLockeWins,
+    ProfileTournamentsWins,
+    ProfileBestLockes,
+  ],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })
@@ -21,19 +35,31 @@ export class Profile {
   users = signal<profile[]>([]);
   groups = signal<[]>([]);
   groupSelected = signal<any>(null);
+  lockes = signal<any[] | null | undefined>(null);
   constructor(
     private profileService: ProfileService,
     private userService: UserService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private lockeService: LockeService,
+    private httpClient: HttpClient
   ) {
     this.getInfoProfile();
     this.getGroupsCreated();
-    effect(() => {
-      console.log('Grupo seleccionado:', this.groupSelected());
-    });
+    this.getBestLockes();
   }
+  private getUsers() {
+    this.userService
+      .listUsers()
+      .then((res: any) => {
+        this.users.set(res.data);
+      })
+      .catch((error) => console.error(error));
+  }
+  private getInfoJson() {}
   openModalCreateGroup() {
-    this.dialog.open(CreateGroupForm);
+    this.dialog.open(CreateGroupForm, {
+      data: 'open',
+    });
   }
   getInfoProfile() {
     this.profileService
@@ -43,23 +69,23 @@ export class Profile {
       })
       .catch((error) => console.error(error));
   }
-  getUsers() {
-    this.userService
-      .listUsers()
-      .then((res: any) => {
-        console.log('users', res.data);
-        this.users.set(res.data);
-      })
-      .catch((error) => console.error(error));
-  }
+
   getGroupsCreated() {
     this.getUsers();
     this.groupService
       .getGroupsCreated()
       .then((res: any) => {
-        console.log('gruops', res.data);
         this.groups.set(res.data);
         this.groupSelected.set(res.data[0]);
+      })
+      .catch((error) => console.error(error));
+  }
+  getBestLockes() {
+    this.lockeService
+      .getLockes()
+      .then((res: any) => {
+        this.lockes.set(res.data);
+        this.getInfoJson();
       })
       .catch((error) => console.error(error));
   }

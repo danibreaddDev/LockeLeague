@@ -15,4 +15,11 @@ export class UserService {
       .select('*');
     return { data, error };
   }
+  async getUser(id: string) {
+    const { data, error } = await this._clientSupabase
+      .from('users')
+      .select('avatar_url,name')
+      .eq('id', id);
+    return { data, error };
+  }
 }

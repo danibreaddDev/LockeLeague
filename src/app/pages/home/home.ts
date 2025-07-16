@@ -29,8 +29,6 @@ export class Home {
     }
   }
   async logOut() {
-    console.log('voy a cerrar sesion');
-
     const { error } = await this.authService.logOut();
     if (error) console.error('error en cerrar sesion', error);
   }

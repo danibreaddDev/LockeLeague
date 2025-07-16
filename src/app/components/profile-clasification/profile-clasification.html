@@ -1,8 +1,10 @@
 @if (!users().length) {
 <app-loader class="flex justify-center-safe"></app-loader>
+}@else if(!groups() && !groupSelected()){
+<div>no hay datos</div>
 } @else {
 <div class="p-3 flex flex-col">
-  <span class="font-title text-2xl">Clasificación </span>
+  <span class="font-title gradient text-2xl">Clasificación </span>
   <div class="mt-6 flex flex-row gap-5">
     <button
       (click)="showMyGroups()"
@@ -19,14 +21,15 @@
   </div>
 
   @if (isMyGrouposShowed) {
-  <div class="flex flex-col gap-2">
+  <div
+    class="mt-5 py-5 flex flex-col gap-2 border border-slate-300 border-x-0 border-b-0"
+  >
     <button
       (click)="clickModal()"
-      class="btn-iniciar px-3 py-2 rounded-3xl self-end"
+      class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl self-end"
     >
       Crear grupo
     </button>
-    <app-user-select [users]="users"></app-user-select>
 
     <div class="group-container flex flex-row">
       @for (group of groups(); track $index) {
@@ -40,7 +43,8 @@
     </div>
     <div>
       @if (groupSelected()) {
-      <h2>{{ groupSelected().name }}</h2>
+      <h2 class="text-3xl font-bold">{{ groupSelected().name }}</h2>
+      <app-user-select [users]="users"></app-user-select>
       <app-table-clasification
         [groupSelected]="groupSelected()"
       ></app-table-clasification>
@@ -48,7 +52,11 @@
     </div>
   </div>
   } @if (isOtherGrouposShowed) {
-  <div>otros grupos</div>
+  <div
+    class="mt-5 py-5 flex flex-col gap-2 border border-slate-300 border-x-0 border-b-0"
+  >
+    Otro grupillo
+  </div>
   }
 </div>
 }

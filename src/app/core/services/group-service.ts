@@ -19,6 +19,7 @@ export class GroupService {
       description: group.description,
       created_by: user.id,
     });
+
     return { error };
   }
   async getGroupsCreated() {

@@ -24,22 +24,34 @@
     </button>
     }
   </div>
-  <select
-    name="user-select"
-    class="p-3 border border-slate-300 rounded-full"
-    aria-label="Seleccionar usuario"
-    (change)="addUser($event)"
-  >
-    <option disabled selected value="">-- Selecciona un usuario --</option>
-    @for (user of users(); track $index) {
-    <option [value]="user.user_name">
-      <img
-        [src]="user.avatar_url"
-        [alt]="user.user_name"
-        class="rounded-full"
-      />
-      {{ user.name }}
-    </option>
+  <div class="flex flex-col gap-2">
+    <span class="text-sm font-semibold"
+      >Elige usuarios para añadir al grupo.</span
+    >
+    <select
+      name="user-select"
+      class="p-3 border border-slate-300 rounded-full"
+      aria-label="Seleccionar usuario"
+      (change)="addUser($event)"
+    >
+      <option disabled selected value="">-- Selecciona un usuario --</option>
+      @for (user of users(); track $index) {
+      <option [value]="user.user_name">
+        <img
+          [src]="user.avatar_url"
+          [alt]="user.user_name"
+          class="rounded-full"
+        />
+        {{ user.user_name }}
+      </option>
+      }
+    </select>
+    @if (usersToAddGroup.length!==0) {
+    <button
+      class="px-3 py-2 btn-iniciar text-sm border border-slate-300 rounded-3xl"
+    >
+      Añadir
+    </button>
     }
-  </select>
+  </div>
 </div>
