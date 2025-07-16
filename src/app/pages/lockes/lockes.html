@@ -15,12 +15,11 @@
       <button
         type="button"
         class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
+        (click)="openModalCreateLocke()"
       >
         Crear Locke
       </button>
     </div>
   </div>
-  <app-locke-list></app-locke-list>
+  <app-locke-list [lockeList]="lockesList"></app-locke-list>
 </main>

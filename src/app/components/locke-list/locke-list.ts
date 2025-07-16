@@ -1,21 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, Input, WritableSignal } from '@angular/core';
+import { LockeCard } from '../locke-card/locke-card';
+import { Loader } from '../../shared/components/loader/loader';
 @Component({
   selector: 'app-locke-list',
-  imports: [CommonModule,RouterLink,],
+  imports: [CommonModule, LockeCard, Loader],
   templateUrl: './locke-list.html',
-  styleUrl: './locke-list.css'
+  styleUrl: './locke-list.css',
 })
 export class LockeList {
- lockeList=[
-  {
-    "id": 1,
-    "name": "Locke",
-  },
-  {
-    "id": 2,
-    "name": "Locke 2",
-  },
-]
+  @Input() lockeList!: WritableSignal<any[] | null | undefined>;
 }

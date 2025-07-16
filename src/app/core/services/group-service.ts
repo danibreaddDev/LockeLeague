@@ -41,4 +41,11 @@ export class GroupService {
       .eq('group_id', id);
     return { data, error };
   }
+  async getGroupName(id: string) {
+    const { data, error } = await this._clientSupabase
+      .from('groups')
+      .select('name')
+      .eq('id', id);
+    return { data, error };
+  }
 }

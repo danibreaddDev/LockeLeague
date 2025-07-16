@@ -21,7 +21,8 @@ export class LockeService {
     *,
    locke:locke_id (
       name,
-      lifes
+      lifes,
+      group_id
     )`
       )
       .eq('user_id', user.id)

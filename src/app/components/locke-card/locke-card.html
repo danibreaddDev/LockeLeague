@@ -1,0 +1,52 @@
+@if (!nameLocke()) { }@else {
+<article class="card flex flex-col">
+  <a [routerLink]="'/locke/' + locke.id">
+    <div
+      class="locke-card p-5 border border-slate-300 rounded-3xl flex flex-col gap-2"
+    >
+      <div
+        class="flex flex-row flex-wrap gap-2 md:gap-5 justify-between items-center"
+      >
+        <div class="flex flex-row gap-3 items-center font-title">
+          <span class="text-xl font-semibold">
+            {{ locke.locke.name }}
+          </span>
+          <div class="health flex flex-row gap-2 items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="red"
+                d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
+              />
+            </svg>
+
+            <span class="font-title text-red-600">{{ locke.lifes }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <div
+          class="team flex flex-row justify-evenly flex-wrap gap-2 items-center font-title"
+        >
+          @for (pokemon of locke.team; track $index) {
+          <img
+            [src]="'sprites/' + getFormatted(pokemon) + 'MS.png'"
+            [alt]="pokemon"
+            class="size-12"
+          />
+          }
+        </div>
+        <div
+          class="self-end px-3 py-2 bg-slate-100 border border-slate-300 rounded-2xl w-fit font-title text-sm"
+        >
+          {{ nameLocke() }}
+        </div>
+      </div>
+    </div>
+  </a>
+</article>
+}
