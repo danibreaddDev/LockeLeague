@@ -1,0 +1,13 @@
+.user {
+  animation: appear 0.5s ease-in forwards;
+}
+@keyframes appear {
+  from {
+    width: 50%;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}

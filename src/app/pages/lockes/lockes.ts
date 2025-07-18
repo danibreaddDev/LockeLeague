@@ -36,6 +36,7 @@ export class Lockes {
       .getLockes()
       .then((res) => {
         this.lockesList.set(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.error(err));
   }

@@ -48,60 +48,11 @@
   </div>
 
   <h2>Equipos</h2>
-
-  <div
-    class="border border-blue-300 p-2 flex flex-row flex-wrap justify-around gap-2"
-  >
-    <div class="flex flex-row flex-wrap gap-2 items-center">
-      <img src="images/icon discord.webp" alt="" width="50" height="50" />
-    </div>
-    <div class="flex flex-row flex-wrap gap-2">
-      <button
-        class="btn-pokemon"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
-      >
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
-          alt=""
-        />
-      </button>
-      <img
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png"
-        alt=""
-      />
-      <img
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png"
-        alt=""
-      />
-      <img
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/470.png"
-        alt=""
-      />
-      <img
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
-        alt=""
-      />
-      <img
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
-        alt=""
-      />
-    </div>
-
-    <div class="health flex flex-row gap-2 items-center font-title">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-      >
-        <path
-          fill="red"
-          d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
-        />
-      </svg>
-
-      <span class="text-danger text-secondary">19</span>
-    </div>
-  </div>
+  @for (user of lockeUsersInfo(); track $index) {
+  <app-locke-user-info
+    [user]="user"
+    [userInfo]="getInfoUser(user)"
+    (onOpenModalEditPokemon)="openModalEditPokemon()"
+  ></app-locke-user-info>
+  }
 </div>

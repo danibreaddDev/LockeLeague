@@ -1,0 +1,52 @@
+@if (!userInfo()) {
+<app-loader class="flex justify-center-safe"></app-loader>
+} @else {
+<div
+  class="user border rounded-3xl p-5 grid grid-cols-4 gap-5"
+  [class.border-green-500]="isEditableUser"
+>
+  <div class="flex flex-row gap-2 items-center">
+    <img
+      [src]="userInfo()?.avatar_url"
+      [alt]="userInfo()?.name"
+      class="size-12 rounded-full"
+    />
+    <span>{{ userInfo()?.name }}</span>
+  </div>
+  <div class="col-span-2 flex flex-row gap-5 w-full items-center">
+    @for (pokemon of user.team; track $index) { @if (isEditableUser) {
+    <button
+      type="button"
+      class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl"
+      (click)="emitShowModal($event)"
+    >
+      <img
+        [src]="'sprites/' + getFormattedName(pokemon) + 'MS.png'"
+        [alt]="pokemon"
+        class="size-12"
+      />
+    </button>
+    } @else {
+    <img
+      [src]="'sprites/' + getFormattedName(pokemon) + 'MS.png'"
+      [alt]="pokemon"
+      class="size-12"
+    />
+    } }
+  </div>
+  <div class="flex flex-row gap-2 items-center font-title">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="red"
+        d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
+      />
+    </svg>
+    <span class="text-red-600">{{ user.lifes }}</span>
+  </div>
+</div>
+}

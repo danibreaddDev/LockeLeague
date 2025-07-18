@@ -29,4 +29,11 @@ export class LockeService {
       .limit(3);
     return { data, error };
   }
+  async getLocke(id: string) {
+    const { data, error } = await this._clientSupabase
+      .from('locke_users')
+      .select('team,user_id,lifes')
+      .eq('locke_id', id);
+    return { data, error };
+  }
 }
