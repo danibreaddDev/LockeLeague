@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common';
 export class LockeUserInfo {
   @Input() user!: any;
   @Input() userInfo!: Signal<any | null | undefined>;
-  @Output() onOpenModalEditPokemon = new EventEmitter<void>();
+  @Output() onOpenModalEditPokemon = new EventEmitter<any>();
   currentUser = inject(AuthService).user$;
   isEditableUser = false;
   constructor() {
@@ -39,10 +39,10 @@ export class LockeUserInfo {
       }
     });
   }
-  emitShowModal(event: Event) {
+  emitShowModal(event: Event, pokemon: any) {
     event.preventDefault();
     event.stopPropagation();
     console.log('click a emitir');
-    this.onOpenModalEditPokemon.emit();
+    this.onOpenModalEditPokemon.emit(pokemon);
   }
 }

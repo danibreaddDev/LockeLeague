@@ -18,7 +18,7 @@
     <button
       type="button"
       class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl"
-      (click)="emitShowModal($event)"
+      (click)="emitShowModal($event, pokemon)"
     >
       <img
         [src]="'sprites/' + getFormattedName(pokemon) + 'MS.png'"

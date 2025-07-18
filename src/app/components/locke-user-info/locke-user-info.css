@@ -1,5 +1,6 @@
 .user {
   animation: appear 0.5s ease-in forwards;
+  transition: all 0.1s ease-in;
 }
 @keyframes appear {
   from {
