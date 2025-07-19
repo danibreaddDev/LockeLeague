@@ -1,6 +1,16 @@
 .form {
-  width: fit-content;
+  width: 90vw;
   height: fit-content;
+}
+select {
+  border: 1px solid rgb(188, 188, 188);
+  border-radius: 5px;
+}
+selectedcontent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 input {
   padding: 10px;
