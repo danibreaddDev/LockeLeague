@@ -46,14 +46,12 @@ export class LockeDetail {
     this.userInfoMap.set(user.user_id, userInfo);
     return userInfo;
   }
-  openModalEditPokemon(pokemonId: any) {
-    console.log(pokemonId);
+  openModalEditPokemon(pokemonData: any) {
+    console.log(pokemonData);
 
     console.log('openModalEditPokemon');
     this.dialog.open(EditPokemonForm, {
-      data: {
-        id: pokemonId,
-      },
+      data: pokemonData,
     });
   }
 }

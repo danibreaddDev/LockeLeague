@@ -2,8 +2,9 @@
 <app-loader class="flex justify-center-safe"></app-loader>
 } @else {
 <div
-  class="user border rounded-3xl p-5 grid grid-cols-4 gap-5"
-  [class.border-green-500]="isEditableUser"
+  class="user border rounded-3xl p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+  [class.border-slate-300]="!isEditableUser"
+  [class.border-slate-500]="isEditableUser"
 >
   <div class="flex flex-row gap-2 items-center">
     <img
@@ -17,8 +18,8 @@
     @for (pokemon of user.team; track $index) { @if (isEditableUser) {
     <button
       type="button"
-      class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl"
-      (click)="emitShowModal($event, pokemon)"
+      class="border border-slate-300 rounded-xl hover:border-slate-400 px-3 py-2"
+      (click)="emitShowModal($event, pokemon, user.id)"
     >
       <img
         [src]="'sprites/' + getFormattedName(pokemon) + 'MS.png'"
@@ -27,11 +28,26 @@
       />
     </button>
     } @else {
-    <img
-      [src]="'sprites/' + getFormattedName(pokemon) + 'MS.png'"
-      [alt]="pokemon"
-      class="size-12"
-    />
+    <div class="px-3 py-2">
+      <img
+        [src]="'sprites/' + getFormattedName(pokemon) + 'MS.png'"
+        [alt]="pokemon"
+        class="size-12"
+      />
+    </div>
+    } } @if (isEditableUser) { @if (getFieldsToAddPokemon() !==0) {
+    <button class="btn-iniciar px-3 py-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-8"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="currentColor"
+          d="M3 3h8v8H3zm6 6V5H5v4zm9 4h-2v3h-3v2h3v3h2v-3h3v-2h-3zM15 3h6v8h-8V3zm4 6V5h-4v4zM5 13h6v8H3v-8zm4 6v-4H5v4z"
+        />
+      </svg>
+    </button>
     } }
   </div>
   <div class="flex flex-row gap-2 items-center font-title">

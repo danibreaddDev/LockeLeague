@@ -32,8 +32,10 @@ export class LockeService {
   async getLocke(id: string) {
     const { data, error } = await this._clientSupabase
       .from('locke_users')
-      .select('team,user_id,lifes')
+      .select('id,team,user_id,lifes')
       .eq('locke_id', id);
+    console.log('mi locke', data);
+
     return { data, error };
   }
 }

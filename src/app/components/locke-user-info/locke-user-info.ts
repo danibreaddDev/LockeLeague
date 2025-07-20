@@ -5,6 +5,7 @@ import {
   inject,
   Input,
   Output,
+  signal,
   Signal,
   WritableSignal,
 } from '@angular/core';
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './locke-user-info.css',
 })
 export class LockeUserInfo {
+  MAX_TEAMS_MEMBER = signal<number>(6);
   @Input() user!: any;
   @Input() userInfo!: Signal<any | null | undefined>;
   @Output() onOpenModalEditPokemon = new EventEmitter<any>();
@@ -39,10 +41,26 @@ export class LockeUserInfo {
       }
     });
   }
-  emitShowModal(event: Event, pokemon: any) {
+  getFieldsToAddPokemon() {
+    console.log('la longitud del equipo es de', this.user.team.length);
+
+    if (this.user.team.length - 1 === this.MAX_TEAMS_MEMBER()) {
+      return 0;
+    }
+    console.log(this.MAX_TEAMS_MEMBER() - this.user.team.length);
+
+    return this.MAX_TEAMS_MEMBER() - this.user.team.length;
+  }
+  emitShowModal(event: Event, pokemon: any, id: any) {
+    console.log('id que vamos a emitir', id);
+
+    const pokemonData = {
+      id: id,
+      pokemonId: pokemon,
+    };
     event.preventDefault();
     event.stopPropagation();
     console.log('click a emitir');
-    this.onOpenModalEditPokemon.emit(pokemon);
+    this.onOpenModalEditPokemon.emit(pokemonData);
   }
 }

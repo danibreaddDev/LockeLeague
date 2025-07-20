@@ -1,8 +1,9 @@
-@if (isloading()) {
+@if (isloading() ) {
 <div class="form bg-white flex justify-center items-center">
   <app-loader></app-loader>
 </div>
 }@else {
+
 <div class="form font-text p-5 bg-white rounded-3xl flex flex-col gap-5">
   <form
     [formGroup]="form"
@@ -19,9 +20,9 @@
           <button>
             <selectedcontent></selectedcontent>
           </button>
-          <option [defaultSelected]="getformatedName(data.id)">
+          <option [defaultSelected]="getformatedName(data.pokemonId)">
             <img
-              [src]="'sprites/' + getformatedName(data.id) + 'MS.png'"
+              [src]="'sprites/' + getformatedName(data.pokemonId) + 'MS.png'"
               [alt]="getformatedName(data.id)"
               class="size-12"
             />
@@ -39,7 +40,7 @@
         </select>
       </div>
       <img
-        [src]="'images_pok/' + getformatedName(data.id) + '.png'"
+        [src]="'images_pok/' + getformatedName(data.pokemonId) + '.png'"
         alt="pokemon"
         class="size-64 self-center"
       />
@@ -57,7 +58,7 @@
         </div>
         <div class="flex flex-col gap-2">
           <span class="font-title">OBJETO</span>
-          <select formControlName="item">
+          <select formControlName="item" name="item" id="">
             @for (item of allItems(); track $index) {
             <option [value]="item.id">{{ item.name.english }}</option>
             }

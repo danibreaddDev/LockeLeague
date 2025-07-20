@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { SupabaseService } from './supabase-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
+  private _clientSupabase = inject(SupabaseService).clientSupabase;
   constructor(private httpclient: HttpClient) {}
   getPokemon(): Observable<any> {
     return this.httpclient.get('assets/pokedex.json');
@@ -29,5 +31,15 @@ export class PokemonService {
         return pokemon ? pokemon.type : null;
       })
     );
+  }
+  async getInfoPokemon(id: string, pokemonId: string) {
+    console.log('id que recibe mi servicio', id);
+    console.log('id del pokemon  que recibe mi servicio', pokemonId);
+    const { data, error } = await this._clientSupabase
+      .from('locke_pokemon_data')
+      .select('*')
+      .eq('locke_user_id', id)
+      .eq('pokemon_id', pokemonId);
+    return { data, error };
   }
 }
