@@ -35,8 +35,13 @@ export class Lockes {
     this.lockeService
       .getLockes()
       .then((res) => {
-        this.lockesList.set(res.data);
-        console.log(res.data);
+        if (document.startViewTransition) {
+          document.startViewTransition(() => {
+            this.lockesList.set(res.data);
+          });
+        } else {
+          this.lockesList.set(res.data);
+        }
       })
       .catch((err) => console.error(err));
   }

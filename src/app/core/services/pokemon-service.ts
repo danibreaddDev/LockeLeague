@@ -9,7 +9,7 @@ import { SupabaseService } from './supabase-service';
 export class PokemonService {
   private _clientSupabase = inject(SupabaseService).clientSupabase;
   constructor(private httpclient: HttpClient) {}
-  getPokemon(): Observable<any> {
+  getPokemons(): Observable<any> {
     return this.httpclient.get('assets/pokedex.json');
   }
   getItems(): Observable<any> {
@@ -32,7 +32,8 @@ export class PokemonService {
       })
     );
   }
-  async getInfoPokemon(id: string, pokemonId: string) {
+  async getPokemon(id: string, pokemonId: string) {
+    //get info about pokemon
     console.log('id que recibe mi servicio', id);
     console.log('id del pokemon  que recibe mi servicio', pokemonId);
     const { data, error } = await this._clientSupabase
@@ -41,5 +42,11 @@ export class PokemonService {
       .eq('locke_user_id', id)
       .eq('pokemon_id', pokemonId);
     return { data, error };
+  }
+  async addPokemon() {
+    //add pokemon in team
+  }
+  async editPokemon() {
+    //edit pokemon
   }
 }

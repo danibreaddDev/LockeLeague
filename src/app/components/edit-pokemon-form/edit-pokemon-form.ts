@@ -59,7 +59,7 @@ export class EditPokemonForm implements OnInit {
   }
   private getAllInfo() {
     this.pokemonService
-      .getInfoPokemon(this.data.id, this.data.pokemonId)
+      .getPokemon(this.data.id, this.data.pokemonId)
       .then((res: any) => {
         this.infoPokemon.set(res.data[0]);
         console.log('info del pokemon en el form', this.infoPokemon());
@@ -92,7 +92,7 @@ export class EditPokemonForm implements OnInit {
         this.isChargingForm.set(false);
       })
       .catch((err) => console.error(err));
-    this.pokemonService.getPokemon().subscribe({
+    this.pokemonService.getPokemons().subscribe({
       next: (pokemons: any) => {
         this.allPokemon.set(pokemons);
         this.isloading.set(false);

@@ -12,7 +12,7 @@
   >
     <div class="flex flex-col justify-between">
       <div class="flex flex-col gap-3">
-        <span class="font-title">CAMBIAR POKEMON</span>
+        <span class="font-title">Changes Pokemon</span>
         <select
           (change)="changeEditPokemon($event)"
           formControlName="pokemonId"
@@ -46,7 +46,7 @@
       />
       <div class="grid grid-cols-2 gap-5">
         <div class="flex flex-col gap-2">
-          <span class="font-title">TIPOS</span>
+          <span class="font-title">TYPES</span>
           <div class="grid grid-cols-2 gap-2">
             @for (type of typesPokemon(); track $index) {
             <span
@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="flex flex-col gap-2">
-          <span class="font-title">OBJETO</span>
+          <span class="font-title">ITEM</span>
           <select formControlName="item" name="item" id="">
             @for (item of allItems(); track $index) {
             <option [value]="item.id">{{ item.name.english }}</option>
@@ -74,7 +74,7 @@
     </div>
     <div class="flex flex-col gap-5">
       <div>
-        <span class="font-title">MOVIMIENTOS</span>
+        <span class="font-title">MOVE SET</span>
         <div class="grid grid-cols-2 gap-5" formGroupName="moves">
           @for (item of indices(); track $index) {
           <div class="flex flex-col gap-2">

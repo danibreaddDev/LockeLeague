@@ -5,93 +5,125 @@ import { LockeService } from '../../../core/services/locke-service';
 @Component({
   selector: 'app-locke',
   imports: [RouterLink, RouterOutlet],
-  template: `<main class="h-screen p-5 md:p-20 container mx-auto font-text">
+  template: `<main class="h-screen font-text ">
     <section class="flex flex-col gap-5 h-full">
-      <a routerLink="/lockes">Volver</a>
       <div class="grid-container">
         <div
-          class="nav-locke border border-slate-300 rounded-3xl font-title h-fit md:h-auto "
+          class="fixed top-0 z-50 lg:relative lg:mt-8 mt-0 nav-locke h-fit lg:h-full font-title "
         >
-          <div class="flex flex-row md:flex-col items-center">
+          <div
+            class="bg-white border border-slate-300 lg:border-0  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-1 gap-5 "
+          >
             <a
-              [routerLink]="'/locke/' + testId"
-              class="text-muted text-secondary"
-            >
-              <div class="link">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="#000"
-                    d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
-                  />
-                </svg>
-                <span>Informacion General</span>
+              routerLink="/lockes"
+              class="group flex justify-center-safe gradient "
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-12 group-hover:scale-125 transition-all ease-in "
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M20 11v2H8v2H6v-2H4v-2h2V9h2v2zM10 7H8v2h2zm0 0h2V5h-2zm0 10H8v-2h2zm0 0h2v2h-2z"
+                /></svg
+            ></a>
+            <a [routerLink]="'/locke/' + testId" class="lg:w-full">
+              <div
+                class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg"
+              >
+                <span>General</span>
               </div>
             </a>
 
-            <a routerLink="rules" class="text-muted text-secondary">
-              <div class="link">Reglas</div>
+            <a routerLink="rules">
+              <div
+                class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg"
+              >
+                <span>Rules</span>
+              </div>
             </a>
 
-            <a routerLink="tournaments" class="text-muted text-secondary">
-              <div class="link">Torneos</div>
+            <a routerLink="tournaments">
+              <div
+                class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg "
+              >
+                <span>Tournaments</span>
+              </div>
             </a>
           </div>
         </div>
-        <div class="content border border-slate-300 rounded-3xl">
+        <div class="mt-12 lg:mt-0 content">
           <router-outlet [routerOutletData]="testId" />
         </div>
       </div>
     </section>
   </main> `,
-  styles: `.grid-container {
-  display: grid;
-  width: 100%;
-  height: 100%;
-  gap: 10px;
-  grid-template-columns: 0.2fr 0.8fr;
-  grid-row: auto;
-  @media (max-width: 992px) {
-    grid-template-columns: 1fr;
-  }
-}
-.nav-locke {
-  overflow: hidden;
-  width: 100%;
-  div {
-    width: 100%;
-  }
+  styles: [
+    `
+      .grid-container {
+        display: grid;
+        width: 100%;
+        height: 100%;
+        gap: 10px;
+        grid-template-columns: 0.2fr 0.8fr;
+        grid-row: auto;
+        @media (max-width: 1024px) {
+          grid-template-columns: 1fr;
+        }
+      }
+      .nav-locke {
+        padding: 10px;
+        animation: appear 1s ease;
 
-  a {
-    width: 100%;
-    font-size: 10px;
-  }
-  .link {
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
+        width: 100%;
 
-    &:hover {
-      background: #e2e0e0;
-    }
-  }
-}
+        div {
+          width: 100%;
+        }
 
-.content {
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}`,
+        .link {
+          padding: 5px;
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          justify-content: center;
+          align-items: center;
+          height: 50px;
+          color: oklch(27.8% 0.033 256.848);
+          font-weight: bold;
+          a {
+            width: fit-content;
+          }
+        }
+      }
+
+      .content {
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      @keyframes appear {
+        from {
+          width: 60%;
+          opacity: 0;
+        }
+        to {
+          width: 100%;
+          opacity: 1;
+        }
+      }
+      @keyframes appear2 {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    `,
+  ],
 })
 export class Locke {
   testId: string = '';

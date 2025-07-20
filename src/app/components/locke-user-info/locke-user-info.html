@@ -2,10 +2,14 @@
 <app-loader class="flex justify-center-safe"></app-loader>
 } @else {
 <div
-  class="user border rounded-3xl p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
-  [class.border-slate-300]="!isEditableUser"
-  [class.border-slate-500]="isEditableUser"
+  class="relative user border border-slate-300 rounded-3xl p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
 >
+  @if (isEditableUser) {
+  <div class="absolute inset-0 -inset-y-4 w-fit">
+    <span class="text-lg font-title">Your Team</span>
+  </div>
+  }
+
   <div class="flex flex-row gap-2 items-center">
     <img
       [src]="userInfo()?.avatar_url"
@@ -14,17 +18,18 @@
     />
     <span>{{ userInfo()?.name }}</span>
   </div>
-  <div class="col-span-2 flex flex-row gap-5 w-full items-center">
+  <div class="col-span-2 flex flex-row flex-wrap gap-5 w-full items-center">
     @for (pokemon of user.team; track $index) { @if (isEditableUser) {
     <button
       type="button"
       class="border border-slate-300 rounded-xl hover:border-slate-400 px-3 py-2"
       (click)="emitShowModal($event, pokemon, user.id)"
+      title="Click to open edit modal"
     >
       <img
         [src]="'sprites/' + getFormattedName(pokemon) + 'MS.png'"
         [alt]="pokemon"
-        class="size-12"
+        class="size-8 sm:size-12 object-contain"
       />
     </button>
     } @else {
@@ -32,11 +37,14 @@
       <img
         [src]="'sprites/' + getFormattedName(pokemon) + 'MS.png'"
         [alt]="pokemon"
-        class="size-12"
+        class="size-8 sm:size-12 object-contain"
       />
     </div>
     } } @if (isEditableUser) { @if (getFieldsToAddPokemon() !==0) {
-    <button class="btn-iniciar px-3 py-2">
+    <button
+      class="btn-iniciar px-3 py-2 rounded-xl"
+      title="add pokemon to the team"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="size-8"
@@ -50,7 +58,7 @@
     </button>
     } }
   </div>
-  <div class="flex flex-row gap-2 items-center font-title">
+  <div class="flex flex-row gap-2 items-center">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -62,7 +70,31 @@
         d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
       />
     </svg>
-    <span class="text-red-600">{{ user.lifes }}</span>
+    @if (isEditableUser) {
+    <input
+      title="change lifes"
+      type="number"
+      [value]="user.lifes"
+      class="text-red-600 px-2 py-2 font-title rounded-xl hover:outline hover:outline-slate-300"
+    />
+    <button
+      class="px-3 py-2 rounded-xl hover:outline hover:outline-slate-300"
+      title="update lifes"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-8 text-green-500"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="currentColor"
+          d="M15 6h2v2h-2zm-2 4V8h2v2zm-2 2v-2h2v2zm-2 2v-2h2v2zm-2 2v-2h2v2zm-2 0h2v2H5zm-2-2h2v2H3zm0 0H1v-2h2zm8 2h2v2h-2zm4-2v2h-2v-2zm2-2v2h-2v-2zm2-2v2h-2v-2zm2-2h-2v2h2zm0 0h2V6h-2z"
+        />
+      </svg>
+    </button>
+    } @else {
+    <span class="font-title text-red-600">{{ user.lifes }}</span>
+    }
   </div>
 </div>
 }
