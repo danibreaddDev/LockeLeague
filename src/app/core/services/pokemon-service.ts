@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,5 +15,19 @@ export class PokemonService {
   }
   getMoves(): Observable<any> {
     return this.httpclient.get('assets/moves.json');
+  }
+  getTypes(pokemonId: string) {
+    console.log(pokemonId);
+
+    return this.httpclient.get('assets/pokedex.json').pipe(
+      map((pokemons: any) => {
+        console.log(pokemons);
+
+        const pokemon = pokemons.find((p: any) => p.id === Number(pokemonId));
+        console.log(pokemon);
+
+        return pokemon ? pokemon.type : null;
+      })
+    );
   }
 }
