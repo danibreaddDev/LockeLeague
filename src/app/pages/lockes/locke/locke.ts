@@ -34,7 +34,7 @@ import { LockeService } from '../../../core/services/locke-service';
             ></a>
             <a
               [routerLink]="['/locke', testId]"
-              [routerLinkActive]="'bg-green-500'"
+              [routerLinkActive]="'bg-green-500 rounded-xl'"
               [routerLinkActiveOptions]="{ exact: true }"
               class="lg:w-full"
             >
@@ -47,7 +47,7 @@ import { LockeService } from '../../../core/services/locke-service';
 
             <a
               [routerLink]="['/locke', testId, 'rules']"
-              routerLinkActive="bg-green-500"
+              routerLinkActive="bg-green-500 rounded-xl"
             >
               <div
                 class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg"
@@ -58,7 +58,7 @@ import { LockeService } from '../../../core/services/locke-service';
 
             <a
               [routerLink]="['/locke', testId, 'tournaments']"
-              routerLinkActive="bg-green-500"
+              routerLinkActive="bg-green-500 rounded-xl"
             >
               <div
                 class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg "

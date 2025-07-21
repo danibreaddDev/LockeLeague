@@ -6,3 +6,27 @@ img {
     height: 30px;
   }
 }
+[class^="card-"] {
+  background: white;
+  opacity: 0;
+  transform: translateY(-100px);
+  animation: appear 1s ease forwards;
+}
+.card-lifes {
+  animation-delay: 0.25s;
+}
+.card-status {
+  animation-delay: 0.5s;
+}
+.card-tournaments {
+  animation-delay: 0.75s;
+}
+.card-event {
+  animation-delay: 1s;
+}
+@keyframes appear {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
