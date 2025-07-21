@@ -1,10 +1,10 @@
-<div class="relative z-10 flex flex-col gap-10">
+<div class="relative z-10 flex flex-col gap-10 h-screen">
   @if (!generalInfo()) {
-  <app-loader class="flex justify-center-safe"></app-loader>
+  <app-loader class="flex justify-center items-center h-full"></app-loader>
   }@else {
   <section class="flex flex-col gap-5">
     <div class="flex flex-row justify-between items-center">
-      <h2 class="font-title gradient text-7xl">General</h2>
+      <h2 class="font-title gradient text-7xl">Summary</h2>
       <button
         title="edit general info"
         class="btn-iniciar px-2 py-1 border border-slate-300 rounded-2xl"
@@ -68,9 +68,10 @@
                 class="size-12 text-red-600"
                 viewBox="0 0 24 24"
               >
+                <rect width="24" height="24" fill="none" />
                 <path
                   fill="currentColor"
-                  d="M9 2H5v2H3v2H1v6h2v2h2v2h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v-2h2v-2h2V6h-2V4h-2V2h-4v2h-2v2h-2V4H9zm0 2v2h2v2h2V6h2V4h4v2h2v6h-2v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2H3V6h2V4z"
+                  d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
                 />
               </svg>
             </div>
@@ -118,9 +119,10 @@
                 class="size-12 text-blue-500"
                 viewBox="0 0 24 24"
               >
+                <rect width="24" height="24" fill="none" />
                 <path
                   fill="currentColor"
-                  d="M16 3H6v2H2v10h6V5h8v10h6V5h-4V3zm4 4v6h-2V7zM6 13H4V7h2zm12 2H6v2h12zm-7 2h2v2h3v2H8v-2h3z"
+                  d="M18 4V2H6v2H1v5h1v2h1v1h1v1h1v1h1v1h3v1h2v3H7v3h10v-3h-4v-3h2v-1h3v-1h1v-1h1v-1h1v-1h1V9h1V4zM5 12v-1H4V9H3V6h2v1h1v2h1v3h1v1H6v-1zm16-3h-1v2h-1v1h-1v1h-2v-1h1v-2h1V7h1V6h2z"
                 />
               </svg>
             </div>
@@ -173,12 +175,13 @@
           <div class="p-6 flex flex-col gap-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="size-12 text-amber-500 absolute z-50 inset-0 -inset-x-6 -inset-y-7"
+              class="alert-event size-8 text-amber-500 absolute z-50 inset-0 -inset-x-2 -inset-y-2"
               viewBox="0 0 24 24"
             >
+              <rect width="24" height="24" fill="none" />
               <path
                 fill="currentColor"
-                d="M22 2H2v12h2V4h16v10h2zM6 14H4v2h2zm0 2h2v2h2v2H8v-2H6zm4 4v2h4v-2h2v-2h-2v2zm10-6h-2v2h-2v2h2v-2h2z"
+                d="M7 5V4H5v2H3v14h14V6h-2V4h-2v2H7zm-2 5V8h10v2zm0 2h10v6H5zm16-3V8h-2v6h2zm0 6h-2v2h2z"
               />
             </svg>
 
@@ -210,7 +213,7 @@
   </section>
 
   <section class="flex flex-col gap-10">
-    <h2 class="font-title gradient text-7xl">Miembros</h2>
+    <h2 class="font-title gradient text-7xl">Members</h2>
 
     @for (user of lockeUsersInfo(); track $index) {
     <app-locke-user-info

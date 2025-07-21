@@ -14,7 +14,7 @@ import { LockeService } from '../../../core/services/locke-service';
     <section class="flex flex-col gap-5 h-full">
       <div class="grid-container">
         <div
-          class="fixed top-0 z-50 lg:relative lg:mt-8 mt-0 nav-locke h-fit lg:h-full font-title "
+          class="fixed top-0 z-50 lg:relative lg:mt-8 mt-0 nav-locke h-fit lg:h-full font-title border border-slate-300 border-x-0 border-y-0 border-e-2 "
         >
           <div
             class="bg-white border border-slate-300 lg:border-0  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-1 gap-5 "
@@ -34,36 +34,69 @@ import { LockeService } from '../../../core/services/locke-service';
             ></a>
             <a
               [routerLink]="['/locke', testId]"
-              [routerLinkActive]="'bg-green-500 rounded-xl'"
+              [routerLinkActive]="'outline outline-slate-300 rounded-xl'"
               [routerLinkActiveOptions]="{ exact: true }"
               class="lg:w-full"
             >
               <div
-                class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg"
+                class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm"
               >
-                <span>General</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-8 gradient"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="24" height="24" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M14 2h-4v2H8v2H6v2H4v2H2v2h2v10h7v-6h2v6h7V12h2v-2h-2V8h-2V6h-2V4h-2zm0 2v2h2v2h2v2h2v2h-2v8h-3v-6H9v6H6v-8H4v-2h2V8h2V6h2V4z"
+                  />
+                </svg>
+                <span class="gradient">General</span>
               </div>
             </a>
 
             <a
               [routerLink]="['/locke', testId, 'rules']"
-              routerLinkActive="bg-green-500 rounded-xl"
+              routerLinkActive="outline outline-slate-300 rounded-xl"
             >
               <div
-                class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg"
+                class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm "
               >
-                <span>Rules</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-8 gradient"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="24" height="24" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M7 0h16v20H5V0zm14 18V2H7v16zM9 4h10v2H9zm10 4H9v2h10zM9 12h7v2H9zm10 10H3V4H1v20h18z"
+                  />
+                </svg>
+                <span class="gradient">Rules</span>
               </div>
             </a>
 
             <a
               [routerLink]="['/locke', testId, 'tournaments']"
-              routerLinkActive="bg-green-500 rounded-xl"
+              routerLinkActive="outline outline-slate-300 rounded-xl"
             >
               <div
-                class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg "
+                class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm  "
               >
-                <span>Tournaments</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-8 gradient"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="24" height="24" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M9 2H2v2h5v4H2v2h7V7h5v10H9v-3H2v2h5v4H2v2h7v-3h7v-6h6v-2h-6V5H9z"
+                  />
+                </svg>
+                <span class="gradient">Tournaments</span>
               </div>
             </a>
           </div>
@@ -98,11 +131,11 @@ import { LockeService } from '../../../core/services/locke-service';
         }
 
         .link {
-          padding: 5px;
+          padding: 5px 20px;
           display: flex;
           flex-direction: row;
           gap: 10px;
-          justify-content: center;
+
           align-items: center;
           height: 50px;
           color: oklch(27.8% 0.033 256.848);

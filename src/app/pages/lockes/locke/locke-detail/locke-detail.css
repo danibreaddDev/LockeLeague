@@ -24,9 +24,20 @@ img {
 .card-event {
   animation-delay: 1s;
 }
+.alert-event {
+  animation: scala 1s ease-in-out infinite alternate;
+}
 @keyframes appear {
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+@keyframes scala {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-20px) scale(2);
   }
 }
