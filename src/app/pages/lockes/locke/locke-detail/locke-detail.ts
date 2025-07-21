@@ -5,14 +5,16 @@ import { Dialog } from '@angular/cdk/dialog';
 import { LockeUserInfo } from '../../../../components/locke-user-info/locke-user-info';
 import { UserService } from '../../../../core/services/user-service';
 import { EditPokemonForm } from '../../../../components/edit-pokemon-form/edit-pokemon-form';
+import { Loader } from '../../../../shared/components/loader/loader';
 @Component({
   selector: 'app-locke-detail',
-  imports: [LockeUserInfo],
+  imports: [LockeUserInfo, Loader],
   templateUrl: './locke-detail.html',
   styleUrl: './locke-detail.css',
 })
 export class LockeDetail {
   test_id: Signal<string> = inject(ROUTER_OUTLET_DATA) as Signal<string>;
+  generalInfo = signal<any | null>(null);
   lockeUsersInfo = signal<any>(null);
   private userInfoMap = new Map<string, Signal<any | null>>(); //SOLUCIONAR CARGA INNCESARIA
   constructor(
@@ -21,6 +23,13 @@ export class LockeDetail {
     private dialog: Dialog
   ) {
     console.log(this.test_id());
+    this.lockeService
+      .getGeneralInfoLocke(this.test_id())
+      .then((res: any) => {
+        console.log(res.data[0]);
+        this.generalInfo.set(res.data[0]);
+      })
+      .catch((err) => console.error(err));
     this.lockeService
       .getLocke(this.test_id())
       .then((res) => {

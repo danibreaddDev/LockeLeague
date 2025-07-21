@@ -29,6 +29,15 @@ export class LockeService {
       .limit(3);
     return { data, error };
   }
+  async getGeneralInfoLocke(id: string) {
+    const { data, error } = await this._clientSupabase
+      .from('lockes')
+      .select('*')
+      .eq('id', id);
+    console.log('mi locke', data);
+
+    return { data, error };
+  }
   async getLocke(id: string) {
     const { data, error } = await this._clientSupabase
       .from('locke_users')

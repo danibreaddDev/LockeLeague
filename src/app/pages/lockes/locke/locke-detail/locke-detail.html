@@ -1,18 +1,10 @@
 <div class="relative z-10 flex flex-col gap-10">
+  @if (!generalInfo()) {
+  <app-loader class="flex justify-center-safe"></app-loader>
+  }@else {
   <section class="flex flex-col gap-5">
-    <h2 class="font-title gradient">Miembros</h2>
-
-    @for (user of lockeUsersInfo(); track $index) {
-    <app-locke-user-info
-      [user]="user"
-      [userInfo]="getInfoUser(user)"
-      (onOpenModalEditPokemon)="openModalEditPokemon($event)"
-    ></app-locke-user-info>
-    }
-  </section>
-  <section class="flex flex-col gap-5">
-    <div class="flex flex-row justify-between">
-      <h2 class="font-title gradient">General</h2>
+    <div class="flex flex-row justify-between items-center">
+      <h2 class="font-title gradient text-7xl">General</h2>
       <button
         title="edit general info"
         class="btn-iniciar px-2 py-1 border border-slate-300 rounded-2xl"
@@ -34,11 +26,13 @@
       <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 h-auto">
         <!-- Card del Jugador Líder - MÁS GRANDE Y PROMINENTE -->
         <div
-          class="md:col-span-2 lg:col-span-2 md:row-span-1 border-2 border-yellow-300 bg-gradient-to-br from-yellow-50 to-amber-50 shadow-lg rounded-lg"
+          class="md:col-span-2 lg:col-span-2 md:row-span-1 border-4 border-yellow-300 rounded-lg"
         >
-          <div class="p-6">
+          <div class="p-4">
             <!-- Header de la card -->
-            <div class="flex items-center mb-4">
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-xl text-yellow-400">Leader</span>
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="size-12 text-yellow-500"
@@ -64,64 +58,64 @@
 
         <!-- Card de Vidas - Tamaño mediano -->
         <div
-          class="md:col-span-2 lg:col-span-2 border-2 border-red-200 bg-gradient-to-br from-red-50 to-pink-50 rounded-lg overflow-hidden"
+          class="md:col-span-2 lg:col-span-2 border-4 border-red-500 rounded-lg overflow-hidden"
         >
           <div class="p-4">
-            <div class="flex items-center justify-end mb-3">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xl text-red-500">Lifes</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                class="size-12 text-red-600"
                 viewBox="0 0 24 24"
               >
                 <path
-                  _ngcontent-ng-c2680932422=""
-                  fill="red"
-                  d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
-                ></path>
+                  fill="currentColor"
+                  d="M9 2H5v2H3v2H1v6h2v2h2v2h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v-2h2v-2h2V6h-2V4h-2V2h-4v2h-2v2h-2V4H9zm0 2v2h2v2h2V6h2V4h4v2h2v6h-2v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2H3V6h2V4z"
+                />
               </svg>
             </div>
 
             <div class="text-8xl font-bold text-red-700 mb-3 font-title">
-              30
+              {{ generalInfo().lifes }}
             </div>
           </div>
         </div>
 
         <!-- Card de Estado del Locke - Tamaño pequeño -->
         <div
-          class="md:col-span-2 lg:col-span-2 border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg overflow-hidden"
+          class="md:col-span-2 lg:col-span-2 border-4 border-green-200 bg-white rounded-lg overflow-hidden"
         >
           <div class="p-4">
             <div class="flex items-center justify-between mb-3">
-              <h3 class="text-sm font-medium text-gray-800">Estado</h3>
-              <span class="text-green-600">📊</span>
+              <span class="text-xl text-green-500">Status</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-12 text-emerald-500"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M4 2h14v2H4v16h2v-6h12v6h2V6h2v16H2V2zm4 18h8v-4H8zM20 6h-2V4h2zM6 6h9v4H6z"
+                />
+              </svg>
             </div>
 
-            <div class="text-xl font-bold text-green-700 mb-2">Activo</div>
-            <span
-              class="bg-green-500 text-white px-2 py-1 rounded text-xs mb-2 inline-block"
-              >En progreso</span
-            >
-
-            <div class="space-y-1">
-              <p class="text-xs text-gray-600 flex items-center gap-1">
-                <span>📅</span>
-                12 días
-              </p>
+            <div class="font-title text-xl font-bold text-green-700 mb-2">
+              {{ generalInfo().status }} locke
             </div>
           </div>
         </div>
 
         <!-- Card de Torneos - Tamaño mediano -->
         <div
-          class="md:col-span-2 lg:col-span-3 border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg overflow-hidden"
+          class="md:col-span-2 lg:col-span-3 border-4 border-blue-200 rounded-lg overflow-hidden"
         >
           <div class="p-4">
-            <div class="flex items-center justify-end mb-3">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xl text-blue-400">Tournaments</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="size-12 text-yellow-500"
+                class="size-12 text-blue-500"
                 viewBox="0 0 24 24"
               >
                 <path
@@ -132,7 +126,7 @@
             </div>
 
             <div class="text-8xl font-title font-bold text-blue-700 mb-3">
-              5
+              {{ generalInfo().tournaments }}
             </div>
 
             <!-- Gimnasios completados -->
@@ -143,13 +137,14 @@
 
         <!-- Card de Próximo Objetivo - Tamaño pequeño -->
         <div
-          class="md:col-span-2 lg:col-span-3 border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-violet-50 rounded-lg overflow-hidden"
+          class="md:col-span-2 lg:col-span-3 border-4 border-purple-200 rounded-lg overflow-hidden"
         >
           <div class="p-4">
-            <div class="flex items-center justify-end mb-3">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xl text-purple-400">Next event</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="size-24"
+                class="size-12 text-purple-400"
                 viewBox="0 0 24 24"
               >
                 <path
@@ -160,13 +155,13 @@
             </div>
 
             <div class="font-title text-lg font-bold text-purple-700 mb-2">
-              Pokemon League
+              {{ generalInfo().next_event.title }}
             </div>
 
             <p
               class="text-base border px-2 py-1 w-fit border-gray-300 text-gray-600"
             >
-              Level Cap 76
+              Level Cap {{ generalInfo().next_event.level_cap }}
             </p>
           </div>
         </div>
@@ -178,14 +173,15 @@
           <div class="p-6 flex flex-col gap-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="size-12 text-amber-300 absolute z-50 inset-0 -inset-x-6 -inset-y-7 animate-bounce"
+              class="size-12 text-amber-500 absolute z-50 inset-0 -inset-x-6 -inset-y-7"
               viewBox="0 0 24 24"
             >
               <path
                 fill="currentColor"
-                d="M14 4V2h-4v2H5v2h14V4zm5 12H5v-4H3v6h5v4h2v-4h4v2h-4v2h6v-4h5v-6h-2V6h-2v8h2zM5 6v8h2V6z"
+                d="M22 2H2v12h2V4h16v10h2zM6 14H4v2h2zm0 2h2v2h2v2H8v-2H6zm4 4v2h4v-2h2v-2h-2v2zm10-6h-2v2h-2v2h2v-2h2z"
               />
             </svg>
+
             <h3 class="font-title text-3xl">new Tournament</h3>
             <p class="text-base text-gray-700">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
@@ -212,4 +208,17 @@
       </div>
     </div>
   </section>
+
+  <section class="flex flex-col gap-10">
+    <h2 class="font-title gradient text-7xl">Miembros</h2>
+
+    @for (user of lockeUsersInfo(); track $index) {
+    <app-locke-user-info
+      [user]="user"
+      [userInfo]="getInfoUser(user)"
+      (onOpenModalEditPokemon)="openModalEditPokemon($event)"
+    ></app-locke-user-info>
+    }
+  </section>
+  }
 </div>

@@ -1,10 +1,15 @@
 import { Component, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
+import {
+  ActivatedRoute,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 import { LockeService } from '../../../core/services/locke-service';
 
 @Component({
   selector: 'app-locke',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet, RouterLinkActive],
   template: `<main class="h-screen font-text ">
     <section class="flex flex-col gap-5 h-full">
       <div class="grid-container">
@@ -27,7 +32,12 @@ import { LockeService } from '../../../core/services/locke-service';
                   d="M20 11v2H8v2H6v-2H4v-2h2V9h2v2zM10 7H8v2h2zm0 0h2V5h-2zm0 10H8v-2h2zm0 0h2v2h-2z"
                 /></svg
             ></a>
-            <a [routerLink]="'/locke/' + testId" class="lg:w-full">
+            <a
+              [routerLink]="['/locke', testId]"
+              [routerLinkActive]="'bg-green-500'"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="lg:w-full"
+            >
               <div
                 class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg"
               >
@@ -35,7 +45,10 @@ import { LockeService } from '../../../core/services/locke-service';
               </div>
             </a>
 
-            <a routerLink="rules">
+            <a
+              [routerLink]="['/locke', testId, 'rules']"
+              routerLinkActive="bg-green-500"
+            >
               <div
                 class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg"
               >
@@ -43,7 +56,10 @@ import { LockeService } from '../../../core/services/locke-service';
               </div>
             </a>
 
-            <a routerLink="tournaments">
+            <a
+              [routerLink]="['/locke', testId, 'tournaments']"
+              routerLinkActive="bg-green-500"
+            >
               <div
                 class="link hover:outline hover:outline-slate-300 rounded-xl hover:shadow text-sm md:text-lg "
               >
@@ -134,5 +150,13 @@ export class Locke {
     this.route.params.subscribe((params) => {
       this.testId = params['id']; // Access the 'id' parameter from the URL
     });
+  }
+  getColorLinkActive() {
+    console.log('Ruta actual:', this.route.routeConfig?.path); // Debería ser 'rules'
+    console.log('Padre:', this.route.parent?.routeConfig?.path); // Debería ser 'locke/:id'
+    this.route.params.subscribe((params) => {
+      console.log('params', params);
+    });
+    return '';
   }
 }
