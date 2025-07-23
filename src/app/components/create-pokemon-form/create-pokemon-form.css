@@ -1,0 +1,54 @@
+.form {
+  width: 90vw;
+  height: 70vh;
+}
+select {
+  border: 1px solid rgb(188, 188, 188);
+  border-radius: 5px;
+}
+selectedcontent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+input {
+  padding: 10px;
+  border: 1px solid rgb(150, 147, 147);
+  border-radius: 10px;
+  outline-color: rgb(137, 137, 137);
+}
+:host {
+  display: block;
+  animation: fadeInDialog 250ms ease-out forwards;
+}
+
+.cdk-dialog-container {
+  animation: fadeInDialog 250ms ease-out forwards;
+}
+
+.cdk-dialog-container.dialog-exit {
+  animation: fadeOutDialog 200ms ease-in forwards;
+}
+
+@keyframes fadeInDialog {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutDialog {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,234 @@
+@if (isloading() ) {
+<div class="form bg-white flex justify-center items-center">
+  <app-loader></app-loader>
+</div>
+}@else {
+
+<div class="form font-text p-5 bg-white rounded-3xl flex flex-col gap-5">
+  <form
+    [formGroup]="form"
+    (submit)="onSubmit()"
+    class="grid grid-cols-1 md:grid-cols-2 overflow-scroll lg:overflow-hidden gap-5"
+  >
+    <div class="flex flex-col justify-between">
+      <div class="flex flex-col gap-3">
+        <span class="font-title">Changes Pokemon</span>
+        <select
+          (change)="changeEditPokemon($event)"
+          formControlName="pokemonId"
+        >
+          <button>
+            <selectedcontent></selectedcontent>
+          </button>
+
+          @for (pokemon of allPokemon(); track $index) {
+          <option [value]="pokemon.id">
+            <img
+              [src]="'sprites/' + getformatedName(pokemon.id) + 'MS.png'"
+              [alt]="getformatedName(pokemon.id)"
+              class="size-12"
+            />
+            <span>{{ pokemon.name.english }}</span>
+          </option>
+          }
+        </select>
+      </div>
+      <img
+        [src]="'images_pok/' + getformatedName(imagePokemon) + '.png'"
+        alt="pokemon"
+        class="size-64 self-center"
+      />
+      <div class="grid grid-cols-2 gap-5">
+        <div class="flex flex-col gap-2">
+          <span class="font-title">TYPES</span>
+          <div class="grid grid-cols-2 gap-2">
+            @for (type of typesPokemon(); track $index) {
+            <span
+              class="text-center px-4 py-2 rounded-3xl border border-slate-300"
+            >
+              {{ type }} </span
+            >}
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="font-title">ITEM</span>
+          <select formControlName="item" name="item" id="">
+            @for (item of allItems(); track $index) {
+            <option [value]="item.id">{{ item.name.english }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="mt-6 btn-iniciar bg-yellow-400 px-3 py-2 border border-slate-300 rounded-3xl"
+      >
+        guardar
+      </button>
+    </div>
+    <div class="flex flex-col gap-5">
+      <div>
+        <span class="font-title">MOVE SET</span>
+        <div class="grid grid-cols-2 gap-5" formGroupName="moves">
+          @for (item of indices(); track $index) {
+          <div class="flex flex-col gap-2">
+            <select
+              class="px-2 py-1 flex flex-row gap-2 justify-center rounded-3xl border border-slate-300 text-muted text-secondary"
+              name=""
+              id=""
+              [formControlName]="'move' + (item + 1)"
+            >
+              @for (move of allMoves(); track $index) {
+              <option [value]="move.ename">
+                <span>{{ move.ename }}</span>
+              </option>
+              }
+            </select>
+          </div>
+          }
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5"
+      >
+        <div class="flex flex-col" formGroupName="IVS">
+          <h3 class="font-title">IVs</h3>
+          <div class="flex flex-col gap-1">
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>HP</span>
+
+              <input
+                formControlName="HP"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>ATK</span>
+
+              <input
+                formControlName="ATK"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>DEF</span>
+
+              <input
+                formControlName="DEF"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>ATKSP</span>
+              <input
+                formControlName="SPATK"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>SPDEF</span>
+              <input
+                formControlName="SPDEF"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>VEL</span>
+              <input
+                formControlName="VEL"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col" formGroupName="EVS">
+          <h3 class="font-title">EVs</h3>
+          <div class="flex flex-col gap-1">
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>HP</span>
+
+              <input
+                formControlName="HP"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>ATK</span>
+
+              <input
+                formControlName="ATK"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>DEF</span>
+
+              <input
+                formControlName="DEF"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>ATKSP</span>
+              <input
+                formControlName="SPATK"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>SPDEF</span>
+              <input
+                formControlName="SPDEF"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center gap-1">
+              <span>VEL</span>
+              <input
+                formControlName="VEL"
+                type="number"
+                class="form-control"
+                name="ds"
+                id="ds"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+}

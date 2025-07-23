@@ -6,6 +6,7 @@ import { LockeUserInfo } from '../../../../components/locke-user-info/locke-user
 import { UserService } from '../../../../core/services/user-service';
 import { EditPokemonForm } from '../../../../components/edit-pokemon-form/edit-pokemon-form';
 import { Loader } from '../../../../shared/components/loader/loader';
+import { CreatePokemonForm } from '../../../../components/create-pokemon-form/create-pokemon-form';
 @Component({
   selector: 'app-locke-detail',
   imports: [LockeUserInfo, Loader],
@@ -62,5 +63,8 @@ export class LockeDetail {
     this.dialog.open(EditPokemonForm, {
       data: pokemonData,
     });
+  }
+  openModalAddPokemon() {
+    this.dialog.open(CreatePokemonForm);
   }
 }

@@ -23,7 +23,7 @@
     <button
       type="button"
       class="border border-slate-300 rounded-xl hover:border-slate-400 px-3 py-2"
-      (click)="emitShowModal($event, pokemon, user.id)"
+      (click)="emitEditModal($event, pokemon, user.id)"
       title="Click to open edit modal"
     >
       <img
@@ -42,6 +42,7 @@
     </div>
     } } @if (isEditableUser) { @if (getFieldsToAddPokemon() !==0) {
     <button
+      (click)="emitAddModal()"
       class="btn-iniciar px-3 py-2 rounded-xl"
       title="add pokemon to the team"
     >

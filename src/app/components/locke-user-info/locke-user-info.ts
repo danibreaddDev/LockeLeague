@@ -25,6 +25,8 @@ export class LockeUserInfo {
   @Input() user!: any;
   @Input() userInfo!: Signal<any | null | undefined>;
   @Output() onOpenModalEditPokemon = new EventEmitter<any>();
+  @Output() onOpenModalAddPokemon = new EventEmitter<void>();
+
   currentUser = inject(AuthService).user$;
   isEditableUser = false;
   constructor() {
@@ -51,7 +53,7 @@ export class LockeUserInfo {
 
     return this.MAX_TEAMS_MEMBER() - this.user.team.length;
   }
-  emitShowModal(event: Event, pokemon: any, id: any) {
+  emitEditModal(event: Event, pokemon: any, id: any) {
     console.log('id que vamos a emitir', id);
 
     const pokemonData = {
@@ -62,5 +64,8 @@ export class LockeUserInfo {
     event.stopPropagation();
     console.log('click a emitir');
     this.onOpenModalEditPokemon.emit(pokemonData);
+  }
+  emitAddModal() {
+    this.onOpenModalAddPokemon.emit();
   }
 }

@@ -161,7 +161,7 @@
             </div>
 
             <p
-              class="text-base border px-2 py-1 w-fit border-gray-300 text-gray-600"
+              class="text-base border rounded-xl px-2 py-1 w-fit border-gray-300 text-gray-600"
             >
               Level Cap {{ generalInfo().next_event.level_cap }}
             </p>
@@ -220,6 +220,7 @@
       [user]="user"
       [userInfo]="getInfoUser(user)"
       (onOpenModalEditPokemon)="openModalEditPokemon($event)"
+      (onOpenModalAddPokemon)="openModalAddPokemon()"
     ></app-locke-user-info>
     }
   </section>
