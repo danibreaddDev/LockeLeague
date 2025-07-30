@@ -122,7 +122,7 @@ import { LockeService } from '../../../core/services/locke-service';
       }
       .nav-locke {
         padding: 10px;
-        animation: appear 1s ease;
+        animation: appear 0.5s linear;
 
         width: 100%;
 
@@ -155,7 +155,7 @@ import { LockeService } from '../../../core/services/locke-service';
       }
       @keyframes appear {
         from {
-          width: 60%;
+          width: 50%;
           opacity: 0;
         }
         to {

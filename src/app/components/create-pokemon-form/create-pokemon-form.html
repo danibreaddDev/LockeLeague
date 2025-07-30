@@ -8,11 +8,13 @@
   <form
     [formGroup]="form"
     (submit)="onSubmit()"
-    class="grid grid-cols-1 md:grid-cols-2 overflow-scroll lg:overflow-hidden gap-5"
+    class="grid grid-cols-1 md:grid-cols-3 overflow-scroll lg:overflow-hidden gap-5"
   >
-    <div class="flex flex-col justify-between">
+    <div
+      class="col-span-1 flex flex-col gap-5 p-5 border border-slate-300 rounded-2xl"
+    >
       <div class="flex flex-col gap-3">
-        <span class="font-title">Changes Pokemon</span>
+        <span class="font-title">Choose Pokemon</span>
         <select
           (change)="changeEditPokemon($event)"
           formControlName="pokemonId"
@@ -34,9 +36,13 @@
         </select>
       </div>
       <img
-        [src]="'images_pok/' + getformatedName(imagePokemon) + '.png'"
+        [src]="
+          imagePokemon !== ''
+            ? 'images_pok/' + getformatedName(imagePokemon) + '.png'
+            : '/choosepokemon.png'
+        "
         alt="pokemon"
-        class="size-64 self-center"
+        class="size-32 self-center"
       />
       <div class="grid grid-cols-2 gap-5">
         <div class="flex flex-col gap-2">
@@ -59,14 +65,10 @@
           </select>
         </div>
       </div>
-      <button
-        type="submit"
-        class="mt-6 btn-iniciar bg-yellow-400 px-3 py-2 border border-slate-300 rounded-3xl"
-      >
-        guardar
-      </button>
     </div>
-    <div class="flex flex-col gap-5">
+    <div
+      class="col-span-2 border border-slate-300 rounded-2xl p-5 flex flex-col gap-5"
+    >
       <div>
         <span class="font-title">MOVE SET</span>
         <div class="grid grid-cols-2 gap-5" formGroupName="moves">
@@ -92,7 +94,10 @@
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5"
       >
         <div class="flex flex-col" formGroupName="IVS">
-          <h3 class="font-title">IVs</h3>
+          <div class="flex flex-row items-center gap-5">
+            <h3 class="font-title">IVs</h3>
+            <span class="px-2 py-1 rounded-full bg-slate-100">Max: 31.</span>
+          </div>
           <div class="flex flex-col gap-1">
             <div class="flex flex-row justify-between items-center gap-1">
               <span>HP</span>
@@ -226,6 +231,20 @@
               />
             </div>
           </div>
+        </div>
+        <div class="col-span-full grid grid-cols-2 md:grid-cols-2 gap-5">
+          <button
+            type="submit"
+            class="btn-iniciar bg-yellow-400 px-3 py-2 border border-slate-300 rounded-3xl"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            class="btn-iniciar bg-yellow-400 px-3 py-2 border border-slate-300 rounded-3xl"
+          >
+            Reset
+          </button>
         </div>
       </div>
     </div>
