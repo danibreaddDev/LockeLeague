@@ -42,7 +42,7 @@
     </div>
     } } @if (isEditableUser) { @if (getFieldsToAddPokemon() !==0) {
     <button
-      (click)="emitAddModal()"
+      (click)="emitAddModal(user.id)"
       class="btn-iniciar px-3 py-2 rounded-xl"
       title="add pokemon to the team"
     >

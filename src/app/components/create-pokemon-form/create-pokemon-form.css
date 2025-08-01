@@ -31,7 +31,35 @@ input {
 .cdk-dialog-container.dialog-exit {
   animation: fadeOutDialog 200ms ease-in forwards;
 }
+.box {
+  border-radius: 2px;
+  padding: 8px;
 
+  line-height: 16px;
+  margin: auto;
+  background: white;
+  border: 1px solid white;
+  box-shadow: 0 1px 0 1px black, inset 0 1px 0 1px black, 0 0 0 1px black,
+    inset 0 0 0 1px black;
+}
+.box > i {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top-color: black;
+  margin-top: 23px;
+  animation: bounce 0.5s ease-in-out 0 infinite alternate;
+  float: right;
+}
+
+@keyframes bounce {
+  from {
+    margin-top: 20px;
+  }
+  to {
+    margin-top: 23px;
+  }
+}
 @keyframes fadeInDialog {
   from {
     transform: scale(0.95);

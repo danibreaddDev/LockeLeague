@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import {
   ActivatedRoute,
+  Router,
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
@@ -177,19 +178,11 @@ import { LockeService } from '../../../core/services/locke-service';
 export class Locke {
   testId: string = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.testId = params['id']; // Access the 'id' parameter from the URL
     });
-  }
-  getColorLinkActive() {
-    console.log('Ruta actual:', this.route.routeConfig?.path); // Debería ser 'rules'
-    console.log('Padre:', this.route.parent?.routeConfig?.path); // Debería ser 'locke/:id'
-    this.route.params.subscribe((params) => {
-      console.log('params', params);
-    });
-    return '';
   }
 }

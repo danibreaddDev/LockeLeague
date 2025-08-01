@@ -25,7 +25,7 @@ export class LockeUserInfo {
   @Input() user!: any;
   @Input() userInfo!: Signal<any | null | undefined>;
   @Output() onOpenModalEditPokemon = new EventEmitter<any>();
-  @Output() onOpenModalAddPokemon = new EventEmitter<void>();
+  @Output() onOpenModalAddPokemon = new EventEmitter<any>();
 
   currentUser = inject(AuthService).user$;
   isEditableUser = false;
@@ -65,7 +65,7 @@ export class LockeUserInfo {
     console.log('click a emitir');
     this.onOpenModalEditPokemon.emit(pokemonData);
   }
-  emitAddModal() {
-    this.onOpenModalAddPokemon.emit();
+  emitAddModal(userId: string) {
+    this.onOpenModalAddPokemon.emit(userId);
   }
 }

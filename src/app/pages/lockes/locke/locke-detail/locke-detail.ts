@@ -1,7 +1,14 @@
-import { Component, inject, signal, Signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Output,
+  signal,
+  Signal,
+} from '@angular/core';
 import { LockeService } from '../../../../core/services/locke-service';
-import { ROUTER_OUTLET_DATA } from '@angular/router';
-import { Dialog } from '@angular/cdk/dialog';
+import { Router, ROUTER_OUTLET_DATA } from '@angular/router';
+import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { LockeUserInfo } from '../../../../components/locke-user-info/locke-user-info';
 import { UserService } from '../../../../core/services/user-service';
 import { EditPokemonForm } from '../../../../components/edit-pokemon-form/edit-pokemon-form';
@@ -18,26 +25,13 @@ export class LockeDetail {
   generalInfo = signal<any | null>(null);
   lockeUsersInfo = signal<any>(null);
   private userInfoMap = new Map<string, Signal<any | null>>(); //SOLUCIONAR CARGA INNCESARIA
+  @Output() onReloadWindow = new EventEmitter<void>();
   constructor(
     private lockeService: LockeService,
     private userService: UserService,
     private dialog: Dialog
   ) {
-    console.log(this.test_id());
-    this.lockeService
-      .getGeneralInfoLocke(this.test_id())
-      .then((res: any) => {
-        console.log(res.data[0]);
-        this.generalInfo.set(res.data[0]);
-      })
-      .catch((err) => console.error(err));
-    this.lockeService
-      .getLocke(this.test_id())
-      .then((res) => {
-        this.lockeUsersInfo.set(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => console.error(err));
+    this.getInfoAboutLocke();
   }
 
   getInfoUser(user: any): Signal<any | null> {
@@ -64,7 +58,34 @@ export class LockeDetail {
       data: pokemonData,
     });
   }
-  openModalAddPokemon() {
-    this.dialog.open(CreatePokemonForm);
+  openModalAddPokemon(userId: string) {
+    const dialogRef = this.dialog.open(CreatePokemonForm, {
+      data: {
+        userId: userId,
+      },
+    });
+    dialogRef.closed.subscribe((result) => {
+      const wasSubmitted = result as boolean | undefined;
+      if (!wasSubmitted) {
+        return;
+      }
+      this.getInfoAboutLocke();
+    });
+  }
+  private getInfoAboutLocke() {
+    this.lockeService
+      .getGeneralInfoLocke(this.test_id())
+      .then((res: any) => {
+        console.log(res.data[0]);
+        this.generalInfo.set(res.data[0]);
+      })
+      .catch((err) => console.error(err));
+    this.lockeService
+      .getLocke(this.test_id())
+      .then((res) => {
+        this.lockeUsersInfo.set(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.error(err));
   }
 }
