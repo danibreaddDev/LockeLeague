@@ -15,6 +15,9 @@
   --yellow-color: #ffcb05;
   --discord-color: #5663f7;
 }
+button {
+  cursor: pointer;
+}
 .gradient {
   color: var(--blue-color);
   text-shadow: 2px 2px var(--yellow-color);

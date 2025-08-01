@@ -1,23 +1,24 @@
 <main class="p-5 md:p-20 h-screen py-5 container mx-auto font-text">
-  <a routerLink="/menu">Volver</a>
-  <h1 class="font-title text-5xl gradient">Lockes</h1>
+  <a routerLink="/menu" class="group gradient"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="size-12 group-hover:scale-125 transition-all ease-in"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M20 11v2H8v2H6v-2H4v-2h2V9h2v2zM10 7H8v2h2zm0 0h2V5h-2zm0 10H8v-2h2zm0 0h2v2h-2z"
+      /></svg
+  ></a>
+  <h1 class="mt-12 font-title text-5xl gradient">Lockes</h1>
   <div class="py-10 grid grid-cols-2 font-semibold">
-    <div class="flex flex-row gap-2 items-center">
-      <button class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl">
-        Lockes Completos
-      </button>
-      <button class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl">
-        Lockes Incompletos
-      </button>
-    </div>
-
-    <div class="flex justify-end">
+    <div class="flex">
       <button
         type="button"
         class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl"
         (click)="openModalCreateLocke()"
       >
-        Crear Locke
+        Create Locke
       </button>
     </div>
   </div>
