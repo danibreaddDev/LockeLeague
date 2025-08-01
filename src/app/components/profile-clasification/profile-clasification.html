@@ -4,19 +4,19 @@
 <div>no hay datos</div>
 } @else {
 <div class="p-3 flex flex-col">
-  <span class="font-title gradient text-2xl">Clasificación </span>
+  <span class="font-title gradient text-2xl">Ranking</span>
   <div class="mt-6 flex flex-row gap-5">
     <button
       (click)="showMyGroups()"
       class="btn-iniciar px-3 py-2 rounded-3xl border border-slate-300"
     >
-      Mis grupos
+      My groups
     </button>
     <button
       (click)="showOtherGroups()"
       class="btn-iniciar px-3 py-2 rounded-3xl border border-slate-300"
     >
-      Grupos unidos
+      Joined groups
     </button>
   </div>
 
@@ -28,7 +28,7 @@
       (click)="clickModal()"
       class="btn-iniciar px-3 py-2 border border-slate-300 rounded-3xl self-end"
     >
-      Crear grupo
+      Create group
     </button>
 
     <div class="group-container flex flex-row">
