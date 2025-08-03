@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { LockeList } from '../../components/locke-list/locke-list';
 import { RouterLink } from '@angular/router';
 import { LockeService } from '../../core/services/locke-service';
-import { Dialog } from '@angular/cdk/dialog';
+import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { CreateLockeForm } from '../../components/create-locke-form/create-locke-form';
 import { GroupService } from '../../core/services/group-service';
 @Component({
@@ -14,8 +14,10 @@ import { GroupService } from '../../core/services/group-service';
 export class Lockes {
   lockesList = signal<any[] | null | undefined>(null);
   groups = signal<any>(null);
-  dialog = inject(Dialog);
+
   constructor(
+    private dialog: Dialog,
+
     private lockeService: LockeService,
     private groupService: GroupService
   ) {
@@ -25,10 +27,17 @@ export class Lockes {
   openModalCreateLocke() {
     console.log(this.groups());
 
-    this.dialog.open(CreateLockeForm, {
+    const dialogRef = this.dialog.open(CreateLockeForm, {
       data: {
         groups: this.groups(),
       },
+    });
+    dialogRef.closed.subscribe((result) => {
+      const wasSubmitted = result as boolean | undefined;
+      if (!wasSubmitted) {
+        return;
+      }
+      this.getLockes();
     });
   }
   private getLockes() {

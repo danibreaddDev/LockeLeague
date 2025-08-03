@@ -155,7 +155,9 @@
                 />
               </svg>
             </div>
-
+            @if (!generalInfo().next_event) {
+            <p class="text-xl font-semibold">Choose your next Event.</p>
+            } @else {
             <div class="font-title text-lg font-bold text-purple-700 mb-2">
               {{ generalInfo().next_event.title }}
             </div>
@@ -165,6 +167,7 @@
             >
               Level Cap {{ generalInfo().next_event.level_cap }}
             </p>
+            }
           </div>
         </div>
       </div>
@@ -221,6 +224,7 @@
       [userInfo]="getInfoUser(user)"
       (onOpenModalEditPokemon)="openModalEditPokemon($event)"
       (onOpenModalAddPokemon)="openModalAddPokemon($event)"
+      (onUpdateLifes)="updateLifes($event)"
     ></app-locke-user-info>
     }
   </section>

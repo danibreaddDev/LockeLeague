@@ -5,28 +5,51 @@
     >Formulario para crear un locke.</span
   >
   <div class="grid grid-cols-1 gap-5">
-    <form class="flex flex-col gap-5">
+    <form class="flex flex-col gap-5" [formGroup]="form" (submit)="onSubmit()">
       <div class="flex flex-col gap-2">
-        <label for="" class="text-sm">Nombre del locke</label>
-        <input type="text" class="border-gray-400 p-5" />
+        <label for="" class="text-sm font-title">Nombre del locke</label>
+        <input formControlName="name" type="text" class="border-gray-400 p-5" />
+        @if (form.get('name')?.hasError('required') &&
+        form.get('name')?.touched) {
+        <small class="text-base text-red-600">Required Field</small>
+        }
       </div>
       <div class="flex flex-col gap-2">
-        <label for="" class="text-sm">Descripcion del locke</label>
-        <textarea class="border border-gray-400 rounded-2xl p-5"></textarea>
+        <label for="" class="text-sm font-title">Descripcion del locke</label>
+        <textarea
+          formControlName="description"
+          class="border border-gray-400 rounded-2xl p-5"
+        ></textarea>
+        @if (form.get('description')?.hasError('required') &&
+        form.get('description')?.touched) {
+        <small class="text-base text-red-600">Required Field</small>
+        }
       </div>
       <div class="flex flex-col gap-2">
-        <label for="" class="text-sm">Numero de vidas</label>
-        <input type="number" class="border border-gray-400 p-5" />
+        <label for="" class="text-sm font-title">Numero de vidas</label>
+        <input
+          formControlName="lifes"
+          type="number"
+          class="border border-gray-400 p-5"
+        />
+        @if (form.get('lifes')?.hasError('required') &&
+        form.get('lifes')?.touched) {
+        <small class="text-base text-red-600">Required Field</small>
+        }
       </div>
       <div class="flex flex-col gap-2">
-        <label for="" class="text-sm"
+        <label for="" class="text-sm font-title"
           >Seleccione el grupo que se asignara el locke</label
         >
-        <select name="" id="">
+        <select name="" id="" formControlName="group_id">
           @for (group of data.groups; track $index) {
           <option [value]="group.id">{{ group.name }}</option>
           }
         </select>
+        @if (form.get('group_id')?.hasError('required') &&
+        form.get('group_id')?.touched) {
+        <small class="text-base text-red-600">Required Field</small>
+        }
       </div>
       <button
         type="submit"

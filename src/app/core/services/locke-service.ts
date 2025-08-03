@@ -25,8 +25,8 @@ export class LockeService {
       group_id
     )`
       )
-      .eq('user_id', user.id)
-      .limit(3);
+      .eq('user_id', user.id);
+
     return { data, error };
   }
   async getGeneralInfoLocke(id: string) {
@@ -46,5 +46,31 @@ export class LockeService {
     console.log('mi locke', data);
 
     return { data, error };
+  }
+  async createLocke(lockeObjForm: any) {
+    const user = await firstValueFrom(
+      this._currentUser$.pipe(filter((user) => !!user))
+    );
+    const LockeToInsertData = {
+      name: lockeObjForm.name,
+      description: lockeObjForm.description,
+      lifes: lockeObjForm.lifes,
+      group_id: lockeObjForm.group_id,
+      status: 'uncompleted',
+      created_by: user.id,
+    };
+    const { data, error } = await this._clientSupabase
+      .from('lockes')
+      .insert(LockeToInsertData);
+    return { data, error };
+  }
+  async updateLifesUser(userToEdit: any) {
+    const { error } = await this._clientSupabase
+      .from('locke_users')
+      .update({
+        lifes: userToEdit.lifes,
+      })
+      .eq('id', userToEdit.user.id);
+    return { error };
   }
 }

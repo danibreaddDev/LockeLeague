@@ -1,6 +1,9 @@
 .card {
   animation: appear 0.5s ease-in;
 }
+.locke-card {
+  height: 200px;
+}
 @keyframes appear {
   from {
     opacity: 0;

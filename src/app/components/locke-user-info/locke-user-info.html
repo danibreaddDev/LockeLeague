@@ -75,10 +75,12 @@
     <input
       title="change lifes"
       type="number"
-      [value]="user.lifes"
+      [value]="lifes()"
+      (change)="changeValueLifes($event)"
       class="text-red-600 px-2 py-2 font-title rounded-xl hover:outline hover:outline-slate-300"
     />
     <button
+      (click)="emitLifes()"
       class="px-3 py-2 rounded-xl hover:outline hover:outline-slate-300"
       title="update lifes"
     >
@@ -94,7 +96,7 @@
       </svg>
     </button>
     } @else {
-    <span class="font-title text-red-600">{{ user.lifes }}</span>
+    <span class="font-title text-red-600">{{ lifes() }}</span>
     }
   </div>
 </div>

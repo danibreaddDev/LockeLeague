@@ -30,13 +30,15 @@
       </div>
       <div class="flex flex-col gap-2">
         <div class="team flex flex-row flex-wrap gap-2 items-center font-title">
-          @for (pokemon of locke.team; track $index) {
+          @if (locke.team.length === 0) {
+          <p class="font-text">there are not pokemon in your team.</p>
+          }@else { @for (pokemon of locke.team; track $index) {
           <img
             [src]="'sprites/' + getFormatted(pokemon) + 'MS.png'"
             [alt]="pokemon"
             class="size-12"
           />
-          }
+          } }
         </div>
         <div
           class="self-end px-3 py-2 bg-slate-100 border border-slate-300 rounded-2xl w-fit font-title text-sm"

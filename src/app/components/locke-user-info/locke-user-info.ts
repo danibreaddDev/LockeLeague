@@ -4,6 +4,7 @@ import {
   EventEmitter,
   inject,
   Input,
+  OnInit,
   Output,
   signal,
   Signal,
@@ -20,17 +21,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './locke-user-info.html',
   styleUrl: './locke-user-info.css',
 })
-export class LockeUserInfo {
+export class LockeUserInfo implements OnInit {
   MAX_TEAMS_MEMBER = signal<number>(6);
+  lifes = signal<number>(0);
   @Input() user!: any;
   @Input() userInfo!: Signal<any | null | undefined>;
   @Output() onOpenModalEditPokemon = new EventEmitter<any>();
   @Output() onOpenModalAddPokemon = new EventEmitter<any>();
+  @Output() onUpdateLifes = new EventEmitter<any>();
 
   currentUser = inject(AuthService).user$;
   isEditableUser = false;
   constructor() {
     effect(() => this.checkCurrentUser());
+  }
+  ngOnInit(): void {
+    this.lifes.set(this.user.lifes);
   }
   getFormattedName(nombre: string): string {
     return getFormatted(nombre);
@@ -67,5 +73,16 @@ export class LockeUserInfo {
   }
   emitAddModal(userId: string) {
     this.onOpenModalAddPokemon.emit(userId);
+  }
+  changeValueLifes(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.lifes.set(Number(input.value));
+  }
+  emitLifes() {
+    const userToUpdate = {
+      user: this.user,
+      lifes: this.lifes(),
+    };
+    this.onUpdateLifes.emit(userToUpdate);
   }
 }

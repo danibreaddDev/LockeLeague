@@ -3,7 +3,7 @@
 }@else if(!lockeList()?.length){
 <div>no hay Lockes</div>
 } @else {
-<section class="py-5 grid grid-cols-2 gap-5 locke-section">
+<section class="py-5 grid grid-cols-1 lg:grid-cols-2 gap-5 locke-section">
   @for (locke of lockeList(); track $index) {
   <app-locke-card [locke]="locke"></app-locke-card>
   }

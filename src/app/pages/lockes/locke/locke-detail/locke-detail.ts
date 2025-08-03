@@ -24,6 +24,7 @@ export class LockeDetail {
   test_id: Signal<string> = inject(ROUTER_OUTLET_DATA) as Signal<string>;
   generalInfo = signal<any | null>(null);
   lockeUsersInfo = signal<any>(null);
+  lifesUser = signal<number>(0);
   private userInfoMap = new Map<string, Signal<any | null>>(); //SOLUCIONAR CARGA INNCESARIA
   @Output() onReloadWindow = new EventEmitter<void>();
   constructor(
@@ -78,6 +79,16 @@ export class LockeDetail {
         return;
       }
       this.getInfoAboutLocke();
+    });
+  }
+  updateLifes(userToEdit: any) {
+    this.lockeService.updateLifesUser(userToEdit).then((err: any) => {
+      if (!err.error) {
+        alert('vidas actualizadas');
+        this.getInfoUser(userToEdit.user);
+        return;
+      }
+      alert(err.error);
     });
   }
   private getInfoAboutLocke() {
