@@ -51,13 +51,21 @@ export class LockeDetail {
     return userInfo;
   }
   openModalEditPokemon(pokemonData: any) {
-    console.log(pokemonData);
-
-    console.log('openModalEditPokemon');
-    this.dialog.open(EditPokemonForm, {
-      data: pokemonData,
+    const dialogRef = this.dialog.open(EditPokemonForm, {
+      data: {
+        id: pokemonData.id,
+        pokemonId: pokemonData.pokemonId,
+      },
+    });
+    dialogRef.closed.subscribe((result) => {
+      const wasSubmitted = result as boolean | undefined;
+      if (!wasSubmitted) {
+        return;
+      }
+      this.getInfoAboutLocke();
     });
   }
+
   openModalAddPokemon(userId: string) {
     const dialogRef = this.dialog.open(CreatePokemonForm, {
       data: {

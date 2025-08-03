@@ -70,7 +70,44 @@ export class PokemonService {
     }
     return { error };
   }
-  async editPokemon() {
+  async editPokemon(idUser: string, idPokemonToEdit: string, pokemon: any) {
     //edit pokemon
+    console.log('user id', idUser);
+    console.log('id de pokemon a editar', idPokemonToEdit);
+    console.log('id para actulaizar', pokemon.pokemonId);
+
+    const objectPokemon = {
+      locke_user_id: idUser,
+      pokemon_id: pokemon.pokemonId,
+      item: pokemon.item,
+      moves: Object.values(pokemon.moves),
+      ivs: pokemon.IVS,
+      evs: pokemon.EVS,
+    };
+    let errorUpdateTeam = null;
+    await this._clientSupabase
+      .from('locke_pokemon_data')
+      .update(objectPokemon)
+      .eq('locke_user_id', idUser)
+      .eq('pokemon_id', idPokemonToEdit);
+
+    //si el pokemon es diferente vamos a editar tambien el pokemon en la tabla locke_users donde esta el team.
+
+    if (idPokemonToEdit !== pokemon.pokemonId) {
+      errorUpdateTeam = await this._clientSupabase.rpc(
+        'update_pokemon_in_team',
+        {
+          p_lockeuser_id: idUser,
+          p_old_pokemon_id: idPokemonToEdit,
+          p_new_pokemon_id: pokemon.pokemonId,
+        }
+      );
+      if (errorUpdateTeam) {
+        console.error('Error al hacer RPC:', errorUpdateTeam);
+      } else {
+        console.log('Pokémon añadido al team con éxito');
+      }
+    }
+    return { errorUpdateTeam };
   }
 }

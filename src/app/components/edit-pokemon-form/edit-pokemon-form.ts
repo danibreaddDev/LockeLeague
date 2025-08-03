@@ -6,7 +6,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { DIALOG_DATA } from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { getFormatted } from '../../../utils/functions';
 import { PokemonService } from '../../core/services/pokemon-service';
 import { Loader } from '../../shared/components/loader/loader';
@@ -24,8 +24,8 @@ import {
 })
 export class EditPokemonForm implements OnInit {
   form!: FormGroup;
-
   isloading = signal<boolean>(true);
+  imagePokemon: string = '';
   isChargingForm = signal<boolean>(true);
   infoPokemon = signal<any>(null);
   count = signal(4);
@@ -38,7 +38,8 @@ export class EditPokemonForm implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     @Inject(DIALOG_DATA) public data: { id: any; pokemonId: any },
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private dialogRef: DialogRef
   ) {}
   ngOnInit(): void {
     this.getAllInfo();
@@ -50,21 +51,33 @@ export class EditPokemonForm implements OnInit {
       return;
     }
     console.log(this.form.value);
+    this.pokemonService
+      .editPokemon(this.data.id, this.data.pokemonId, this.form.value)
+      .then((err) => {
+        if (err.errorUpdateTeam?.error === null) {
+          this.dialogRef.close(true);
+        } else {
+          console.log(err.errorUpdateTeam?.error);
+          alert(err.errorUpdateTeam?.error);
+        }
+      });
   }
   changeEditPokemon(event: Event) {
     const select = event.target as HTMLSelectElement;
     const value = select.value;
-    this.data.pokemonId = value;
-    this.getTypes(this.data.pokemonId);
+    this.imagePokemon = value;
+    this.getTypes(value);
   }
+
   private getAllInfo() {
     this.pokemonService
       .getPokemon(this.data.id, this.data.pokemonId)
       .then((res: any) => {
         this.infoPokemon.set(res.data[0]);
         console.log('info del pokemon en el form', this.infoPokemon());
-        this.isloading.set(false);
+        this.imagePokemon = this.infoPokemon().pokemon_id;
         this.form.patchValue({
+          pokemonId: this.infoPokemon().pokemon_id,
           item: this.infoPokemon().item,
           moves: {
             move1: this.infoPokemon().moves[0],
@@ -90,6 +103,7 @@ export class EditPokemonForm implements OnInit {
           },
         });
         this.isChargingForm.set(false);
+        this.isloading.set(false);
       })
       .catch((err) => console.error(err));
     this.pokemonService.getPokemons().subscribe({
@@ -136,7 +150,7 @@ export class EditPokemonForm implements OnInit {
   }
   private initForm() {
     this.form = this.formBuilder.group({
-      pokemonId: [this.data.pokemonId, [Validators.required]],
+      pokemonId: ['', [Validators.required]],
       item: [null, [Validators.required]],
       moves: this.formBuilder.group({
         move1: [null, Validators.required],
@@ -145,21 +159,21 @@ export class EditPokemonForm implements OnInit {
         move4: [null, Validators.required],
       }),
       IVS: this.formBuilder.group({
-        HP: [0, Validators.required],
-        ATK: [0, Validators.required],
-        DEF: [0, Validators.required],
-        SPATK: [0, Validators.required],
-        SPDEF: [0, Validators.required],
-        VEL: [0, Validators.required],
+        HP: [0, [Validators.required, Validators.max(31)]],
+        ATK: [0, [Validators.required, Validators.max(31)]],
+        DEF: [0, [Validators.required, Validators.max(31)]],
+        SPATK: [0, [Validators.required, Validators.max(31)]],
+        SPDEF: [0, [Validators.required, Validators.max(31)]],
+        VEL: [0, [Validators.required, Validators.max(31)]],
       }),
 
       EVS: this.formBuilder.group({
-        HP: [0, Validators.required],
-        ATK: [0, Validators.required],
-        DEF: [0, Validators.required],
-        SPATK: [0, Validators.required],
-        SPDEF: [0, Validators.required],
-        VEL: [0, Validators.required],
+        HP: [0, [Validators.required, Validators.max(255)]],
+        ATK: [0, [Validators.required, Validators.max(255)]],
+        DEF: [0, [Validators.required, Validators.max(255)]],
+        SPATK: [0, [Validators.required, Validators.max(255)]],
+        SPDEF: [0, [Validators.required, Validators.max(255)]],
+        VEL: [0, [Validators.required, Validators.max(255)]],
       }),
     });
   }

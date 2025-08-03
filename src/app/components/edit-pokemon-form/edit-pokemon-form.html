@@ -1,18 +1,20 @@
 @if (isloading() ) {
-<div class="form bg-white flex justify-center items-center">
+<div class="form box bg-white flex justify-center items-center">
   <app-loader></app-loader>
 </div>
 }@else {
 
-<div class="form font-text p-5 bg-white rounded-3xl flex flex-col gap-5">
+<div class="form box font-text p-5 bg-white rounded-3xl flex flex-col gap-5">
   <form
     [formGroup]="form"
     (submit)="onSubmit()"
-    class="grid grid-cols-1 md:grid-cols-2 overflow-scroll lg:overflow-hidden gap-5"
+    class="grid grid-cols-1 lg:grid-cols-3 overflow-scroll gap-5 p-5"
   >
-    <div class="flex flex-col justify-between">
+    <div
+      class="col-span-1 flex flex-col gap-5 p-5 border border-slate-300 rounded-2xl"
+    >
       <div class="flex flex-col gap-3">
-        <span class="font-title">Changes Pokemon</span>
+        <span class="font-title">Choose Pokemon</span>
         <select
           (change)="changeEditPokemon($event)"
           formControlName="pokemonId"
@@ -20,13 +22,7 @@
           <button>
             <selectedcontent></selectedcontent>
           </button>
-          <option [defaultSelected]="getformatedName(data.pokemonId)">
-            <img
-              [src]="'sprites/' + getformatedName(data.pokemonId) + 'MS.png'"
-              [alt]="getformatedName(data.id)"
-              class="size-12"
-            />
-          </option>
+
           @for (pokemon of allPokemon(); track $index) {
           <option [value]="pokemon.id">
             <img
@@ -40,11 +36,15 @@
         </select>
       </div>
       <img
-        [src]="'images_pok/' + getformatedName(data.pokemonId) + '.png'"
+        [src]="
+          imagePokemon !== ''
+            ? 'images_pok/' + getformatedName(imagePokemon) + '.png'
+            : '/choosepokemon.png'
+        "
         alt="pokemon"
-        class="size-64 self-center"
+        class="size-32 self-center"
       />
-      <div class="grid grid-cols-2 gap-5">
+      <div class="grid grid-cols-1 gap-5">
         <div class="flex flex-col gap-2">
           <span class="font-title">TYPES</span>
           <div class="grid grid-cols-2 gap-2">
@@ -65,14 +65,10 @@
           </select>
         </div>
       </div>
-      <button
-        type="submit"
-        class="mt-6 btn-iniciar bg-yellow-400 px-3 py-2 border border-slate-300 rounded-3xl"
-      >
-        guardar
-      </button>
     </div>
-    <div class="flex flex-col gap-5">
+    <div
+      class="col-span-2 border border-slate-300 rounded-2xl p-5 flex flex-col gap-5"
+    >
       <div>
         <span class="font-title">MOVE SET</span>
         <div class="grid grid-cols-2 gap-5" formGroupName="moves">
@@ -94,144 +90,252 @@
           }
         </div>
       </div>
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5"
-      >
+      <div class="grid grid-cols-1 gap-5">
         <div class="flex flex-col" formGroupName="IVS">
-          <h3 class="font-title">IVs</h3>
+          <div class="flex flex-row items-center gap-5">
+            <h3 class="font-title">IVs</h3>
+            <span class="px-2 py-1 rounded-full bg-slate-100">Max: 31.</span>
+          </div>
           <div class="flex flex-col gap-1">
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>HP</span>
+            <div class="flex flex-col gap-1">
+              @if (form.get("IVS")?.get("HP")?.hasError("max") &&
+              form.get("IVS")?.get("HP")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 31
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>HP</span>
 
-              <input
-                formControlName="HP"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+                <input
+                  formControlName="HP"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>ATK</span>
+            <div class="flex flex-col gap-1">
+              @if (form.get("IVS")?.get("ATK")?.hasError("max") &&
+              form.get("IVS")?.get("ATK")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 31
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>ATK</span>
 
-              <input
-                formControlName="ATK"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+                <input
+                  formControlName="ATK"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>DEF</span>
+            <div class="flex flex-col gap-1">
+              @if (form.get("IVS")?.get("DEF")?.hasError("max") &&
+              form.get("IVS")?.get("DEF")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 31
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>DEF</span>
 
-              <input
-                formControlName="DEF"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+                <input
+                  formControlName="DEF"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>ATKSP</span>
-              <input
-                formControlName="SPATK"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+            <div class="flex flex-col gap-1">
+              @if (form.get("IVS")?.get("SPATK")?.hasError("max") &&
+              form.get("IVS")?.get("SPATK")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 31
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>SPATK</span>
+                <input
+                  formControlName="SPATK"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>SPDEF</span>
-              <input
-                formControlName="SPDEF"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+            <div class="flex flex-col gap-1">
+              @if (form.get("IVS")?.get("SPDEF")?.hasError("max") &&
+              form.get("IVS")?.get("SPDEF")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 31
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>SPDEF</span>
+                <input
+                  formControlName="SPDEF"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>VEL</span>
-              <input
-                formControlName="VEL"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+            <div class="flex flex-col gap-1">
+              @if (form.get("IVS")?.get("VEL")?.hasError("max") &&
+              form.get("IVS")?.get("VEL")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 31
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>VEL</span>
+                <input
+                  formControlName="VEL"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
           </div>
         </div>
         <div class="flex flex-col" formGroupName="EVS">
-          <h3 class="font-title">EVs</h3>
+          <div class="flex flex-row gap-2 items-center">
+            <h3 class="font-title">EVs</h3>
+            <span class="px-2 py-1 rounded-full bg-slate-100">Total: 508.</span>
+          </div>
           <div class="flex flex-col gap-1">
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>HP</span>
+            <div class="flex flex-col gap-1">
+              @if (form.get("EVS")?.get("HP")?.hasError("max") &&
+              form.get("EVS")?.get("HP")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 255
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>HP</span>
 
-              <input
-                formControlName="HP"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+                <input
+                  formControlName="HP"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>ATK</span>
+            <div class="flex flex-col gap-1">
+              @if (form.get("EVS")?.get("ATK")?.hasError("max") &&
+              form.get("EVS")?.get("ATK")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 255
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>ATK</span>
 
-              <input
-                formControlName="ATK"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+                <input
+                  formControlName="ATK"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>DEF</span>
+            <div class="flex flex-col gap-1">
+              @if (form.get("EVS")?.get("DEF")?.hasError("max") &&
+              form.get("EVS")?.get("DEF")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 255
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>DEF</span>
 
-              <input
-                formControlName="DEF"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+                <input
+                  formControlName="DEF"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>ATKSP</span>
-              <input
-                formControlName="SPATK"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+            <div class="flex flex-col gap-1">
+              @if (form.get("EVS")?.get("SPATK")?.hasError("max") &&
+              form.get("EVS")?.get("SPATK")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 255
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>SPATK</span>
+                <input
+                  formControlName="SPATK"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>SPDEF</span>
-              <input
-                formControlName="SPDEF"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+            <div class="flex flex-col gap-1">
+              @if (form.get("EVS")?.get("SPDEF")?.hasError("max") &&
+              form.get("EVS")?.get("SPDEF")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 255
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>SPDEF</span>
+                <input
+                  formControlName="SPDEF"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
-            <div class="flex flex-row justify-between items-center gap-1">
-              <span>VEL</span>
-              <input
-                formControlName="VEL"
-                type="number"
-                class="form-control"
-                name="ds"
-                id="ds"
-              />
+            <div class="flex flex-col gap-1">
+              @if (form.get("EVS")?.get("VEL")?.hasError("max") &&
+              form.get("EVS")?.get("VEL")?.touched) {
+              <small class="text-red-600 self-end"
+                >the value must be max. 255
+              </small>
+              }
+              <div class="flex flex-row justify-between items-center gap-1">
+                <span>VEL</span>
+                <input
+                  formControlName="VEL"
+                  type="number"
+                  class="form-control"
+                  name="ds"
+                  id="ds"
+                />
+              </div>
             </div>
           </div>
+        </div>
+        <div class="col-span-full">
+          <button
+            type="submit"
+            class="btn-iniciar bg-yellow-400 px-3 py-2 border border-slate-300 rounded-3xl w-full"
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>
