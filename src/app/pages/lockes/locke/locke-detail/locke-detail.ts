@@ -14,6 +14,7 @@ import { UserService } from '../../../../core/services/user-service';
 import { EditPokemonForm } from '../../../../components/edit-pokemon-form/edit-pokemon-form';
 import { Loader } from '../../../../shared/components/loader/loader';
 import { CreatePokemonForm } from '../../../../components/create-pokemon-form/create-pokemon-form';
+import { EditLockeForm } from '../../../../components/edit-locke-form/edit-locke-form';
 @Component({
   selector: 'app-locke-detail',
   imports: [LockeUserInfo, Loader],
@@ -79,6 +80,12 @@ export class LockeDetail {
         return;
       }
       this.getInfoAboutLocke();
+    });
+  }
+  openModalEditLocke() {
+    const dialogRef = this.dialog.open(EditLockeForm, {});
+    dialogRef.closed.subscribe((result) => {
+      const wasSubmitted = result as boolean | undefined;
     });
   }
   updateLifes(userToEdit: any) {
