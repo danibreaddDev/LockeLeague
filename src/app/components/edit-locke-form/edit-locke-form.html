@@ -1,1 +1,160 @@
-<div class="form bg-white">edit-locke-form works!</div>
+<div class="form bg-white border-4 rounded-lg">
+  <div class="grid grid-cols-2 gap-5 p-5">
+    <section class="flex flex-col size-full gap-2">
+      <div class="grid grid-cols-2 gap-5 w-full">
+        <div class="lifes border-4 border-red-600 rounded-lg p-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xl text-red-500">Lifes</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="size-12 text-red-600"
+            >
+              <rect width="24" height="24" fill="none"></rect>
+              <path
+                fill="currentColor"
+                d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
+              ></path>
+            </svg>
+          </div>
+
+          <input
+            type="number"
+            class="p-2 text-8xl font-bold text-red-700 mb-3 font-title w-full hover:outline-2 focus:outline-2 outline-slate-500 rounded-lg"
+            value="25"
+          />
+        </div>
+
+        <div class="status border-4 border-green-600 rounded-lg p-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xl text-green-500">Status</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-12 text-emerald-500"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M4 2h14v2H4v16h2v-6h12v6h2V6h2v16H2V2zm4 18h8v-4H8zM20 6h-2V4h2zM6 6h9v4H6z"
+              />
+            </svg>
+          </div>
+
+          <div>
+            <select
+              class="font-title text-xl font-bold text-green-700 mb-2"
+              name=""
+              id=""
+            >
+              <option value="">Completed</option>
+              <option value="">Uncompleted</option>
+            </select>
+          </div>
+        </div>
+
+        <div
+          class="next-event col-span-full border-4 border-purple-600 rounded-lg p-5"
+        >
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xl text-purple-400">Next event</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-12 text-purple-400"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M6 4h2v2h2v2h2v2h2v4h-2v2h-2v2H8v2H6zm12 0h-2v16h2z"
+              />
+            </svg>
+          </div>
+
+          <textarea
+            [value]="'Choose your next Event.'"
+            class="p-4 text-xl font-semibold w-full outline-2 outline-slate-500 rounded-lg"
+          ></textarea>
+        </div>
+      </div>
+    </section>
+    <div class="flex flex-col gap-5 j">
+      <h3 class="font-title">Announcement</h3>
+      <section class="flex flex-col gap-5 size-full">
+        <input
+          type="text"
+          placeholder="title"
+          class="p-4 border border-slate-300 rounded-lg"
+        />
+        <input
+          type="text"
+          placeholder="description"
+          class="p-4 border border-slate-300 rounded-lg"
+        />
+        <div class="grid grid-cols-3 gap-5">
+          <input
+            type="text"
+            placeholder="tags"
+            class="p-4 border border-slate-300 rounded-lg size-fit"
+          />
+          <section class="tags col-span-2 p-5 flex flex-row gap-5 flex-wrap">
+            <div
+              class="px-2 py-1 border border-slate-200 rounded-full flex flex-row gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <rect width="24" height="24" fill="none" />
+                <path
+                  fill="currentColor"
+                  d="M5 3H3v18h18V3zm14 2v14H5V5zm-8 4H9V7H7v2h2v2h2v2H9v2H7v2h2v-2h2v-2h2v2h2v2h2v-2h-2v-2h-2v-2h2V9h2V7h-2v2h-2v2h-2z"
+                />
+              </svg>
+              <span>level cap 50</span>
+            </div>
+            <div
+              class="px-2 py-1 border border-slate-200 rounded-full flex flex-row gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <rect width="24" height="24" fill="none" />
+                <path
+                  fill="currentColor"
+                  d="M5 3H3v18h18V3zm14 2v14H5V5zm-8 4H9V7H7v2h2v2h2v2H9v2H7v2h2v-2h2v-2h2v2h2v2h2v-2h-2v-2h-2v-2h2V9h2V7h-2v2h-2v2h-2z"
+                />
+              </svg>
+              <span>23-03-2025</span>
+            </div>
+            <div
+              class="px-2 py-1 border border-slate-200 rounded-full flex flex-row gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <rect width="24" height="24" fill="none" />
+                <path
+                  fill="currentColor"
+                  d="M5 3H3v18h18V3zm14 2v14H5V5zm-8 4H9V7H7v2h2v2h2v2H9v2H7v2h2v-2h2v-2h2v2h2v2h2v-2h-2v-2h-2v-2h2V9h2V7h-2v2h-2v2h-2z"
+                />
+              </svg>
+              <span>VGC FORMAT</span>
+            </div>
+          </section>
+        </div>
+      </section>
+      <button
+        class="btn-iniciar border border-slate-300 rounded-full self-center px-3 py-2"
+      >
+        Publish
+      </button>
+    </div>
+  </div>
+</div>
