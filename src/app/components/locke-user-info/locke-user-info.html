@@ -2,11 +2,13 @@
 <app-loader class="flex justify-center-safe"></app-loader>
 } @else {
 <div
-  class="relative user border border-slate-300 rounded-3xl p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+  class="relative user border-pixel-card p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
 >
   @if (isEditableUser) {
-  <div class="absolute inset-0 -inset-y-4 size-fit">
-    <span class="text-lg font-title">Your Team</span>
+  <div
+    class="absolute inset-0 -inset-y-4 inset-x-10 size-fit bg-amber-400 border-pixel px-3 py-1"
+  >
+    <span class="text-lg font-title gradient">Your Team</span>
   </div>
   }
 
@@ -22,7 +24,7 @@
     @for (pokemon of user.team; track $index) { @if (isEditableUser) {
     <button
       type="button"
-      class="border border-slate-300 rounded-xl hover:border-slate-400 px-3 py-2"
+      class="border-pixel-input"
       (click)="emitEditModal($event, pokemon, user.id)"
       title="Click to open edit modal"
     >
@@ -33,7 +35,7 @@
       />
     </button>
     } @else {
-    <div class="px-3 py-2">
+    <div class="">
       <img
         [src]="'sprites/' + getFormattedName(pokemon) + 'MS.png'"
         [alt]="pokemon"
@@ -43,7 +45,7 @@
     } } @if (isEditableUser) { @if (getFieldsToAddPokemon() !==0) {
     <button
       (click)="emitAddModal(user.id)"
-      class="btn-iniciar px-3 py-2 rounded-xl"
+      class="btn-iniciar"
       title="add pokemon to the team"
     >
       <svg
@@ -76,7 +78,6 @@
       title="change lifes"
       type="number"
       [value]="lifes()"
-      (change)="changeValueLifes($event)"
       class="text-red-600 px-2 py-2 font-title rounded-xl hover:outline hover:outline-slate-300"
     />
     <button

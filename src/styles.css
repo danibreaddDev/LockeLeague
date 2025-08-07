@@ -22,16 +22,61 @@ button {
   color: var(--blue-color);
   text-shadow: 2px 2px var(--yellow-color);
 }
+
+.border-pixel {
+  box-shadow: 0px 5px black, 0px -5px black, 5px 0px black, -5px 0px black,
+    0px 10px #00000038, 5px 5px #00000038, -5px 5px #00000038,
+    inset 0px 5px #ffffff36;
+}
+.border-pixel-card {
+  box-shadow: 0px 5px rgb(186, 185, 185), 0px -5px rgb(186, 185, 185),
+    5px 0px rgb(186, 185, 185), -5px 0px rgb(186, 185, 185), 0px 5px #00000038,
+    5px 5px #00000038, -5px 5px #00000038, inset 0px 5px #e6e6e636;
+}
+.border-pixel-input {
+  box-shadow: 0px 3px rgb(186, 185, 185), 0px -3px rgb(186, 185, 185),
+    3px 0px rgb(186, 185, 185), -3px 0px rgb(186, 185, 185), 0px 3px #00000038,
+    3px 3px #00000038, -3px 3px #00000038, inset 0px 3px #e6e6e636;
+}
+
+.border-pixel-event {
+  box-shadow: 0px 5px blueviolet, 0px -5px blueviolet, 5px 0px blueviolet,
+    -5px 0px blueviolet, 0px 10px #00000038, 5px 5px #00000038,
+    -5px 5px #00000038, inset 0px 5px #ffffff36;
+}
+.border-pixel-leader {
+  box-shadow: 0px 5px var(--yellow-color), 0px -5px var(--yellow-color),
+    5px 0px var(--yellow-color), -5px 0px var(--yellow-color),
+    0px 10px #00000038, 5px 5px #00000038, -5px 5px #00000038,
+    inset 0px 5px #ffffff36;
+}
+.border-pixel-tournament {
+  box-shadow: 0px 5px var(--blue-color), 0px -5px var(--blue-color),
+    5px 0px var(--blue-color), -5px 0px var(--blue-color), 0px 10px #00000038,
+    5px 5px #00000038, -5px 5px #00000038, inset 0px 5px #ffffff36;
+}
+.border-pixel-status {
+  box-shadow: 0px 5px green, 0px -5px green, 5px 0px green, -5px 0px green,
+    0px 10px #00000038, 5px 5px #00000038, -5px 5px #00000038,
+    inset 0px 5px #ffffff36;
+}
+.border-pixel-lifes {
+  box-shadow: 0px 5px red, 0px -5px red, 5px 0px red, -5px 0px red,
+    0px 10px #00000038, 5px 5px #00000038, -5px 5px #00000038,
+    inset 0px 5px #ffffff36;
+}
 button.btn-iniciar {
+  font-family: "Press Start 2P", system-ui;
+  border: 0;
+  box-shadow: 0px 5px black, 0px -5px black, 5px 0px black, -5px 0px black,
+    0px 10px #00000038, 5px 5px #00000038, -5px 5px #00000038,
+    inset 0px 5px #ffffff36;
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 button.btn-iniciar:hover {
-  transform: translateY(-5px);
-  background: var(--yellow-color);
-  color: rgb(94, 94, 94);
-  svg path {
-    fill: white;
-  }
+  box-shadow: 0px 5px black, 0px -5px black, 5px 0px black, -5px 0px black,
+    inset 0px 5px #00000038;
 }
 select,
 ::picker(select) {

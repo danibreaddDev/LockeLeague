@@ -8,7 +8,7 @@
       <button
         (click)="openModalEditLocke()"
         title="edit general info"
-        class="btn-iniciar px-2 py-1 border border-slate-300 rounded-2xl"
+        class="btn-iniciar px-2 py-1 border-pixel"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -24,15 +24,15 @@
     </div>
     <div class="w-full">
       <!-- Bento Grid Layout -->
-      <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 h-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-5 h-auto">
         <!-- Card del Jugador Líder - MÁS GRANDE Y PROMINENTE -->
         <div
-          class="card-leader md:col-span-2 lg:col-span-2 md:row-span-1 border-4 border-yellow-300 rounded-lg"
+          class="card-leader md:col-span-2 lg:col-span-2 md:row-span-1 border-pixel-leader"
         >
           <div class="p-4">
             <!-- Header de la card -->
             <div class="flex justify-between items-center mb-4">
-              <span class="text-xl text-yellow-400">Leader</span>
+              <span class="text-xl text-yellow-400 font-title">Leader</span>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@
 
         <!-- Card de Vidas - Tamaño mediano -->
         <div
-          class="card-lifes md:col-span-2 lg:col-span-2 border-4 border-red-500 rounded-lg overflow-hidden"
+          class="card-lifes md:col-span-2 lg:col-span-2 border-pixel-lifes overflow-hidden"
         >
           <div class="p-4">
             <div class="flex items-center justify-between mb-3">
@@ -85,7 +85,7 @@
 
         <!-- Card de Estado del Locke - Tamaño pequeño -->
         <div
-          class="card-status md:col-span-2 lg:col-span-2 border-4 border-green-200 bg-white rounded-lg overflow-hidden"
+          class="card-status md:col-span-2 lg:col-span-2 border-pixel-status bg-white overflow-hidden"
         >
           <div class="p-4">
             <div class="flex items-center justify-between mb-3">
@@ -110,7 +110,7 @@
 
         <!-- Card de Torneos - Tamaño mediano -->
         <div
-          class="card-tournaments md:col-span-2 lg:col-span-3 border-4 border-blue-200 rounded-lg overflow-hidden"
+          class="card-tournaments md:col-span-2 lg:col-span-3 border-pixel-tournament overflow-hidden"
         >
           <div class="p-4">
             <div class="flex items-center justify-between mb-3">
@@ -140,7 +140,7 @@
 
         <!-- Card de Próximo Objetivo - Tamaño pequeño -->
         <div
-          class="card-event md:col-span-2 lg:col-span-3 border-4 border-purple-200 rounded-lg overflow-hidden"
+          class="card-event md:col-span-2 lg:col-span-3 border-pixel-event overflow-hidden"
         >
           <div class="p-4">
             <div class="flex items-center justify-between mb-3">
@@ -157,17 +157,16 @@
               </svg>
             </div>
             @if (!generalInfo().next_event) {
-            <p class="text-xl font-semibold">Choose your next Event.</p>
+            <div class="font-title text-lg font-bold text-purple-700 mb-2">
+              <p class="text-2xl font-semibold">Choose your next Event.</p>
+            </div>
             } @else {
             <div class="font-title text-lg font-bold text-purple-700 mb-2">
-              {{ generalInfo().next_event.title }}
+              <p class="text-2xl font-semibold">
+                {{ generalInfo().next_event.title }}
+              </p>
             </div>
 
-            <p
-              class="text-base border rounded-xl px-2 py-1 w-fit border-gray-300 text-gray-600"
-            >
-              Level Cap {{ generalInfo().next_event.level_cap }}
-            </p>
             }
           </div>
         </div>
@@ -175,7 +174,7 @@
 
       <!-- Sección adicional más compacta -->
       <div class="mt-10">
-        <div class="relative z-20 border-2 border-gray-200 rounded-lg bg-white">
+        <div class="relative z-20 border-pixel bg-white">
           <div class="p-6 flex flex-col gap-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -214,20 +213,6 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="flex flex-col gap-10">
-    <h2 class="font-title gradient text-7xl">Members</h2>
-
-    @for (user of lockeUsersInfo(); track $index) {
-    <app-locke-user-info
-      [user]="user"
-      [userInfo]="getInfoUser(user)"
-      (onOpenModalEditPokemon)="openModalEditPokemon($event)"
-      (onOpenModalAddPokemon)="openModalAddPokemon($event)"
-      (onUpdateLifes)="updateLifes($event)"
-    ></app-locke-user-info>
-    }
   </section>
   }
 </div>
