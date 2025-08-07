@@ -1,10 +1,9 @@
 .form {
-  border: 0;
   box-shadow: 0px 5px black, 0px -5px black, 5px 0px black, -5px 0px black,
     0px 10px #00000038, 5px 5px #00000038, -5px 5px #00000038,
     inset 0px 5px #ffffff36;
   width: 90vw;
-  height: 100%;
+  height: 70vh;
   max-height: 70vh;
   @media screen and (max-width: 600px) {
     width: 90vw;

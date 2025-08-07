@@ -15,10 +15,10 @@ import { LockeService } from '../../../core/services/locke-service';
     <section class="flex flex-col gap-5 h-full">
       <div class="grid-container">
         <div
-          class="fixed top-0 z-50 lg:relative  lg:mt-12 mt-0 nav-locke h-fit lg:h-full font-title border-pixel-card w-full lg:w-[90px]"
+          class=" fixed top-0 bg-white  lg:relative lg:mt-12 mt-0 nav-locke h-fit lg:h-full font-title border-pixel-card w-full lg:w-[90px]"
         >
           <div
-            class="bg-white border border-slate-300 lg:border-0 flex flex-row lg:flex-col flex-wrap gap-5"
+            class=" p-5 lg:p-0 flex flex-row lg:flex-col gap-5 overflow-x-scroll lg:overflow-visible"
           >
             <a
               routerLink="/lockes"
@@ -117,7 +117,7 @@ import { LockeService } from '../../../core/services/locke-service';
             </a>
           </div>
         </div>
-        <div class="mt-12 lg:mt-0 content">
+        <div class="content">
           <router-outlet [routerOutletData]="testId" />
         </div>
       </div>
@@ -137,8 +137,9 @@ import { LockeService } from '../../../core/services/locke-service';
       }
       .nav-locke {
         padding: 10px;
-
         overflow: hidden;
+
+        animation: appear 0.5s ease-in-out;
         transition: width 0.5s ease;
         @media (min-width: 1024px) {
           &:hover {
@@ -182,11 +183,11 @@ import { LockeService } from '../../../core/services/locke-service';
       }
       @keyframes appear {
         from {
-          width: 50%;
+          width: 10px;
           opacity: 0;
         }
         to {
-          width: 100%;
+          width: 90px;
           opacity: 1;
         }
       }
@@ -196,11 +197,6 @@ import { LockeService } from '../../../core/services/locke-service';
         }
         to {
           opacity: 1;
-        }
-      }
-      @keyframes widthChange {
-        to {
-          width: 100%;
         }
       }
     `,

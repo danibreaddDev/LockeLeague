@@ -1,23 +1,22 @@
 @if (isloading() ) {
-<div class="form box bg-white flex justify-center items-center">
+<div class="form border-pixel bg-white flex justify-center items-center">
   <app-loader></app-loader>
 </div>
 }@else {
 
-<div class="form box font-text p-5 bg-white rounded-3xl flex flex-col gap-5">
+<div class="form border-pixel font-text p-5 bg-white flex flex-col gap-5">
   <form
     [formGroup]="form"
     (submit)="onSubmit()"
     class="grid grid-cols-1 lg:grid-cols-3 overflow-scroll gap-5 p-5"
   >
-    <div
-      class="col-span-1 flex flex-col gap-5 p-5 border border-slate-300 rounded-2xl"
-    >
+    <div class="col-span-1 flex flex-col gap-5 p-5 border-pixel-card">
       <div class="flex flex-col gap-3">
         <span class="font-title">Choose Pokemon</span>
         <select
           (change)="changeEditPokemon($event)"
           formControlName="pokemonId"
+          class="border-pixel-input"
         >
           <button>
             <selectedcontent></selectedcontent>
@@ -47,18 +46,20 @@
       <div class="grid grid-cols-1 gap-5">
         <div class="flex flex-col gap-2">
           <span class="font-title">TYPES</span>
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid grid-cols-2 gap-5">
             @for (type of typesPokemon(); track $index) {
-            <span
-              class="text-center px-4 py-2 rounded-3xl border border-slate-300"
-            >
-              {{ type }} </span
+            <span class="text-center px-3 py-1 border-pixel"> {{ type }} </span
             >}
           </div>
         </div>
         <div class="flex flex-col gap-2">
           <span class="font-title">ITEM</span>
-          <select formControlName="item" name="item" id="">
+          <select
+            formControlName="item"
+            name="item"
+            id=""
+            class="border-pixel-input"
+          >
             @for (item of allItems(); track $index) {
             <option [value]="item.id">{{ item.name.english }}</option>
             }
@@ -66,16 +67,14 @@
         </div>
       </div>
     </div>
-    <div
-      class="col-span-2 border border-slate-300 rounded-2xl p-5 flex flex-col gap-5"
-    >
+    <div class="col-span-2 border-pixel-card p-5 flex flex-col gap-5">
       <div>
         <span class="font-title">MOVE SET</span>
         <div class="grid grid-cols-2 gap-5" formGroupName="moves">
           @for (item of indices(); track $index) {
           <div class="flex flex-col gap-2">
             <select
-              class="px-2 py-1 flex flex-row gap-2 justify-center rounded-3xl border border-slate-300 text-muted text-secondary"
+              class="px-2 py-1 flex flex-row gap-2 justify-center border-pixel-input"
               name=""
               id=""
               [formControlName]="'move' + (item + 1)"
@@ -332,16 +331,11 @@
           </div>
         </div>
         <div class="col-span-full grid grid-cols-2 md:grid-cols-2 gap-5">
-          <button
-            type="submit"
-            class="btn-iniciar bg-yellow-400 px-3 py-2 border border-slate-300 rounded-3xl"
-          >
-            Save
-          </button>
+          <button type="submit" class="btn-iniciar px-2 py-1">Save</button>
           <button
             (click)="resetForm()"
             type="button"
-            class="btn-iniciar bg-yellow-400 px-3 py-2 border border-slate-300 rounded-3xl"
+            class="btn-iniciar px-2 py-1"
           >
             Reset
           </button>
