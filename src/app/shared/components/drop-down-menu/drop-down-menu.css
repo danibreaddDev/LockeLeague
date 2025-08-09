@@ -19,6 +19,9 @@
 }
 .menu-element {
   overflow: hidden;
+  &:hover {
+    background-color: var(--color-amber-500);
+  }
 }
 .menu-icon:hover .menu {
   display: flex;
@@ -30,12 +33,15 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  transition: background-image 0.3s ease-in-out;
 }
 .menu .pokemon-menu-lockes {
-  background-image: url("/images/pc/pngs/raichu.png");
+  background-image: url("/images/pc/pngs/pikachu.jpeg");
+  background-position: top center;
 }
 .menu .pokemon-menu-ranking {
-  background-image: url("/images/pc/pngs/pokeball.jpeg");
+  background-image: url("/images/pc/pngs/pokeball.png");
+  background-size: cover;
 }
 .menu .pokemon-menu-profile {
   background-image: url("/images/pc/pngs/trianer.jpeg");
@@ -48,7 +54,7 @@
   background-size: contain;
 }
 .menu-element:hover .pokemon-menu-lockes {
-  background-image: url("/images/pc/gifs/raichu.gif");
+  background-image: url("/images/pc/gifs/pikachu.gif");
 }
 /*.menu-element:hover .pokemon-menu-ranking {
   background-image: url("/images/pc/gifs/dratini.gif");

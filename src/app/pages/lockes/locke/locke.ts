@@ -15,7 +15,7 @@ import { LockeService } from '../../../core/services/locke-service';
     <section class="flex flex-col gap-5 h-full">
       <div class="grid-container">
         <div
-          class=" fixed top-0 bg-white  lg:relative lg:mt-12 mt-0 nav-locke h-fit lg:h-full font-title border-pixel-card w-full lg:w-[90px]"
+          class=" fixed top-0 bg-white lg:relative nav-locke h-fit lg:h-full font-title border-pixel-card w-full lg:w-[90px]"
         >
           <div
             class=" p-5 lg:p-0 flex flex-row lg:flex-col gap-5 overflow-x-scroll lg:overflow-visible"
@@ -51,7 +51,7 @@ import { LockeService } from '../../../core/services/locke-service';
                     d="M14 2h-4v2H8v2H6v2H4v2H2v2h2v10h7v-6h2v6h7V12h2v-2h-2V8h-2V6h-2V4h-2zm0 2v2h2v2h2v2h2v2h-2v8h-3v-6H9v6H6v-8H4v-2h2V8h2V6h2V4z"
                   />
                 </svg>
-                <span class="whitespace-nowrap">General</span>
+                <span class="whitespace-nowrap gradient">General</span>
               </div>
             </a>
             <a
@@ -71,7 +71,7 @@ import { LockeService } from '../../../core/services/locke-service';
                     d="M11 0H5v2H3v6h2v2h6V8H5V2h6zm0 2h2v6h-2zM0 14h2v4h12v2H0zm2 0h12v-2H2zm14 0h-2v6h2zM15 0h4v2h-4zm4 8h-4v2h4zm0-6h2v6h-2zm5 12h-2v4h-4v2h6zm-6-2h4v2h-4z"
                   />
                 </svg>
-                <span class="whitespace-nowrap">Members</span>
+                <span class="whitespace-nowrap gradient">Members</span>
               </div>
             </a>
             <a
@@ -91,7 +91,7 @@ import { LockeService } from '../../../core/services/locke-service';
                     d="M7 0h16v20H5V0zm14 18V2H7v16zM9 4h10v2H9zm10 4H9v2h10zM9 12h7v2H9zm10 10H3V4H1v20h18z"
                   />
                 </svg>
-                <span class="whitespace-nowrap">Rules</span>
+                <span class="whitespace-nowrap gradient">Rules</span>
               </div>
             </a>
 
@@ -112,7 +112,7 @@ import { LockeService } from '../../../core/services/locke-service';
                     d="M9 2H2v2h5v4H2v2h7V7h5v10H9v-3H2v2h5v4H2v2h7v-3h7v-6h6v-2h-6V5H9z"
                   />
                 </svg>
-                <span class="whitespace-nowrap">Tournaments</span>
+                <span class="whitespace-nowrap gradient">Tournaments</span>
               </div>
             </a>
           </div>

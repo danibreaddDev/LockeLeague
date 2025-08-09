@@ -15,7 +15,7 @@ import { DropDownMenu } from '../../shared/components/drop-down-menu/drop-down-m
 export class Lockes {
   lockesList = signal<any[] | null | undefined>(null);
   groups = signal<any>(null);
-
+  isShowedFilterSection = signal<boolean>(false);
   constructor(
     private dialog: Dialog,
 
@@ -24,6 +24,9 @@ export class Lockes {
   ) {
     this.getLockes();
     this.getGroups();
+  }
+  ShowFilterSection() {
+    this.isShowedFilterSection.set(!this.isShowedFilterSection());
   }
   openModalCreateLocke() {
     console.log(this.groups());
