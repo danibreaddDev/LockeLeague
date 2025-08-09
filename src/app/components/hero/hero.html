@@ -52,19 +52,14 @@
         />
       </svg></button
     >}@else {
-    <div class="self-center flex flex-row gap-2">
-      <button
-        routerLink="/menu"
-        class="btn-iniciar border border-slate-200 rounded-2xl shadow px-4 py-3 rounded-3 font-bold flex flex-row gap-2 items-center"
-      >
-        ir al menu
-      </button>
+    <div class="self-center flex flex-row gap-10">
       <button
         (click)="logout()"
         class="btn-iniciar border border-slate-200 rounded-2xl shadow px-4 py-3 rounded-3 font-bold flex flex-row gap-2 items-center"
       >
         Cerrar sesion
       </button>
+      <app-drop-down-menu></app-drop-down-menu>
     </div>
 
     }
