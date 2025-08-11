@@ -16,7 +16,15 @@ import { DialogRef } from '@angular/cdk/dialog';
 })
 export class EditLockeForm {
   formAnnouncement!: FormGroup;
+  formLifes!: FormGroup;
+  formNextEvent!: FormGroup;
+  formStatus!: FormGroup;
   formRule!: FormGroup;
+  infoLocke = signal<any>(null);
+  lifes = signal<number>(0);
+  nextEvent = signal<string>('');
+  status = signal<string>('');
+  announcement = signal<any>(null);
   rules = signal<string[]>([]);
   constructor(
     private formBuilder: FormBuilder,
@@ -29,10 +37,25 @@ export class EditLockeForm {
     this.formAnnouncement = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      rules: [[]],
     });
     this.formRule = this.formBuilder.group({
       rule: ['', Validators.required],
+    });
+    this.formLifes = this.formBuilder.group({
+      lifes: [1, [Validators.required, Validators.min(1)]],
+    });
+    this.formStatus = this.formBuilder.group({
+      status: ['', Validators.required],
+    });
+    this.formNextEvent = this.formBuilder.group({
+      event: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(100),
+        ],
+      ],
     });
   }
   onSubmitRule() {
@@ -40,6 +63,27 @@ export class EditLockeForm {
       return;
     }
     this.addRule(this.formRule.value.rule);
+  }
+  onSubmitAnnouncement() {
+    if (!this.formAnnouncement.valid) {
+      return;
+    }
+    //construir objeto con titulo,descripcion y reglas.
+  }
+  onSubmitLifes() {
+    if (!this.formLifes.valid) {
+      return;
+    }
+  }
+  onSubmitEvent() {
+    if (!this.formNextEvent.valid) {
+      return;
+    }
+  }
+  onSubmitStatusLocke() {
+    if (!this.formStatus.valid) {
+      return;
+    }
   }
   deleteRule(rule: string) {
     console.log('borrar');

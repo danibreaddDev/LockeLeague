@@ -17,27 +17,37 @@
               ></path>
             </svg>
           </div>
-
-          <input
-            type="number"
-            class="px-3 py-2 text-8xl font-bold text-red-700 mb-3 font-title w-full border-pixel-input"
-            value="25"
-          />
-          <button
-            class="group transition-colors p-1 absolute inset-0 right-0 left-full -translate-x-6 -translate-y-2 bg-white hover:bg-green-500 size-fit border-pixel"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-6 text-green-500 group-hover:text-white"
-              viewBox="0 0 24 24"
+          <form [formGroup]="formLifes" (submit)="onSubmitLifes()">
+            <input
+              type="number"
+              class="px-3 py-2 text-8xl font-bold text-red-700 mb-3 font-title w-full border-pixel-input"
+              value="25"
+              formControlName="lifes"
+            />
+            @if (formLifes.get("lifes")?.getError("min") &&
+            formLifes.get("lifes")?.touched) {
+            <small class="text-red-600">Min lifes 1.</small>
+            } @else if (formLifes.get("lifes")?.getError("required") &&
+            formLifes.get("lifes")?.touched) {
+            <small class="text-red-600">Lifes Required.</small>
+            }
+            <button
+              type="submit"
+              class="group transition-colors p-1 absolute inset-0 right-0 left-full -translate-x-6 -translate-y-2 bg-white hover:bg-green-500 size-fit border-pixel"
             >
-              <rect width="24" height="24" fill="none" />
-              <path
-                fill="currentColor"
-                d="M18 6h2v2h-2zm-2 4V8h2v2zm-2 2v-2h2v2zm-2 2h2v-2h-2zm-2 2h2v-2h-2zm-2 0v2h2v-2zm-2-2h2v2H6zm0 0H4v-2h2z"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-6 text-green-500 group-hover:text-white"
+                viewBox="0 0 24 24"
+              >
+                <rect width="24" height="24" fill="none" />
+                <path
+                  fill="currentColor"
+                  d="M18 6h2v2h-2zm-2 4V8h2v2zm-2 2v-2h2v2zm-2 2h2v-2h-2zm-2 2h2v-2h-2zm-2 0v2h2v-2zm-2-2h2v2H6zm0 0H4v-2h2z"
+                />
+              </svg>
+            </button>
+          </form>
         </div>
 
         <div class="relative status border-pixel-status p-5">
@@ -54,33 +64,40 @@
               />
             </svg>
           </div>
-
-          <div>
-            <select
-              class="font-title text-xl font-bold text-green-700 mb-2"
-              name=""
-              id=""
+          <form [formGroup]="formStatus" (submit)="onSubmitStatusLocke()">
+            <div>
+              <select
+                formControlName="status"
+                class="font-title text-xl font-bold text-green-700 mb-2"
+                name=""
+                id=""
+              >
+                <option value="">Completed</option>
+                <option value="">Uncompleted</option>
+              </select>
+              @if (formStatus.get("status")?.getError("required") &&
+              formStatus.get("status")?.touched) {
+              <small class="text-red-600">status Required.</small>
+              }
+            </div>
+            <button
+              type="submit"
+              class="group transition-colors p-1 absolute inset-0 right-0 left-full -translate-x-6 -translate-y-2 bg-white hover:bg-green-500 size-fit border-pixel"
+              title="change status"
             >
-              <option value="">Completed</option>
-              <option value="">Uncompleted</option>
-            </select>
-          </div>
-          <button
-            class="group transition-colors p-1 absolute inset-0 right-0 left-full -translate-x-6 -translate-y-2 bg-white hover:bg-green-500 size-fit border-pixel"
-            title="change status"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-6 text-green-500 group-hover:text-white"
-              viewBox="0 0 24 24"
-            >
-              <rect width="24" height="24" fill="none" />
-              <path
-                fill="currentColor"
-                d="M18 6h2v2h-2zm-2 4V8h2v2zm-2 2v-2h2v2zm-2 2h2v-2h-2zm-2 2h2v-2h-2zm-2 0v2h2v-2zm-2-2h2v2H6zm0 0H4v-2h2z"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-6 text-green-500 group-hover:text-white"
+                viewBox="0 0 24 24"
+              >
+                <rect width="24" height="24" fill="none" />
+                <path
+                  fill="currentColor"
+                  d="M18 6h2v2h-2zm-2 4V8h2v2zm-2 2v-2h2v2zm-2 2h2v-2h-2zm-2 2h2v-2h-2zm-2 0v2h2v-2zm-2-2h2v2H6zm0 0H4v-2h2z"
+                />
+              </svg>
+            </button>
+          </form>
         </div>
 
         <div class="relative next-event col-span-full border-pixel-event p-5">
@@ -97,98 +114,133 @@
               />
             </svg>
           </div>
-
-          <textarea
-            class="p-4 text-xl font-semibold w-full border-pixel-input"
-          ></textarea>
-          <button
-            class="group transition-colors p-1 absolute inset-0 right-0 left-full -translate-x-6 -translate-y-2 bg-white hover:bg-green-500 size-fit border-pixel"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-6 text-green-500 group-hover:text-white"
-              viewBox="0 0 24 24"
+          <form [formGroup]="formNextEvent" (submit)="onSubmitEvent()">
+            <textarea
+              formControlName="event"
+              class="p-4 text-xl font-semibold w-full border-pixel-input"
+            ></textarea>
+            @if (formNextEvent.get("event")?.getError("required") &&
+            formNextEvent.get("event")?.touched) {
+            <small class="text-red-600">Event Required.</small>
+            } @else if ((formNextEvent.get("event")?.getError("minlength") ||
+            formNextEvent.get("event")?.getError("maxlength")) &&
+            formNextEvent.get("event")?.touched) {
+            <small class="text-red-600"
+              >The event must have between 10-100 characters.</small
             >
-              <rect width="24" height="24" fill="none" />
-              <path
-                fill="currentColor"
-                d="M18 6h2v2h-2zm-2 4V8h2v2zm-2 2v-2h2v2zm-2 2h2v-2h-2zm-2 2h2v-2h-2zm-2 0v2h2v-2zm-2-2h2v2H6zm0 0H4v-2h2z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </section>
-    <div class="flex flex-col gap-5 j">
-      <h3 class="font-title">Announcement</h3>
-      <section class="flex flex-col gap-5 size-full">
-        <div class="flex flex-col gap-2">
-          <label for="title" class="font-title">Title</label>
-          <input type="text" class="p-2 border-pixel-input" />
-        </div>
-        <div class="flex flex-col gap-2">
-          <label for="description" class="font-title">Description</label>
-          <textarea type="text" class="p-2 border-pixel-input"></textarea>
-        </div>
-        <div class="grid grid-cols-3 gap-5">
-          <div class="col-span-full">
-            <label for="rules" class="font-title">Rules</label>
-          </div>
-          <form [formGroup]="formRule" (submit)="onSubmitRule()">
-            <div class="flex flex-col gap-5 items-center">
-              <div class="flex flex-col gap-2">
-                <input
-                  type="text"
-                  formControlName="rule"
-                  class="p-2 border-pixel-input size-fit text-slate-500"
-                />
-                @if (formRule.get('rule')?.errors &&
-                formRule.get('rule')?.touched) {
-                <small class="text-red-500">Required</small>
-                }
-              </div>
-              <button type="submit" class="btn-iniciar size-fit px-2 py-1">
-                Add
-              </button>
-            </div>
-          </form>
-
-          <section
-            class="rules col-span-2 p-5 flex flex-row gap-5 justify-center flex-wrap"
-          >
-            @if (rules().length === 0) {
-            <div class="flex flex-row gap-2 items-center">
-              <img
-                src="/images/not.png"
-                class="size-12 sm:size-24 object-cover"
-              />
-              <p class="text-slate-500">There are no rules.</p>
-            </div>
-
-            }@else { } @for (rule of rules(); track $index) {
+            }
             <button
-              (click)="deleteRule(rule)"
-              class="px-2 py-1 border-pixel flex flex-row gap-2 size-fit"
+              type="submit"
+              class="group transition-colors p-1 absolute inset-0 right-0 left-full -translate-x-6 -translate-y-2 bg-white hover:bg-green-500 size-fit border-pixel"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                class="size-6 text-green-500 group-hover:text-white"
                 viewBox="0 0 24 24"
               >
                 <rect width="24" height="24" fill="none" />
                 <path
                   fill="currentColor"
-                  d="M5 3H3v18h18V3zm14 2v14H5V5zm-8 4H9V7H7v2h2v2h2v2H9v2H7v2h2v-2h2v-2h2v2h2v2h2v-2h-2v-2h-2v-2h2V9h2V7h-2v2h-2v2h-2z"
+                  d="M18 6h2v2h-2zm-2 4V8h2v2zm-2 2v-2h2v2zm-2 2h2v-2h-2zm-2 2h2v-2h-2zm-2 0v2h2v-2zm-2-2h2v2H6zm0 0H4v-2h2z"
                 />
               </svg>
-              <span>{{ rule }}</span>
             </button>
-            }
-          </section>
+          </form>
         </div>
-      </section>
-      <button class="btn-iniciar px-2 py-1 bg-blue-600">Publish</button>
+      </div>
+    </section>
+    <div class="flex flex-col gap-5">
+      <h3 class="font-title">Announcement</h3>
+      <form
+        [formGroup]="formAnnouncement"
+        (submit)="onSubmitAnnouncement()"
+        class="size-full flex flex-col items-center"
+      >
+        <section class="flex flex-col gap-5 size-full">
+          <div class="flex flex-col gap-2">
+            <label for="title" class="font-title">Title</label>
+            <input
+              formControlName="name"
+              type="text"
+              class="p-2 border-pixel-input"
+            />
+            @if (formAnnouncement.get("name")?.getError("required") &&
+            formAnnouncement.get("name")?.touched) {
+            <small class="text-red-600">Title Required.</small>
+            }
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="description" class="font-title">Description</label>
+            <textarea
+              formControlName="description"
+              type="text"
+              class="p-2 border-pixel-input"
+            ></textarea>
+            @if (formAnnouncement.get("description")?.getError("required") &&
+            formAnnouncement.get("description")?.touched) {
+            <small class="text-red-600">Description Required.</small>
+            }
+          </div>
+          <div class="grid grid-cols-3 gap-5">
+            <div class="col-span-full">
+              <label for="rules" class="font-title">Rules</label>
+            </div>
+            <form [formGroup]="formRule" (submit)="onSubmitRule()">
+              <div class="flex flex-col gap-5 items-center">
+                <div class="flex flex-col gap-2">
+                  <input
+                    type="text"
+                    formControlName="rule"
+                    class="p-2 border-pixel-input size-fit text-slate-500"
+                  />
+                  @if (formRule.get('rule')?.errors &&
+                  formRule.get('rule')?.touched) {
+                  <small class="text-red-500">Required</small>
+                  }
+                </div>
+                <button type="submit" class="btn-iniciar size-fit px-2 py-1">
+                  Add
+                </button>
+              </div>
+            </form>
+
+            <section
+              class="rules col-span-2 p-5 flex flex-row gap-5 justify-center flex-wrap"
+            >
+              @if (rules().length === 0) {
+              <div class="flex flex-row gap-2 items-center">
+                <img
+                  src="/images/not.png"
+                  class="size-12 sm:size-24 object-cover"
+                />
+                <p class="text-slate-500">There are no rules.</p>
+              </div>
+
+              }@else { } @for (rule of rules(); track $index) {
+              <button
+                (click)="deleteRule(rule)"
+                class="px-2 py-1 border-pixel flex flex-row gap-2 size-fit"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="24" height="24" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M5 3H3v18h18V3zm14 2v14H5V5zm-8 4H9V7H7v2h2v2h2v2H9v2H7v2h2v-2h2v-2h2v2h2v2h2v-2h-2v-2h-2v-2h2V9h2V7h-2v2h-2v2h-2z"
+                  />
+                </svg>
+                <span>{{ rule }}</span>
+              </button>
+              }
+            </section>
+          </div>
+        </section>
+        <button class="btn-iniciar px-2 py-1 bg-blue-600">Publish</button>
+      </form>
     </div>
   </div>
 </div>
