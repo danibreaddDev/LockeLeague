@@ -1,4 +1,10 @@
 <div class="form bg-white overflow-scroll font-text">
+  <button
+    class="btn-iniciar mx-2 my-2 px-2 py-1 bg-red-600"
+    (click)="closeModal()"
+  >
+    Close
+  </button>
   <div class="grid grid-cols-1 xl:grid-cols-2 gap-10 p-5 size-full">
     <section class="flex flex-col">
       <div class="grid grid-cols-2 gap-5 size-full">
@@ -69,11 +75,11 @@
               <select
                 formControlName="status"
                 class="font-title text-xl font-bold text-green-700 mb-2"
-                name=""
-                id=""
+                name="status"
+                id="status"
               >
-                <option value="">Completed</option>
-                <option value="">Uncompleted</option>
+                <option value="completed">Completed</option>
+                <option value="uncompleted" default>Uncompleted</option>
               </select>
               @if (formStatus.get("status")?.getError("required") &&
               formStatus.get("status")?.touched) {
@@ -150,7 +156,15 @@
       </div>
     </section>
     <div class="flex flex-col gap-5">
-      <h3 class="font-title">Announcement</h3>
+      <div class="flex flex-row gap-5 justify-between items-center">
+        <h3 class="font-title">Announcement</h3>
+        <button
+          class="btn-iniciar px-2 py-1 bg-amber-500"
+          (click)="deleteAnnouncement()"
+        >
+          Delete Announcement
+        </button>
+      </div>
       <form
         [formGroup]="formAnnouncement"
         (submit)="onSubmitAnnouncement()"
@@ -160,12 +174,12 @@
           <div class="flex flex-col gap-2">
             <label for="title" class="font-title">Title</label>
             <input
-              formControlName="name"
+              formControlName="title"
               type="text"
               class="p-2 border-pixel-input"
             />
-            @if (formAnnouncement.get("name")?.getError("required") &&
-            formAnnouncement.get("name")?.touched) {
+            @if (formAnnouncement.get("title")?.getError("required") &&
+            formAnnouncement.get("title")?.touched) {
             <small class="text-red-600">Title Required.</small>
             }
           </div>

@@ -30,9 +30,21 @@ export class LockeDetail {
     this.getInfoAboutLocke();
   }
   openModalEditLocke() {
-    const dialogRef = this.dialog.open(EditLockeForm, {});
+    console.log(this.generalInfo());
+
+    const dialogRef = this.dialog.open(EditLockeForm, {
+      disableClose: true,
+      data: {
+        infoLocke: this.generalInfo(),
+      },
+    });
     dialogRef.closed.subscribe((result) => {
       const wasSubmitted = result as boolean | undefined;
+      console.log(wasSubmitted);
+      if (!wasSubmitted) {
+        return;
+      }
+      this.getInfoAboutLocke();
     });
   }
   private getInfoAboutLocke() {

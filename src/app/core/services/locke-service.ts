@@ -64,6 +64,30 @@ export class LockeService {
       .insert(LockeToInsertData);
     return { data, error };
   }
+  async updateLifesLocke(lifes: number, id: string) {
+    const { data, error } = await this._clientSupabase
+      .from('lockes')
+      .update({ lifes: lifes })
+      .eq('id', id);
+    return { data, error };
+  }
+  async updateStatusLocke(status: string) {}
+  async updateCurrentEvent(event: string, id: string) {
+    const { data, error } = await this._clientSupabase
+      .from('lockes')
+      .update({ next_event: event })
+      .eq('id', id);
+    return { data, error };
+  }
+  async updateAnnouncement(announcementObj: any, id: string) {
+    console.log('objeto a enviar del anunciuo', announcementObj);
+
+    const { data, error } = await this._clientSupabase
+      .from('lockes')
+      .update({ announcement: announcementObj })
+      .eq('id', id);
+    return { data, error };
+  }
   async updateLifesUser(userToEdit: any) {
     const { error } = await this._clientSupabase
       .from('locke_users')

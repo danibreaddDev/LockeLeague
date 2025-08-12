@@ -2,7 +2,7 @@
   @if (!generalInfo()) {
   <app-loader class="flex justify-center items-center h-full"></app-loader>
   }@else {
-  <section class="flex flex-col gap-5">
+  <section class="mt-24 lg:mt-0 flex flex-col gap-5">
     <div class="flex flex-row justify-between items-center">
       <h2 class="font-title gradient text-7xl">Summary</h2>
       <button
@@ -163,7 +163,7 @@
             } @else {
             <div class="font-title text-lg font-bold text-purple-700 mb-2">
               <p class="text-2xl font-semibold">
-                {{ generalInfo().next_event.title }}
+                {{ generalInfo().next_event }}
               </p>
             </div>
 
@@ -173,6 +173,7 @@
       </div>
 
       <!-- Sección adicional más compacta -->
+      @if (generalInfo().announcement) {
       <div class="mt-10">
         <div class="relative z-20 border-pixel bg-white">
           <div class="p-6 flex flex-col gap-5">
@@ -188,30 +189,23 @@
               />
             </svg>
 
-            <h3 class="font-title text-3xl">new Tournament</h3>
+            <h3 class="font-title text-3xl">
+              {{ generalInfo().announcement.title }}
+            </h3>
             <p class="text-base text-gray-700">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-              numquam quaerat adipisci labore eum unde delectus ipsum laudantium
-              id ratione architecto, quidem magni repellat hic sit vero,
-              cupiditate, incidunt dolores?
+              {{ generalInfo().announcement.description }}
             </p>
             <div class="flex flex-row gap-2 items-center">
-              <span
+              @for (rule of generalInfo().announcement.rules; track $index)
+              {<span
                 class="border border-gray-300 px-2 py-1 rounded-2xl text-gray-700"
-                >23-03-2025</span
-              >
-              <span
-                class="border border-gray-300 px-2 py-1 rounded-2xl text-gray-700"
-                >Level Cap 50</span
-              >
-              <span
-                class="border border-gray-300 px-2 py-1 rounded-2xl text-gray-700"
-                >VGC</span
-              >
+                >{{ rule }}</span
+              >}
             </div>
           </div>
         </div>
       </div>
+      }
     </div>
   </section>
   }

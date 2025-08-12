@@ -15,7 +15,7 @@ import { LockeService } from '../../../core/services/locke-service';
     <section class="flex flex-col gap-5 h-full">
       <div class="grid-container">
         <div
-          class=" fixed top-0 bg-white lg:relative nav-locke h-fit lg:h-full font-title border-pixel-card w-full lg:w-[90px]"
+          class=" fixed top-0 z-50 bg-white lg:relative nav-locke h-fit lg:h-full font-title border-pixel-card w-full lg:w-[90px]"
         >
           <div
             class=" p-5 lg:p-0 flex flex-row lg:flex-col gap-5 overflow-x-scroll lg:overflow-visible"
