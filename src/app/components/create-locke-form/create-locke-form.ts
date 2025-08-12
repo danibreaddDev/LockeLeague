@@ -14,16 +14,18 @@ import { LockeService } from '../../core/services/locke-service';
   templateUrl: './create-locke-form.html',
   styleUrl: './create-locke-form.css',
 })
-export class CreateLockeForm implements OnInit {
+export class CreateLockeForm {
   form!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: DialogRef,
     private lockeService: LockeService,
     @Inject(DIALOG_DATA) public data: { groups: any }
-  ) {}
-  ngOnInit(): void {
+  ) {
     this.initForm();
+  }
+  closeModal() {
+    this.dialogRef.close(true);
   }
   onSubmit() {
     if (!this.form.valid) {

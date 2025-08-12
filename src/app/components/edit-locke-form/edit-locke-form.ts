@@ -7,10 +7,11 @@ import {
 } from '@angular/forms';
 import { LockeService } from '../../core/services/locke-service';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { Loader } from '../../shared/components/loader/loader';
 
 @Component({
   selector: 'app-edit-locke-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Loader],
   templateUrl: './edit-locke-form.html',
   styleUrl: './edit-locke-form.css',
 })
@@ -21,6 +22,7 @@ export class EditLockeForm {
   formStatus!: FormGroup;
   formRule!: FormGroup;
 
+  isloading = signal<boolean>(true);
   lifes = signal<number>(0);
   nextEvent = signal<string>('');
   status = signal<string>('');
@@ -51,6 +53,7 @@ export class EditLockeForm {
       this.announcement.set(data.infoLocke.announcement);
       this.rules.set(this.data.infoLocke.announcement.rules);
     }
+    this.isloading.set(false);
   }
   private initForms() {
     this.formAnnouncement = this.formBuilder.group({

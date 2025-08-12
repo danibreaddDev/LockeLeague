@@ -1,18 +1,22 @@
 @if (isloading() ) {
-<div class="form box bg-white flex justify-center items-center">
+<div class="form border-pixel bg-white flex justify-center items-center">
   <app-loader></app-loader>
 </div>
 }@else {
 
-<div class="form box font-text p-5 bg-white rounded-3xl flex flex-col gap-5">
+<div class="form border-pixel font-text p-5 bg-white flex flex-col gap-5">
+  <button
+    (click)="closeModal()"
+    class="btn-iniciar px-2 py-1 bg-red-600 self-end"
+  >
+    Close
+  </button>
   <form
     [formGroup]="form"
     (submit)="onSubmit()"
     class="grid grid-cols-1 lg:grid-cols-3 overflow-scroll gap-5 p-5"
   >
-    <div
-      class="col-span-1 flex flex-col gap-5 p-5 border border-slate-300 rounded-2xl"
-    >
+    <div class="col-span-1 flex flex-col gap-5 p-5 border-pixel-card">
       <div class="flex flex-col gap-3">
         <span class="font-title">Choose Pokemon</span>
         <select
@@ -66,9 +70,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="col-span-2 border border-slate-300 rounded-2xl p-5 flex flex-col gap-5"
-    >
+    <div class="col-span-2 border-pixel-card p-5 flex flex-col gap-5">
       <div>
         <span class="font-title">MOVE SET</span>
         <div class="grid grid-cols-2 gap-5" formGroupName="moves">

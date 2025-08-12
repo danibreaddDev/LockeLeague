@@ -1,7 +1,6 @@
-import { Component, signal, effect, inject } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { ProfileService } from '../../core/services/profile-service';
 import { ProfileGeneralInfo } from '../../components/profile-general-info/profile-general-info';
-import { CommonModule } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
 import { CreateGroupForm } from '../../components/create-group-form/create-group-form';
 import { ProfileClasification } from '../../components/profile-clasification/profile-clasification';
@@ -12,19 +11,18 @@ import { ProfileLockeWins } from '../../components/profile-locke-wins/profile-lo
 import { ProfileTournamentsWins } from '../../components/profile-tournaments-wins/profile-tournaments-wins';
 import { LockeService } from '../../core/services/locke-service';
 import { ProfileBestLockes } from '../../components/profile-best-lockes/profile-best-lockes';
-import { HttpClient } from '@angular/common/http';
-import { RouterLink } from '@angular/router';
+
+import { DropDownMenu } from '../../shared/components/drop-down-menu/drop-down-menu';
 
 @Component({
   selector: 'app-profile',
   imports: [
-    RouterLink,
     ProfileGeneralInfo,
-    CommonModule,
     ProfileClasification,
     ProfileLockeWins,
     ProfileTournamentsWins,
     ProfileBestLockes,
+    DropDownMenu,
   ],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
@@ -40,8 +38,7 @@ export class Profile {
     private profileService: ProfileService,
     private userService: UserService,
     private groupService: GroupService,
-    private lockeService: LockeService,
-    private httpClient: HttpClient
+    private lockeService: LockeService
   ) {
     this.getInfoProfile();
     this.getGroupsCreated();
@@ -82,7 +79,7 @@ export class Profile {
   }
   getBestLockes() {
     this.lockeService
-      .getLockes()
+      .getBestLockes()
       .then((res: any) => {
         this.lockes.set(res.data);
         this.getInfoJson();

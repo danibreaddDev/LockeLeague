@@ -15,7 +15,7 @@ import { LockeService } from '../../../core/services/locke-service';
     <section class="flex flex-col gap-5 h-full">
       <div class="grid-container">
         <div
-          class=" fixed top-0 z-50 bg-white lg:relative nav-locke h-fit lg:h-full font-title border-pixel-card w-full lg:w-[90px]"
+          class=" fixed top-0 z-50 bg-white lg:relative nav-locke h-fit lg:h-full font-title border-pixel w-full lg:w-[90px]"
         >
           <div
             class=" p-5 lg:p-0 flex flex-row lg:flex-col gap-5 overflow-x-scroll lg:overflow-visible"
@@ -127,6 +127,7 @@ import { LockeService } from '../../../core/services/locke-service';
     `
       .grid-container {
         display: grid;
+
         width: 100%;
         height: 100%;
         grid-template-columns: auto 1fr;
@@ -138,7 +139,7 @@ import { LockeService } from '../../../core/services/locke-service';
       .nav-locke {
         padding: 10px;
         overflow: hidden;
-
+        background: var(--body-color);
         animation: appear 0.5s ease-in-out;
         transition: width 0.5s ease;
         @media (min-width: 1024px) {
@@ -156,12 +157,14 @@ import { LockeService } from '../../../core/services/locke-service';
           display: flex;
           flex-direction: row;
           gap: 30px;
+          transition: all 0.2s ease-in-out;
 
           align-items: center;
           height: 50px;
           color: oklch(27.8% 0.033 256.848);
           font-weight: bold;
           &:hover {
+            background: white;
             box-shadow: 0px 5px black, 0px -5px black, 5px 0px black,
               -5px 0px black, 0px 10px #00000038, 5px 5px #00000038,
               -5px 5px #00000038, inset 0px 5px #ffffff36;

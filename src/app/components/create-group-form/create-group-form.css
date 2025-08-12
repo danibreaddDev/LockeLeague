@@ -4,9 +4,7 @@
 }
 input {
   padding: 10px;
-  border: 1px solid rgb(150, 147, 147);
-  border-radius: 10px;
-  outline-color: rgb(137, 137, 137);
+  outline: 0;
 }
 :host {
   display: block;

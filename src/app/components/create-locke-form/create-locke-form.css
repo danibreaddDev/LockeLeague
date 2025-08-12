@@ -1,11 +1,6 @@
 .form {
   width: 50vw;
   height: fit-content;
-  div:first-child {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
 }
 input {
   padding: 10px;

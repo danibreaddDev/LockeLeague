@@ -6,10 +6,11 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { Loader } from '../../shared/components/loader/loader';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile-best-lockes',
-  imports: [Loader],
+  imports: [Loader, RouterLink],
   templateUrl: './profile-best-lockes.html',
   styleUrl: './profile-best-lockes.css',
 })

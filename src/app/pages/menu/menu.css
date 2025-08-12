@@ -67,6 +67,7 @@ div.image-qualifier {
 
 .menu-item {
   height: 100%;
+  background: white;
   transition: all 0.3s ease-in-out;
   a {
     width: 100%;

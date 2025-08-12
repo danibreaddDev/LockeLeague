@@ -45,6 +45,9 @@ export class EditPokemonForm implements OnInit {
     this.getAllInfo();
     this.initForm();
   }
+  closeModal() {
+    this.dialogRef.close();
+  }
   onSubmit() {
     if (!this.form.valid) {
       alert('formulario no crrecto');

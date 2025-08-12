@@ -1,8 +1,10 @@
 @if (!locke_wins()) {
 <app-loader class="flex justify-center-safe"></app-loader>
 } @else {
-<div class="flex flex-col gap-5 items-center">
-  <span class="font-title gradient text-2xl font-medium">Win lockes</span>
-  <span class="text-5xl font-text font-extrabold">{{ locke_wins() }}</span>
+<div class="p-2 md:p-5 flex flex-col gap-5">
+  <span class="font-title gradient text-xl font-medium">Win lockes</span>
+  <span class="text-5xl font-title font-extrabold self-center">{{
+    locke_wins()
+  }}</span>
 </div>
 }

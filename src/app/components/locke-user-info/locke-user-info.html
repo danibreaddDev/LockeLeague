@@ -2,7 +2,7 @@
 <app-loader class="flex justify-center-safe"></app-loader>
 } @else {
 <div
-  class="relative user border-pixel-card p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+  class="relative user border-pixel p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
 >
   @if (isEditableUser) {
   <div
@@ -24,7 +24,7 @@
     @for (pokemon of user.team; track $index) { @if (isEditableUser) {
     <button
       type="button"
-      class="border-pixel-input"
+      class="border-pixel-card"
       (click)="emitEditModal($event, pokemon, user.id)"
       title="Click to open edit modal"
     >
@@ -61,7 +61,7 @@
     </button>
     } }
   </div>
-  <div class="flex flex-row gap-2 items-center">
+  <div class="flex flex-row gap-10 items-center">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -78,11 +78,11 @@
       title="change lifes"
       type="number"
       [value]="lifes()"
-      class="text-red-600 px-2 py-2 font-title rounded-xl hover:outline hover:outline-slate-300"
+      class="text-red-600 px-2 py-2 font-title outline-0 border-pixel-input hover:border-pixel-input"
     />
     <button
       (click)="emitLifes()"
-      class="px-3 py-2 rounded-xl hover:outline hover:outline-slate-300"
+      class="px-3 py-2 outline-0 border-pixel-input hover:border-pixel-input"
       title="update lifes"
     >
       <svg

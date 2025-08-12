@@ -18,7 +18,6 @@ export class Lockes {
   isShowedFilterSection = signal<boolean>(false);
   constructor(
     private dialog: Dialog,
-
     private lockeService: LockeService,
     private groupService: GroupService
   ) {
@@ -32,6 +31,7 @@ export class Lockes {
     console.log(this.groups());
 
     const dialogRef = this.dialog.open(CreateLockeForm, {
+      disableClose: true,
       data: {
         groups: this.groups(),
       },

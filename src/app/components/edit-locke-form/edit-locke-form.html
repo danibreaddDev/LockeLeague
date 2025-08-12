@@ -1,11 +1,15 @@
-<div class="form bg-white overflow-scroll font-text">
-  <button
-    class="btn-iniciar mx-2 my-2 px-2 py-1 bg-red-600"
-    (click)="closeModal()"
-  >
+@if (isloading() ) {
+<div class="form border-pixel bg-white flex justify-center items-center">
+  <app-loader></app-loader>
+</div>
+}@else {
+<div class="p-5 form bg-white font-text flex flex-col gap-5">
+  <button class="btn-iniciar px-2 py-1 bg-red-600" (click)="closeModal()">
     Close
   </button>
-  <div class="grid grid-cols-1 xl:grid-cols-2 gap-10 p-5 size-full">
+  <div
+    class="overflow-scroll grid grid-cols-1 xl:grid-cols-2 gap-10 p-5 size-full"
+  >
     <section class="flex flex-col">
       <div class="grid grid-cols-2 gap-5 size-full">
         <div class="relative lifes border-pixel-lifes p-5">
@@ -258,3 +262,4 @@
     </div>
   </div>
 </div>
+}

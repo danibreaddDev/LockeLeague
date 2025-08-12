@@ -7,7 +7,6 @@ img {
   }
 }
 [class^="card-"] {
-  background: white;
   opacity: 0;
   transform: translateY(-100px);
   animation: appear 1s ease forwards;

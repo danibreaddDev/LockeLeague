@@ -29,6 +29,26 @@ export class LockeService {
 
     return { data, error };
   }
+  async getBestLockes() {
+    const user = await firstValueFrom(
+      this._currentUser$.pipe(filter((user) => !!user))
+    );
+    const { data, error } = await this._clientSupabase
+      .from('locke_users')
+      .select(
+        `
+    *,
+   locke:locke_id (
+      name,
+      lifes,
+      group_id
+    )`
+      )
+      .eq('user_id', user.id)
+      .limit(3);
+
+    return { data, error };
+  }
   async getGeneralInfoLocke(id: string) {
     const { data, error } = await this._clientSupabase
       .from('lockes')

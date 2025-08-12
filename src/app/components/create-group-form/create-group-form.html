@@ -1,22 +1,24 @@
-<div class="form font-text p-5 bg-white border border-slate-300 rounded-3xl">
+<div class="form font-text p-5 bg-white border-pixel">
   <span class="font-title">Crear grupo</span>
-  <div class="mt-2 flex flex-col justify-between gap-5 h-full">
-    <form [formGroup]="form" (submit)="onSubmit()" class="flex flex-col gap-2">
+  <div class="mt-2 flex flex-col justify-between">
+    <form [formGroup]="form" (submit)="onSubmit()" class="flex flex-col gap-5">
       <input
         type="text"
         placeholder="Nombre del grupo"
         name="name"
         formControlName="name"
+        class="border-pixel-input"
       />
       <input
         type="text"
         placeholder="Descripcion del grupo"
         formControlName="description"
+        class="border-pixel-input"
       />
       <button
         type="submit"
         [disabled]="!form.valid"
-        class="btn-iniciar px-3 py-2 rounded-3xl"
+        class="btn-iniciar px-3 py-2 bg-blue-600"
       >
         Guardar
       </button>

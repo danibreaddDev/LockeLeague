@@ -1,74 +1,72 @@
-<section class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-  <div class="md:p-5 p-2 flex flex-col gap-3">
-    <div class="flex flex-row flex-wrap gap-3 items-center w-fit">
-      <h1 class="font-bold text-5xl font-title gradient">LockeLeague</h1>
-      <div class="flex flex-row gap-2">
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+  <div class="flex flex-col gap-10 col-span-2">
+    <div class="flex flex-row gap-3 items-center w-fit">
+      <h1
+        class="font-bold text-2xl sm:text-5xl lg:text-6xl xl:text-8xl font-title gradient"
+      >
+        LockeLeague
+      </h1>
+      <div class="flex flex-row gap-2 items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
+          class="size-12 text-blue-600"
           viewBox="0 0 24 24"
         >
+          <rect width="24" height="24" fill="none" />
           <path
-            fill="#000"
-            d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
+            fill="currentColor"
+            d="M18 4V2H6v2H1v5h1v2h1v1h1v1h1v1h1v1h3v1h2v3H7v3h10v-3h-4v-3h2v-1h3v-1h1v-1h1v-1h1v-1h1V9h1V4zM5 12v-1H4V9H3V6h2v1h1v2h1v3h1v1H6v-1zm16-3h-1v2h-1v1h-1v1h-2v-1h1v-2h1V7h1V6h2z"
           />
         </svg>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
+          class="size-12 text-red-600"
           viewBox="0 0 24 24"
         >
+          <rect width="24" height="24" fill="none" />
           <path
-            fill="#000"
-            d="M18 4V2H6v2H1v5h1v2h1v1h1v1h1v1h1v1h3v1h2v3H7v3h10v-3h-4v-3h2v-1h3v-1h1v-1h1v-1h1v-1h1V9h1V4zM8 13H6v-1H5v-1H4V9H3V6h2v1h1v2h1v3h1zm0-4V4h8v5h-1v3h-1v2h-4v-2H9V9zm12 0v2h-1v1h-1v1h-2v-1h1v-2h1V7h1V6h2v3z"
+            fill="currentColor"
+            d="M23 6v5h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-1H2v-1H1V6h1V5h1V4h1V3h6v1h1v1h2V4h1V3h6v1h1v1h1v1z"
           />
         </svg>
       </div>
     </div>
-    <div class="p-3 flex flex-col gap-2 font-semibold">
-      <h3 class="text-2xl">Llega hasta la cima</h3>
+    <div class="p-3 flex flex-col gap-2 font-semibold border-pixel bg-white">
+      <h3 class="text-4xl">Climb to the Top</h3>
       <p class="text-lg">
-        Juega lockes con tus amigos y otros jugadores de la comunidad y sube
-        puestos en la clasificacion para ser el mejor.
+        Compete in lockes with friends. Rise through the ranks and prove
+        yourself as the ultimate champion.
       </p>
     </div>
-    @if (!user) {<button
-      (click)="login()"
-      class="self-center btn-iniciar border border-slate-200 rounded-2xl shadow px-4 py-3 rounded-3 font-bold flex flex-row gap-2 items-center"
-    >
-      Inicia sesion con
+    @if (!user) {
 
+    <button
+      (click)="login()"
+      class="group self-center btn-iniciar px-4 py-3 bg-amber-500 hover:bg-purple-950"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
+        class="size-12 group-hover:text-white"
         viewBox="0 0 24 24"
       >
         <path
           fill="#000"
           d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.1.1 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.1 16.1 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02M8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12m6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12"
         />
-      </svg></button
-    >}@else {
+      </svg>
+    </button>
+
+    }@else {
     <div class="self-center flex flex-row gap-10">
       <button
         (click)="logout()"
-        class="btn-iniciar border-pixel px-4 py-3 font-bold flex flex-row gap-2 items-center"
+        class="btn-iniciar border-pixel px-4 py-3 font-bold flex flex-row gap-2 items-center bg-red-600"
       >
-        Cerrar sesion
+        Log Out
       </button>
       <app-drop-down-menu></app-drop-down-menu>
     </div>
 
     }
   </div>
-
-  <img
-    src="/images/Snorlax Snorlax Pokemon Sticker - Snorlax Snorlax Pokemon Dumpy - Descubrir y compartir GIFs.gif"
-    alt=""
-    srcset=""
-    class="self-center object-contain w-full h-96"
-  />
 </section>

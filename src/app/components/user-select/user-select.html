@@ -1,9 +1,9 @@
 <div class="flex flex-row justify-end gap-2 items-center">
-  <div class="flex flex-row flex-wrap gap-2">
+  <div class="p-5 flex flex-row flex-wrap gap-10">
     @for ( user of usersToAddGroup; track $index) {
     <button
       (click)="deleteUser(user)"
-      class="relative p-2 bg-slate-200 rounded-full flex flex-row gap-2 w-fit cursor-pointer"
+      class="p-2 border-pixel-input bg-slate-200 flex flex-row gap-2 w-fit cursor-pointer"
     >
       <img
         [src]="user.avatar_url"
@@ -13,7 +13,7 @@
       <span>{{ user.user_name }}</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="size-3 absolute inset-x-full"
+        class="size-6"
         viewBox="0 0 15 15"
       >
         <path
@@ -24,11 +24,11 @@
     </button>
     }
   </div>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-5">
     <span class="text-sm font-semibold">Choose Users to add to group.</span>
     <select
       name="user-select"
-      class="p-3 border border-slate-300 rounded-full"
+      class="p-3 border-pixel-input"
       aria-label="Seleccionar usuario"
       (change)="addUser($event)"
     >
@@ -45,11 +45,7 @@
       }
     </select>
     @if (usersToAddGroup.length!==0) {
-    <button
-      class="px-3 py-2 btn-iniciar text-sm border border-slate-300 rounded-3xl"
-    >
-      Añadir
-    </button>
+    <button class="px-3 py-2 btn-iniciar text-sm bg-blue-600">Add</button>
     }
   </div>
 </div>

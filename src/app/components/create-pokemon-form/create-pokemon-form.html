@@ -3,8 +3,13 @@
   <app-loader></app-loader>
 </div>
 }@else {
-
 <div class="form border-pixel font-text p-5 bg-white flex flex-col gap-5">
+  <button
+    (click)="closeModal()"
+    class="btn-iniciar px-2 py-1 bg-red-600 self-end"
+  >
+    Close
+  </button>
   <form
     [formGroup]="form"
     (submit)="onSubmit()"

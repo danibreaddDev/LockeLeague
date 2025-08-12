@@ -1,13 +1,11 @@
-<main class="p-5 container mx-auto font-text n">
-  <div class="flex flex-col gap-5">
-    <h1 class="py-5 font-title text-7xl gradient">Lockes</h1>
-    <app-drop-down-menu></app-drop-down-menu>
-  </div>
+<main class="p-5 container mx-auto font-text flex flex-col gap-10">
+  <h1 class="py-5 font-title text-7xl gradient">Lockes</h1>
+  <app-drop-down-menu></app-drop-down-menu>
   <div class="py-10 grid grid-cols-2 font-semibold">
     <div>
       <button
         type="button"
-        class="btn-iniciar border-pixel px-3 py-2"
+        class="btn-iniciar border-pixel px-3 py-2 bg-amber-500"
         (click)="openModalCreateLocke()"
       >
         Create Locke
@@ -15,7 +13,7 @@
     </div>
     <div class="group place-self-end">
       <button
-        class="btn-iniciar border-pixel px-3 py-2"
+        class="btn-iniciar border-pixel px-3 py-2 bg-amber-500"
         (click)="ShowFilterSection()"
       >
         Filters

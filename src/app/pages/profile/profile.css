@@ -7,9 +7,9 @@ div.grid-profile {
   grid-template-rows: auto;
   grid-template-areas:
     "user-info victories tournament-victories"
-    " tabla other other"
-    " tabla other other";
-  @media (max-width: 992px) {
+    " tabla tabla tabla"
+    " other other other";
+  @media (max-width: 1025px) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     grid-template-areas:
@@ -22,7 +22,7 @@ div.grid-profile {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: auto;
     grid-template-areas:
-      "user-info "
+      "user-info"
       "victories"
       "tournament-victories"
       "tabla "
@@ -49,15 +49,8 @@ div.grid-profile {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
-.losses-container {
-  grid-area: losses;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
 .tabla-container {
   grid-area: tabla;
   display: flex;
@@ -78,7 +71,6 @@ div.grid-profile {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 .tournament-losses-container {
   grid-area: tournament-losses;
