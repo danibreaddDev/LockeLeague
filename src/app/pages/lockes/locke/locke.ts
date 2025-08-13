@@ -15,7 +15,7 @@ import { LockeService } from '../../../core/services/locke-service';
     <section class="flex flex-col gap-5 h-full">
       <div class="grid-container">
         <div
-          class=" fixed top-0 z-50 bg-white lg:relative nav-locke h-fit lg:h-full font-title border-pixel w-full lg:w-[90px]"
+          class=" fixed top-0 z-50  lg:relative nav-locke h-fit lg:h-full font-title border-pixel w-full lg:w-[90px]"
         >
           <div
             class=" p-5 lg:p-0 flex flex-row lg:flex-col gap-5 overflow-x-scroll lg:overflow-visible"
@@ -35,7 +35,7 @@ import { LockeService } from '../../../core/services/locke-service';
             ></a>
             <a
               [routerLink]="['/locke', testId]"
-              [routerLinkActive]="'border-pixel bg-amber-400'"
+              [routerLinkActive]="'border-pixel bg-white'"
               [routerLinkActiveOptions]="{ exact: true }"
               class="lg:w-full"
             >
@@ -56,7 +56,7 @@ import { LockeService } from '../../../core/services/locke-service';
             </a>
             <a
               [routerLink]="['/locke', testId, 'members']"
-              routerLinkActive="border-pixel bg-amber-400"
+              routerLinkActive="border-pixel bg-white"
               class="lg:w-full"
             >
               <div class="link  ">
@@ -76,7 +76,7 @@ import { LockeService } from '../../../core/services/locke-service';
             </a>
             <a
               [routerLink]="['/locke', testId, 'rules']"
-              routerLinkActive="border-pixel bg-amber-400"
+              routerLinkActive="border-pixel bg-white"
               class="lg:w-full"
             >
               <div class="link ">
@@ -97,7 +97,7 @@ import { LockeService } from '../../../core/services/locke-service';
 
             <a
               [routerLink]="['/locke', testId, 'tournaments']"
-              routerLinkActive="border-pixel bg-amber-400"
+              routerLinkActive="border-pixel bg-white"
               class="lg:w-full"
             >
               <div class="link ">
@@ -139,7 +139,7 @@ import { LockeService } from '../../../core/services/locke-service';
       .nav-locke {
         padding: 10px;
         overflow: hidden;
-        background: var(--body-color);
+        background: var(--color-amber-400);
         animation: appear 0.5s ease-in-out;
         transition: width 0.5s ease;
         @media (min-width: 1024px) {

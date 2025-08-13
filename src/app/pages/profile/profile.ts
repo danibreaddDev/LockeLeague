@@ -13,6 +13,7 @@ import { LockeService } from '../../core/services/locke-service';
 import { ProfileBestLockes } from '../../components/profile-best-lockes/profile-best-lockes';
 
 import { DropDownMenu } from '../../shared/components/drop-down-menu/drop-down-menu';
+import { SettingsMenu } from '../../shared/components/settings-menu/settings-menu';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +24,7 @@ import { DropDownMenu } from '../../shared/components/drop-down-menu/drop-down-m
     ProfileTournamentsWins,
     ProfileBestLockes,
     DropDownMenu,
+    SettingsMenu,
   ],
   templateUrl: './profile.html',
   styleUrl: './profile.css',

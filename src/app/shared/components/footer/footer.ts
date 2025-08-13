@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { SettingsMenu } from '../settings-menu/settings-menu';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [SettingsMenu],
   templateUrl: './footer.html',
-  styleUrl: './footer.css'
+  styleUrl: './footer.css',
 })
-export class Footer {
-
-}
+export class Footer {}

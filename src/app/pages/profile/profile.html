@@ -1,6 +1,9 @@
 <main class="p-5 container mx-auto font-text flex flex-col gap-10">
   <h1 class="py-5 font-title gradient text-7xl">Profile</h1>
-  <app-drop-down-menu></app-drop-down-menu>
+  <div class="flex flex-col gap-5 justify-around">
+    <app-settings-menu [TranslateValues]="['25', '0']"></app-settings-menu>
+    <app-drop-down-menu></app-drop-down-menu>
+  </div>
   <div class="grid-profile">
     <div class="user-info-container border-pixel-leader bg-amber-300 p-2">
       <app-profile-general-info

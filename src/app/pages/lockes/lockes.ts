@@ -6,9 +6,10 @@ import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { CreateLockeForm } from '../../components/create-locke-form/create-locke-form';
 import { GroupService } from '../../core/services/group-service';
 import { DropDownMenu } from '../../shared/components/drop-down-menu/drop-down-menu';
+import { SettingsMenu } from '../../shared/components/settings-menu/settings-menu';
 @Component({
   selector: 'app-lockes',
-  imports: [LockeList, DropDownMenu],
+  imports: [LockeList, DropDownMenu, SettingsMenu],
   templateUrl: './lockes.html',
   styleUrl: './lockes.css',
 })

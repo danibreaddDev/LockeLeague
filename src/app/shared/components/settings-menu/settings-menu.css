@@ -1,0 +1,40 @@
+.settings-container {
+  display: none;
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  display: none;
+  bottom: 0;
+
+  width: 300px;
+  height: fit-content;
+  animation: appearMenu 0.3s ease-in-out forwards;
+}
+.btn-settings {
+  position: relative;
+}
+.kofi-logo {
+  background-image: url("/kofi_symbol.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+@keyframes appearMenu {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  to {
+    display: flex;
+    opacity: 1;
+    transform: translateY(20px);
+  }
+}
+@keyframes dissapearMenu {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

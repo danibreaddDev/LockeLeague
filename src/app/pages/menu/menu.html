@@ -1,6 +1,7 @@
 <main class="p-5 container mx-auto font-text">
   <h1 class="py-5 font-title gradient text-7xl">Menu</h1>
-  <section class="h-screen flex flex-col">
+  <section class="h-screen flex flex-col gap-5">
+    <app-settings-menu [TranslateValues]="['25', '0']"></app-settings-menu>
     <div class="h-full grid grid-cols-6 grid-rows-6 menu gap-4">
       <div class="col-span-full row-auto md:row-span-5 md:col-span-3 menu-item">
         <a routerLink="/lockes">

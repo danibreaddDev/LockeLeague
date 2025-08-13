@@ -1,6 +1,6 @@
 .user {
   animation: appear 0.5s ease-in forwards;
-  background: white;
+
   transition: all 2s ease;
 }
 input {
