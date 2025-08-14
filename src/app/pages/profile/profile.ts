@@ -67,8 +67,15 @@ export class Profile {
   }
   private getInfoJson() {}
   openModalCreateGroup() {
-    this.dialog.open(CreateGroupForm, {
+    const dialogRef = this.dialog.open(CreateGroupForm, {
       data: 'open',
+    });
+    dialogRef.closed.subscribe((res) => {
+      const wasSubmitted = res as boolean | undefined;
+      if (!wasSubmitted) {
+        return;
+      }
+      this.getGroupsCreated();
     });
   }
   getInfoProfile() {
@@ -84,6 +91,15 @@ export class Profile {
     this.getUsers();
     this.groupService
       .getGroupsCreated()
+      .then((res: any) => {
+        this.groups.set(res.data);
+        this.groupSelected.set(res.data[0]);
+      })
+      .catch((error) => console.error(error));
+  }
+  getGroupsJoined() {
+    this.groupService
+      .getGroupsJoined()
       .then((res: any) => {
         this.groups.set(res.data);
         this.groupSelected.set(res.data[0]);

@@ -3,7 +3,7 @@
 }@else if(!groups() && !groupSelected()){
 <div>no hay datos</div>
 } @else {
-<div class="p-2 md:p-5 flex flex-col">
+<div class="p-2 md:p-5 flex flex-col gap-5">
   <span class="font-title gradient text-2xl">Ranking</span>
   <div class="mt-6 flex flex-row gap-5">
     <button (click)="showMyGroups()" class="btn-iniciar bg-slate-100 px-3 py-2">
@@ -52,10 +52,25 @@
     </div>
   </div>
   } @if (isOtherGrouposShowed) {
-  <div
-    class="mt-5 py-5 flex flex-col gap-2 border border-slate-300 border-x-0 border-b-0"
-  >
-    Otro grupillo
+  <div class="flex flex-col gap-5">
+    <div class="group-container flex flex-row">
+      @for (group of groups(); track $index) {
+      <button
+        (click)="getGroupSelected(group)"
+        class="px-3 py-2 border border-x-0 border-t-0 border-b-slate-300 hover:border-b-slate-400"
+      >
+        {{ group["name"] }}
+      </button>
+      }
+    </div>
+    <div>
+      @if (groupSelected()) {
+      <h2 class="text-3xl font-bold">{{ groupSelected().name }}</h2>
+      <app-table-clasification
+        [groupSelected]="groupSelected()"
+      ></app-table-clasification>
+      }
+    </div>
   </div>
   }
 </div>

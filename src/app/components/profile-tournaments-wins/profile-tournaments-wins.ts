@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, Input, input, WritableSignal } from '@angular/core';
 import { Loader } from '../../shared/components/loader/loader';
+import { profile } from '../../interfaces/user';
 
 @Component({
   selector: 'app-profile-tournaments-wins',
@@ -8,5 +9,5 @@ import { Loader } from '../../shared/components/loader/loader';
   styleUrl: './profile-tournaments-wins.css',
 })
 export class ProfileTournamentsWins {
-  tournament_wins = input<number>();
+  @Input() profileInfo!: WritableSignal<profile | null>;
 }

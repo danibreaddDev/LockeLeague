@@ -21,6 +21,8 @@ import { TableClasification } from './components/table-clasification/table-clasi
 export class ProfileClasification {
   @Output() clickOpenModal = new EventEmitter<void>();
   @Output() usersToAdd = new EventEmitter<profile[]>();
+  @Output() onClickMyGroups = new EventEmitter<void>();
+  @Output() onClickJoinedGroups = new EventEmitter<void>();
   @Input() users!: WritableSignal<profile[]>;
   @Input() groups!: WritableSignal<[]>;
   @Input() groupSelected!: WritableSignal<any>;
@@ -38,10 +40,12 @@ export class ProfileClasification {
   showMyGroups() {
     this.isMyGrouposShowed = true;
     this.isOtherGrouposShowed = false;
+    this.onClickMyGroups.emit();
   }
   showOtherGroups() {
     this.isMyGrouposShowed = false;
     this.isOtherGrouposShowed = true;
+    this.onClickJoinedGroups.emit();
   }
   getGroupSelected(group: any) {
     this.groupSelected.set(group);

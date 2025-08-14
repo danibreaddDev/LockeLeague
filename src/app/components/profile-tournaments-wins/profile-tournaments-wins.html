@@ -1,10 +1,10 @@
-@if (!tournament_wins()) {
+@if (!profileInfo()) {
 <app-loader class="flex justify-center-safe"></app-loader>
 } @else {
 <div class="p-2 md:p-5 flex flex-col gap-5">
   <span class="font-title gradient text-xl font-medium">Win Tournaments</span>
   <span class="text-5xl font-title font-extrabold self-center">{{
-    tournament_wins()
+    profileInfo()?.tournament_wins
   }}</span>
 </div>
 }

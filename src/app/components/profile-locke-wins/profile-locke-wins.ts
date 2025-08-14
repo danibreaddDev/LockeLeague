@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, effect, Input, input, WritableSignal } from '@angular/core';
 import { Loader } from '../../shared/components/loader/loader';
+import { profile } from '../../interfaces/user';
 
 @Component({
   selector: 'app-profile-locke-wins',
@@ -8,5 +9,10 @@ import { Loader } from '../../shared/components/loader/loader';
   styleUrl: './profile-locke-wins.css',
 })
 export class ProfileLockeWins {
-  locke_wins = input<number>();
+  @Input() profileInfo!: WritableSignal<profile | null>;
+  constructor() {
+    effect(() => {
+      console.log(this.profileInfo());
+    });
+  }
 }

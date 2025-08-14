@@ -12,7 +12,7 @@
     </div>
     <div class="victories-container border-pixel-status bg-green-300 p-2">
       <app-profile-locke-wins
-        [locke_wins]="profileInfo()?.locke_wins"
+        [profileInfo]="profileInfo"
       ></app-profile-locke-wins>
     </div>
 
@@ -20,7 +20,7 @@
       class="tournament-victories-container border-pixel-tournament bg-blue-300 p-2"
     >
       <app-profile-tournaments-wins
-        [tournament_wins]="profileInfo()?.tournament_wins"
+        [profileInfo]="profileInfo"
       ></app-profile-tournaments-wins>
     </div>
 
@@ -34,6 +34,8 @@
         [groups]="groups"
         [groupSelected]="groupSelected"
         (usersToAdd)="AddUsersToGroupSelected($event)"
+        (onClickMyGroups)="getGroupsCreated()"
+        (onClickJoinedGroups)="getGroupsJoined()"
       ></app-profile-clasification>
     </div>
   </div>

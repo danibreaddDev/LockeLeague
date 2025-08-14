@@ -15,13 +15,25 @@ export class GroupService {
     const user = await firstValueFrom(
       this._currentUser$.pipe(filter((user) => !!user))
     );
-    const { error } = await this._clientSupabase.from('groups').insert({
-      name: group.name,
-      description: group.description,
-      created_by: user.id,
-    });
+    const { data, error } = await this._clientSupabase
+      .from('groups')
+      .insert({
+        name: group.name,
+        description: group.description,
+        created_by: user.id,
+      })
+      .select('id');
+    if (data) {
+      await this._clientSupabase.from('group_stats').insert({
+        group_id: data[0].id,
+        user_id: user.id,
+        rank: 0,
+        locke_wins: 0,
+        tournament_wins: 0,
+      });
+    }
 
-    return { error };
+    return { data, error };
   }
   async getGroupsCreated() {
     const user = await firstValueFrom(
@@ -34,7 +46,17 @@ export class GroupService {
 
     return { data, error };
   }
-  async getGroupsJoined() {}
+  async getGroupsJoined() {
+    const user = await firstValueFrom(
+      this._currentUser$.pipe(filter((user) => !!user))
+    );
+    const { data, error } = await this._clientSupabase
+      .from('groups')
+      .select('*,group_stats!inner(user_id)')
+      .eq('group_stats.user_id', user.id)
+      .neq('created_by', user.id);
+    return { data, error };
+  }
   async getGroupStats(id: string) {
     const { data, error } = await this._clientSupabase
       .from('group_stats')

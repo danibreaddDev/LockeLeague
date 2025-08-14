@@ -36,11 +36,11 @@ export class CreateGroupForm {
       name: formValue.name,
       description: formValue.description,
     };
-    const { error } = await this.groupService.createGroup(group);
-    if (error) {
-      alert('hubo un error');
-    }
-    alert('se ha creado el grupo correctamente');
-    this.dialogRef.close();
+    this.groupService.createGroup(group).then((res) => {
+      if (res.data) alert('Group created successfully');
+      else if (res.error) alert('Error');
+    });
+
+    this.dialogRef.close(true);
   }
 }
