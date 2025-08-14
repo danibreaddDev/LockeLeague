@@ -1,5 +1,12 @@
-<div class="form font-text p-5 bg-white border-pixel">
+<div class="form font-text p-5 bg-white border-pixel flex flex-col gap-5">
+  <button
+    (click)="closeModal()"
+    class="btn-iniciar px-2 py-1 bg-red-600 self-end"
+  >
+    Close
+  </button>
   <span class="font-title">Crear grupo</span>
+
   <div class="mt-2 flex flex-col justify-between">
     <form [formGroup]="form" (submit)="onSubmit()" class="flex flex-col gap-5">
       <input

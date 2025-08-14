@@ -43,4 +43,7 @@ export class CreateGroupForm {
 
     this.dialogRef.close(true);
   }
+  closeModal() {
+    this.dialogRef.close();
+  }
 }

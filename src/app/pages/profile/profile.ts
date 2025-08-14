@@ -68,6 +68,7 @@ export class Profile {
   private getInfoJson() {}
   openModalCreateGroup() {
     const dialogRef = this.dialog.open(CreateGroupForm, {
+      disableClose: true,
       data: 'open',
     });
     dialogRef.closed.subscribe((res) => {
