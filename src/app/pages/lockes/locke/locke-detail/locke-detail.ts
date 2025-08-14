@@ -24,8 +24,6 @@ import { EditLockeForm } from '../../../../components/edit-locke-form/edit-locke
 export class LockeDetail {
   test_id: Signal<string> = inject(ROUTER_OUTLET_DATA) as Signal<string>;
   generalInfo = signal<any | null>(null);
-
-  @Output() onReloadWindow = new EventEmitter<void>();
   constructor(private lockeService: LockeService, private dialog: Dialog) {
     this.getInfoAboutLocke();
   }
