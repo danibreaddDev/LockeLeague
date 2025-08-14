@@ -45,7 +45,12 @@
       }
     </select>
     @if (usersToAddGroup.length!==0) {
-    <button class="px-3 py-2 btn-iniciar text-sm bg-blue-600">Add</button>
+    <button
+      (click)="emitUsers()"
+      class="px-3 py-2 btn-iniciar text-sm bg-blue-600"
+    >
+      Add
+    </button>
     }
   </div>
 </div>

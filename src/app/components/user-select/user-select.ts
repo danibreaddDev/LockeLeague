@@ -1,4 +1,10 @@
-import { Component, Input, WritableSignal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  WritableSignal,
+} from '@angular/core';
 import { profile } from '../../interfaces/user';
 
 @Component({
@@ -9,6 +15,7 @@ import { profile } from '../../interfaces/user';
 })
 export class UserSelect {
   @Input() users!: WritableSignal<profile[] | null>;
+  @Output() onEmitUsers = new EventEmitter<profile[]>();
   usersToAddGroup: profile[] = [];
   addUser(event: Event) {
     const select = event.target as HTMLSelectElement;
@@ -24,5 +31,9 @@ export class UserSelect {
     this.usersToAddGroup = this.usersToAddGroup.filter(
       (u) => u.user_name !== user.user_name
     );
+  }
+  emitUsers() {
+    this.onEmitUsers.emit(this.usersToAddGroup);
+    this.usersToAddGroup = [];
   }
 }

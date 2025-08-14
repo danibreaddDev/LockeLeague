@@ -36,6 +36,7 @@ export class Profile {
   groups = signal<[]>([]);
   groupSelected = signal<any>(null);
   lockes = signal<any[] | null | undefined>(null);
+  usersToAdd = signal<profile[]>([]);
   constructor(
     private profileService: ProfileService,
     private userService: UserService,
@@ -45,6 +46,16 @@ export class Profile {
     this.getInfoProfile();
     this.getGroupsCreated();
     this.getBestLockes();
+  }
+  AddUsersToGroupSelected(users: profile[]) {
+    this.groupService.addUsers(users, this.groupSelected()).then((res) => {
+      if (!res.data) {
+        alert('Users added succesfully');
+        this.getGroupsCreated();
+      } else if (res.error) {
+        alert('error');
+      }
+    });
   }
   private getUsers() {
     this.userService

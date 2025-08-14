@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { SupabaseService } from './supabase-service';
 import { AuthService } from './auth-service';
 import { filter, firstValueFrom } from 'rxjs';
+import { profile } from '../../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +47,19 @@ export class GroupService {
       .from('groups')
       .select('name')
       .eq('id', id);
+    return { data, error };
+  }
+  async addUsers(users: profile[], groupSelected: any) {
+    const rows = users.map((user) => ({
+      group_id: groupSelected.id,
+      user_id: user.id,
+      rank: 0,
+      locke_wins: 0,
+      tournament_wins: 0,
+    }));
+    const { data, error } = await this._clientSupabase
+      .from('group_stats')
+      .insert(rows);
     return { data, error };
   }
 }

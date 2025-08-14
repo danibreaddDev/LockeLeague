@@ -41,7 +41,10 @@
     <div>
       @if (groupSelected()) {
       <h2 class="text-3xl font-bold">{{ groupSelected().name }}</h2>
-      <app-user-select [users]="users"></app-user-select>
+      <app-user-select
+        [users]="users"
+        (onEmitUsers)="usersToAdd.emit($event)"
+      ></app-user-select>
       <app-table-clasification
         [groupSelected]="groupSelected()"
       ></app-table-clasification>

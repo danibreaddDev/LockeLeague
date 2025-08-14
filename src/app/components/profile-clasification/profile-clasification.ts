@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   Output,
+  signal,
   WritableSignal,
 } from '@angular/core';
 import { UserSelect } from '../user-select/user-select';
@@ -19,14 +20,18 @@ import { TableClasification } from './components/table-clasification/table-clasi
 })
 export class ProfileClasification {
   @Output() clickOpenModal = new EventEmitter<void>();
+  @Output() usersToAdd = new EventEmitter<profile[]>();
   @Input() users!: WritableSignal<profile[]>;
   @Input() groups!: WritableSignal<[]>;
   @Input() groupSelected!: WritableSignal<any>;
+
   isMyGrouposShowed: boolean = true;
   isOtherGrouposShowed: boolean = false;
+
   constructor() {
     console.log('dentro de padre', this.groupSelected);
   }
+
   clickModal() {
     this.clickOpenModal.emit();
   }
