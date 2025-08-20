@@ -1,3 +1,10 @@
+@if (rules.length === 0) {
+<div class="grid grid-cols-1 justify-items-center">
+  <h2 class="font-title gradient text-sm sm:text-base xl:text-5xl">
+    No rules.
+  </h2>
+</div>
+}@else {
 <div class="grid grid-cols-1 xl:grid-cols-2 gap-5">
   @for (rule of rules; track $index) {
   <app-rule-card
@@ -9,3 +16,4 @@
   ></app-rule-card>
   }
 </div>
+}
