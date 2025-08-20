@@ -1,5 +1,11 @@
-<div class="grid grid-cols-1 xl:grid-cols-2">
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-5">
   @for (rule of rules; track $index) {
-  <app-rule-card [rule]="rule" [index]="$index + 1"></app-rule-card>
+  <app-rule-card
+    [rule]="rule"
+    [index]="$index + 1"
+    [idLocke]="idLocke"
+    (onShowEditRuleForm)="onShowEditRuleForm.emit($event)"
+    (onDeleteRule)="onDeleteRule.emit($event)"
+  ></app-rule-card>
   }
 </div>

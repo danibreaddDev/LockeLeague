@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RuleCard } from '../rule-card/rule-card';
 
 @Component({
@@ -9,4 +9,7 @@ import { RuleCard } from '../rule-card/rule-card';
 })
 export class RuleList {
   @Input() rules!: any;
+  @Input() idLocke!: string;
+  @Output() onShowEditRuleForm = new EventEmitter<any>();
+  @Output() onDeleteRule = new EventEmitter<any>();
 }

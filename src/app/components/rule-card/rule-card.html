@@ -1,9 +1,36 @@
 <article class="p-5 border-pixel-card bg-white flex flex-col gap-5">
-  <div class="flex flex-row flex-wrap gap-5">
-    <span class="text-7xl font-title font-black">{{ index }}</span>
-    <h2 class="font-title text-sm sm:text-xl lg:text-2xl self-end">
-      {{ rule.title }}
-    </h2>
+  <div class="flex flex-row gap-5 items-center self-end">
+    <button
+      class="self-end btn-iniciar px-3 py-2 bg-red-500"
+      (click)="onDeleteRule.emit(rule)"
+    >
+      delete
+    </button>
+    <button
+      class="btn-iniciar px-3 py-2 hover:bg-amber-400"
+      (click)="onShowEditRuleForm.emit(rule)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-6"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="currentColor"
+          d="M18 2h-2v2h2zM4 4h6v2H4v14h14v-6h2v8H2V4zm4 8H6v6h6v-2h2v-2h-2v2H8zm4-2h-2v2H8v-2h2V8h2V6h2v2h-2zm2-6h2v2h-2zm4 0h2v2h2v2h-2v2h-2v2h-2v-2h2V8h2V6h-2zm-4 8h2v2h-2z"
+        />
+      </svg>
+    </button>
   </div>
-  <p class="text-sm sm:text-base xl:text-lg">{{ rule.description }}</p>
+
+  <div class="flex flex-col gap-5">
+    <div class="flex flex-row gap-5">
+      <span class="text-7xl font-title font-black">{{ index }}</span>
+
+      <h2 class="font-title text-sm sm:text-xl lg:text-2xl self-end">
+        {{ rule.title }}
+      </h2>
+    </div>
+    <p class="text-sm sm:text-base xl:text-lg">{{ rule.description }}</p>
+  </div>
 </article>

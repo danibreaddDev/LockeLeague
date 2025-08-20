@@ -1,7 +1,4 @@
 <main class="flex flex-col gap-10 h-screen">
-  @if (!rules()) {
-  <app-loader class="flex justify-center items-center h-full"></app-loader>
-  } @else {
   <section class="flex flex-col gap-10">
     <h2 class="font-title gradient text-7xl">Rules</h2>
 
@@ -11,7 +8,17 @@
     >
       Create Rule
     </button>
-    <app-rule-list [rules]="rules()"></app-rule-list>
+    @if (!rules()) {
+    <app-loader class="flex justify-center items-center h-full"></app-loader>
+    } @else {
+
+    <app-rule-list
+      [rules]="rules()"
+      [idLocke]="this.idLocke()"
+      (onShowEditRuleForm)="OpenModalEditRule($event)"
+      (onDeleteRule)="deleteRule($event)"
+    ></app-rule-list>
+
+    }
   </section>
-  }
 </main>
