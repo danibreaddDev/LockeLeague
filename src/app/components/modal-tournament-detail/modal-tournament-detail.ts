@@ -12,7 +12,9 @@ import { Loader } from '../../shared/components/loader/loader';
 export class ModalTournamentDetail {
   tournament = signal<any | null>(null);
   matches = signal<any[] | null>(null);
-  winners = signal<any[] | null>(null);
+  winnersRound = signal<any[] | null>(null);
+  currentRound = signal<string>('');
+  participants = signal<any[] | null>(null);
   constructor(
     private tournamentService: TournamentService,
     @Inject(DIALOG_DATA) public data: { tournamentId: string }
@@ -25,10 +27,11 @@ export class ModalTournamentDetail {
         alert('error to get tournament detail');
       } else {
         this.tournament.set(res.data);
-        this.getMatches();
+        this.checkStatusTournament();
       }
     });
   }
+
   startTournament() {
     this.tournamentService
       .startTournament(this.tournament().id, this.tournament().locke_id)
@@ -40,6 +43,30 @@ export class ModalTournamentDetail {
         }
       });
   }
+  completeRound() {
+    if (!this.winnersRound()) {
+      alert('You must select at least one winner');
+      return;
+    }
+    if (this.winnersRound()?.length !== this.matches()?.length) {
+      alert('You must select a winner for each match');
+      return;
+    }
+    this.tournamentService
+      .completeMatches(
+        this.winnersRound(),
+        this.currentRound(),
+        this.tournament().id
+      )
+      .then((res: any) => {
+        if (res && res.error) {
+          console.error(res.error.message);
+        } else {
+          this.winnersRound.set(null);
+          this.getTournamentDetail();
+        }
+      });
+  }
   getMatches() {
     if (this.tournament().status !== 'active') {
       return;
@@ -47,12 +74,47 @@ export class ModalTournamentDetail {
     this.tournamentService.getMatches(this.tournament().id).then((res) => {
       if (res.matches) {
         this.matches.set(res.matches);
+        this.currentRound.set(res.matches[0].round);
       } else {
         console.error('error to get matches');
       }
     });
   }
+  getParticipants() {
+    this.tournamentService.getParticipants(this.tournament().id).then((res) => {
+      if (res.errorGetParticipants) {
+        console.error(
+          'error to get participants, error:',
+          res.errorGetParticipants.message
+        );
+      } else {
+        this.participants.set(res.participants);
+        console.log(this.participants());
+      }
+    });
+  }
+  getOrderedParticipants() {
+    return this.participants()?.sort((a, b) => a.final_rank - b.final_rank);
+  }
   addWinner(matchId: string, participant: any) {
-    this.winners.set([...(this.winners() || []), { matchId, participant }]);
+    if (this.winnersRound()?.some((w) => w.matchId === matchId)) {
+      return;
+    }
+    this.winnersRound.set([
+      ...(this.winnersRound() || []),
+      { matchId, participant },
+    ]);
+  }
+  removeWinner(winner: any) {
+    this.winnersRound.set(
+      this.winnersRound()?.filter((w) => w.matchId !== winner.matchId) || []
+    );
+  }
+  private checkStatusTournament() {
+    if (this.tournament().status === 'active') {
+      this.getMatches();
+    } else if (this.tournament().status === 'completed') {
+      this.getParticipants();
+    }
   }
 }
