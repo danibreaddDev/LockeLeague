@@ -22,4 +22,11 @@ export class UserService {
       .eq('id', id);
     return { data, error };
   }
+  async getUserByIds(ids: string[]) {
+    const { data, error } = await this._clientSupabase
+      .from('users')
+      .select('id,avatar_url,name')
+      .in('id', ids);
+    return { data, error };
+  }
 }

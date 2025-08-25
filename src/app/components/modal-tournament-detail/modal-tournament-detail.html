@@ -1,1 +1,83 @@
-<p>modal-tournament-detail works!</p>
+<div class="border-pixel w-[900px] h-full bg-white p-5">
+  @if (!tournament()) {
+  <app-loader class="flex justify-center items-center h-full"></app-loader>
+  }@else {
+  <div class="flex flex-col gap-5">
+    <div class="flex flex-col gap-2 bg-blue-300 border-pixel-card p-5">
+      <h2 class="text-center xl:text-5xl font-title">
+        {{ tournament().name }}
+      </h2>
+      <p>{{ tournament().description }}</p>
+    </div>
+    @if (tournament().status === 'draft') {
+    <button
+      class="btn-iniciar px-3 py-2 w-fit self-center bg-blue-600"
+      (click)="startTournament()"
+    >
+      Start tournament
+    </button>
+    } @else if(tournament().status === 'active'){ @if (!matches() ) {
+    <app-loader class="flex justify-center items-center h-full"></app-loader>
+    }@else {
+    <div class="flex flex-col gap-5">
+      <div class="flex flex-row gap-2 items-center justify-between">
+        <h2>{{ tournament().status }}</h2>
+        <button class="btn-iniciar px-2 py-1 bg-amber-400">NextRound</button>
+      </div>
+      <h3 class="text-5xl font-title text-center">
+        {{ matches()?.at(0).round }}
+      </h3>
+      <div class="grid grid-cols-2 gap-5">
+        <section class="matches__container grid grid-cols-1 gap-5">
+          @for (match of matches(); track $index) {
+
+          <div class="border-pixel-card p-5 flex flex-col gap-5 items-center">
+            <button
+              (click)="addWinner(match.id, match.participant)"
+              class="btn-iniciar px-2 py-1 bg-amber-400 flex flex-row gap-2 items-center"
+            >
+              <img
+                [src]="match.participant.avatar_url"
+                alt=""
+                class="size-12 rounded-full object-cover"
+              />
+              <span>{{ match.participant.name }}</span>
+            </button>
+            <span class="font-title">VS</span>
+            <button
+              (click)="addWinner(match.id, match.participant2)"
+              class="btn-iniciar px-2 py-1 bg-amber-400"
+            >
+              <img
+                [src]="match.participant2.avatar_url"
+                alt=""
+                class="size-12 rounded-full object-cover"
+              />
+              <span>{{ match.participant2.name }}</span>
+            </button>
+          </div>
+          }
+        </section>
+        <section class="winners_round">
+          <h5 class="text-3xl">Round winners</h5>
+          <div class="flex flex-col gap-5">
+            @for (winner of winners(); track $index) {
+            <div class="border-pixel-input flex flex-row gap-5 items-center">
+              <div class="flex flex-row gap-2 items-center">
+                <span>{{ winner.participant.name }}</span>
+                <img
+                  [src]="winner.participant.avatar_url"
+                  alt="avatar"
+                  class="size-6 rounded-full object-cover"
+                />
+              </div>
+            </div>
+            }
+          </div>
+        </section>
+      </div>
+    </div>
+    } }
+  </div>
+  }
+</div>

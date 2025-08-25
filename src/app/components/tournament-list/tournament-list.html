@@ -1,6 +1,12 @@
+@if (tournaments.length === 0) {
+<div>there are not tournaments</div>
+} @else{
 <div class="grid grid-cols-2 gap-5">
+  @for (tournament of tournaments; track $index) {
   <app-tournament-card
-    [tournament]=""
+    [tournament]="tournament"
     (onClickTournament)="onClickTournament.emit($event)"
   ></app-tournament-card>
+  }
 </div>
+}
