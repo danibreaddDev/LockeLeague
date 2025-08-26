@@ -1,4 +1,4 @@
-import { DIALOG_DATA } from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, signal } from '@angular/core';
 import { TournamentService } from '../../core/services/tournament-service';
 import { Loader } from '../../shared/components/loader/loader';
@@ -17,9 +17,13 @@ export class ModalTournamentDetail {
   participants = signal<any[] | null>(null);
   constructor(
     private tournamentService: TournamentService,
-    @Inject(DIALOG_DATA) public data: { tournamentId: string }
+    @Inject(DIALOG_DATA) public data: { tournamentId: string },
+    private dialogRef: DialogRef
   ) {
     this.getTournamentDetail();
+  }
+  closeModal() {
+    this.dialogRef.close();
   }
   getTournamentDetail() {
     this.tournamentService.getTournament(this.data.tournamentId).then((res) => {

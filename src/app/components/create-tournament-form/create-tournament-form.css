@@ -1,0 +1,7 @@
+.form {
+  width: 50vw;
+  @media screen and (width <= 800px) {
+    width: 90vw;
+  }
+  height: fit-content;
+}

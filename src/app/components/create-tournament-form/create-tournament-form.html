@@ -1,0 +1,117 @@
+<div class="relative form p-5 border-pixel bg-white flex flex-col gap-5">
+  <div class="flex flex-row items-center justify-between">
+    <p>Create a tournament</p>
+    <button
+      (click)="closeModal()"
+      class="btn-iniciar px-3 py-2 bg-red-600 w-fit"
+    >
+      Close
+    </button>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+    <form [formGroup]="formRules" (submit)="onSubmitRules()">
+      <fieldset class="flex flex-col gap-2">
+        <label for="rule" class="font-title">Rule</label>
+        <input
+          type="text"
+          formControlName="rule"
+          class="border-pixel-input p-2"
+        />
+        @if (formRules.get('rule')?.getError('required') &&
+        formRules.get('rule')?.touched) {
+        <small class="text-red-500">Required</small>
+        } @else if (formRules.get('rule')?.getError('maxlength') &&
+        formRules.get('rule')?.touched) {
+        <small class="text-red-500">max Length is 20.</small>
+        }
+      </fieldset>
+      <button type="submit" class="btn-iniciar mt-6 px-2 py-1 bg-blue-500">
+        Add Rule
+      </button>
+    </form>
+    @if (rules().length === 0) {
+    <div class="flex flex-row justify-center items-center gap-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-8 text-gray-400"
+        viewBox="0 0 32 32"
+      >
+        <rect width="32" height="32" fill="none" />
+        <path
+          fill="currentColor"
+          d="M30.48 9.14h-1.53V6.09h-1.52V4.57H25.9V3.05h-3.04V1.52h-3.05V0h-7.62v1.52H9.14v1.53H6.09v1.52H4.57v1.52H3.05v3.05H1.52v3.05H0v7.62h1.52v3.05h1.53v3.04h1.52v1.53h1.52v1.52h3.05v1.53h3.05V32h7.62v-1.52h3.05v-1.53h3.04v-1.52h1.53V25.9h1.52v-3.04h1.53v-3.05H32v-7.62h-1.52ZM19.81 25.9h-1.52v1.53h-4.58V25.9h-1.52v-4.57h1.52v-1.52h4.58v1.52h1.52Zm1.52-12.19h-1.52v3.05h-1.52v1.53h-4.58v-1.53h-1.52v-3.05h-1.52V6.09h1.52V4.57h7.62v1.52h1.52Z"
+          stroke-width="1"
+          stroke="currentColor"
+        />
+        <path
+          fill="currentColor"
+          d="M18.29 7.62h1.52v4.57h-1.52Zm-1.53-1.53h1.53v1.53h-1.53Z"
+          stroke-width="1"
+          stroke="currentColor"
+        />
+      </svg>
+      <p class="text-gray-400">there are not rules.</p>
+    </div>
+    }@else {
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5"
+    >
+      @for (rule of rules(); track $index) {
+      <button
+        (click)="deleteRule(rule)"
+        class="px-2 py-1 border-pixel-card flex flex-row gap-2 w-full h-fit"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-6 text-red-500"
+          viewBox="0 0 24 24"
+        >
+          <rect width="24" height="24" fill="none" />
+          <path
+            fill="currentColor"
+            d="M5 3H3v18h18V3zm14 2v14H5V5zm-8 4H9V7H7v2h2v2h2v2H9v2H7v2h2v-2h2v-2h2v2h2v2h2v-2h-2v-2h-2v-2h2V9h2V7h-2v2h-2v2h-2z"
+          />
+        </svg>
+        <span class="font-title text-nowrap overflow-hidden text-ellipsis">{{
+          rule
+        }}</span>
+      </button>
+      }
+    </div>
+    }
+  </div>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <fieldset class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2">
+        <label for="name" class="font-title">Tournament name</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="border-pixel-input p-2"
+        />
+        @if (formRules.get('name')?.getError('required') &&
+        formRules.get('name')?.touched) {
+        <small class="text-red-500">Required.</small>
+        }
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="description" class="font-title"
+          >Tournament Description</label
+        >
+        <input
+          type="text"
+          formControlName="description"
+          class="border-pixel-input p-2"
+        />
+        @if (formRules.get('description')?.getError('required') &&
+        formRules.get('description')?.touched) {
+        <small class="text-red-500">Required.</small>
+        }
+      </div>
+      <button type="submit" class="btn-iniciar mt-6 px-3 py-2 bg-blue-600">
+        Create Tournament
+      </button>
+    </fieldset>
+  </form>
+</div>

@@ -9,11 +9,12 @@ export class TournamentService {
   private _clientSupabase = inject(SupabaseService).clientSupabase;
 
   constructor(private userService: UserService) {}
-  async getTournaments(idLocke: string) {
+  async getTournaments(idLocke: string, status: string) {
     const { data, error } = await this._clientSupabase
       .from('tournaments')
       .select('*')
-      .eq('locke_id', idLocke);
+      .eq('locke_id', idLocke)
+      .eq('status', status);
     return { data, error };
   }
   async getTournament(tournamentId: string) {
@@ -21,6 +22,14 @@ export class TournamentService {
       .from('tournaments')
       .select('*')
       .eq('id', tournamentId)
+      .single();
+    return { data, error };
+  }
+  async createTournament(tournamentData: any) {
+    const { data, error } = await this._clientSupabase
+      .from('tournaments')
+      .insert(tournamentData)
+      .select('*')
       .single();
     return { data, error };
   }
@@ -51,6 +60,7 @@ export class TournamentService {
       .from('tournaments')
       .update({
         status: 'active',
+        started_at: new Date().toISOString(),
       })
       .eq('id', tournamentId);
     return { updateTournament };
@@ -295,10 +305,18 @@ export class TournamentService {
         .from('tournaments')
         .update({
           status: 'completed',
+          completed_at: new Date().toISOString(),
         })
         .eq('id', tournamentId);
       if (errorUpdatingTournament) {
         return { error: errorUpdatingTournament };
+      }
+      const { error: errorDeletingMatches } = await this._clientSupabase
+        .from('matches')
+        .delete()
+        .eq('tournament_id', tournamentId);
+      if (errorDeletingMatches) {
+        return { errorDeletingMatches };
       }
     } else {
       const matches = [];

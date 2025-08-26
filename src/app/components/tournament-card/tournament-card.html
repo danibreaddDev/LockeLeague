@@ -1,8 +1,8 @@
-<button
+<article
   (click)="openTournamentDetail()"
-  class="p-5 border-pixel-card bg-white flex flex-col gap-5"
+  class="p-5 border-pixel-card bg-white flex flex-col gap-5 w-full h-full"
 >
-  <div class="flex flex-row gap-5 items-center self-end">
+  <div class="flex flex-row gap-5">
     @if (tournament.status === 'draft') {
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,6 @@
     </svg>
     } @else if(tournament.status === 'active') {
 
-    <span>{{ tournament.started_at }}</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="size-12 text-amber-400"
@@ -29,9 +28,11 @@
         d="m19.05 21.6l-2.925-2.9l-1.5 1.5q-.275.275-.7.275t-.7-.275q-.575-.575-.575-1.425t.575-1.425l4.225-4.225q.575-.575 1.425-.575t1.425.575q.275.275.275.7t-.275.7l-1.5 1.5l2.9 2.925q.3.3.3.7t-.3.7l-1.25 1.25q-.3.3-.7.3t-.7-.3M21.7 6.2L10.65 17.25l.125.1q.575.575.575 1.425t-.575 1.425q-.275.275-.7.275t-.7-.275l-1.5-1.5l-2.925 2.9q-.3.3-.7.3t-.7-.3L2.3 20.35q-.3-.3-.3-.7t.3-.7l2.9-2.925l-1.5-1.5q-.275-.275-.275-.7t.275-.7q.575-.575 1.425-.575t1.425.575l.1.125L17.425 2.475q.275-.275.638-.425t.762-.15H21q.425 0 .713.288T22 2.9v2.575q0 .2-.075.388T21.7 6.2M6.225 10.125l-3.65-3.65Q2.3 6.2 2.15 5.838T2 5.075V2.9q0-.425.288-.712T3 1.9h2.175q.4 0 .763.15t.637.425l3.65 3.65q.3.3.3.713t-.3.712L7.65 10.125q-.3.3-.712.3t-.713-.3"
       />
     </svg>
-
+    <span class="font-title self-end">{{
+      tournament.started_at.split("T")[0]
+    }}</span>
     } @else {
-    <span>{{ tournament.completed_at }}</span>
+
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="size-12 text-amber-400"
@@ -43,12 +44,15 @@
         d="M18 4V2H6v2H1v5h1v2h1v1h1v1h1v1h1v1h3v1h2v3H7v3h10v-3h-4v-3h2v-1h3v-1h1v-1h1v-1h1v-1h1V9h1V4zM5 12v-1H4V9H3V6h2v1h1v2h1v3h1v1H6v-1zm16-3h-1v2h-1v1h-1v1h-2v-1h1v-2h1V7h1V6h2z"
       />
     </svg>
+    <span class="font-title self-end">{{
+      tournament.completed_at.split("T")[0]
+    }}</span>
     }
   </div>
-  <h3 class="font-title xl:text-5xl sm:text-base text-sm">
+  <h3 class="font-title xl:text-2xl sm:text-base text-sm">
     {{ tournament.name }}
   </h3>
   <p class="text-lg">
     {{ tournament.description }}
   </p>
-</button>
+</article>

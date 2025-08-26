@@ -43,12 +43,14 @@ import { LockeService } from '../../../core/services/locke-service';
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-8 gradient"
-                  viewBox="0 0 24 24"
+                  viewBox="0 0 32 32"
                 >
-                  <rect width="24" height="24" fill="none" />
+                  <rect width="32" height="32" fill="none" />
                   <path
                     fill="currentColor"
-                    d="M14 2h-4v2H8v2H6v2H4v2H2v2h2v10h7v-6h2v6h7V12h2v-2h-2V8h-2V6h-2V4h-2zm0 2v2h2v2h2v2h2v2h-2v8h-3v-6H9v6H6v-8H4v-2h2V8h2V6h2V4z"
+                    d="M30.48 9.14h-1.53V6.09h-1.52V4.57H25.9V3.05h-3.04V1.52h-3.05V0h-7.62v1.52H9.14v1.53H6.09v1.52H4.57v1.52H3.05v3.05H1.52v3.05H0v7.62h1.52v3.05h1.53v3.04h1.52v1.53h1.52v1.52h3.05v1.53h3.05V32h7.62v-1.52h3.05v-1.53h3.04v-1.52h1.53V25.9h1.52v-3.04h1.53v-3.05H32v-7.62h-1.52ZM12.19 6.09h1.52V4.57h4.58v1.52h1.52v4.58h-1.52v1.52h-4.58v-1.52h-1.52ZM22.86 25.9h-1.53v1.53h-7.62V25.9h-1.52V15.24h1.52v-1.53h4.58v1.53h1.52v7.62h1.52v1.52h1.53Z"
+                    stroke-width="1"
+                    stroke="currentColor"
                   />
                 </svg>
                 <span class="whitespace-nowrap gradient">General</span>
@@ -63,12 +65,26 @@ import { LockeService } from '../../../core/services/locke-service';
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-8 gradient"
-                  viewBox="0 0 24 24"
+                  viewBox="0 0 32 32"
                 >
-                  <rect width="24" height="24" fill="none" />
+                  <rect width="32" height="32" fill="none" />
                   <path
                     fill="currentColor"
-                    d="M11 0H5v2H3v6h2v2h6V8H5V2h6zm0 2h2v6h-2zM0 14h2v4h12v2H0zm2 0h12v-2H2zm14 0h-2v6h2zM15 0h4v2h-4zm4 8h-4v2h4zm0-6h2v6h-2zm5 12h-2v4h-4v2h6zm-6-2h4v2h-4z"
+                    d="M30.48 18.285H32v1.53h-1.52Zm-3.05-1.52h3.05v1.52h-3.05Zm0-3.05h1.52v1.53h-1.52Z"
+                    stroke-width="1"
+                    stroke="currentColor"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M22.86 15.245v-3.05h-1.52v-1.53h-1.53v-3.04h1.53v-1.53h6.09v1.53h1.52v6.09h1.53v-9.14h-1.53v-1.53h-1.52v-1.52h-6.09v1.52h-1.53v1.53h-1.52v4.57h-4.57v-4.57h-1.53v-1.53h-1.52v-1.52h-6.1v1.52H3.05v1.53H1.53v9.14h1.52v-6.09h1.52v-1.53h6.1v1.53h1.52v3.04h-1.52v1.53H9.15v3.05H4.57v1.52h4.58v6.09h1.52v-7.61h1.52v-1.53h7.62v1.53h1.53v7.61h1.52v-6.09h4.57v-1.52zm1.52 13.71h1.53v1.52h-1.53Zm-1.52-1.52h1.52v1.52h-1.52Zm-3.05-1.53h3.05v1.53h-3.05Zm0-3.05h1.53v1.53h-1.53Z"
+                    stroke-width="1"
+                    stroke="currentColor"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M18.29 16.765h1.52v3.05h-1.52Zm-6.1 7.62h7.62v1.52h-7.62Zm1.53-3.05h4.57v1.52h-4.57Zm-1.53-4.57h1.53v3.05h-1.53Zm-1.52 6.09h1.52v1.53h-1.52Zm-1.52 3.05h3.04v1.53H9.15Zm-1.53 1.53h1.53v1.52H7.62Zm-1.52 1.52h1.52v1.52H6.1Zm-3.05-15.24h1.52v1.53H3.05Zm-1.52 3.05h3.04v1.52H1.53ZM0 18.285h1.53v1.53H0Z"
+                    stroke-width="1"
+                    stroke="currentColor"
                   />
                 </svg>
                 <span class="whitespace-nowrap gradient">Members</span>
@@ -83,12 +99,20 @@ import { LockeService } from '../../../core/services/locke-service';
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-8 gradient"
-                  viewBox="0 0 24 24"
+                  viewBox="0 0 32 32"
                 >
-                  <rect width="24" height="24" fill="none" />
+                  <rect width="32" height="32" fill="none" />
                   <path
                     fill="currentColor"
-                    d="M7 0h16v20H5V0zm14 18V2H7v16zM9 4h10v2H9zm10 4H9v2h10zM9 12h7v2H9zm10 10H3V4H1v20h18z"
+                    d="M27.432 4.575h1.52v25.9h-1.52Zm-1.53-1.53h1.53v1.53h-1.53Zm-1.52-1.52h1.52v1.52h-1.52Zm1.518 6.09h-1.52V6.1h-1.52V4.575h-1.53v-1.53H3.052V32H25.9Zm-1.52 22.86H4.572v-25.9h13.71v6.09h6.1ZM4.572-.005h19.81v1.53H4.572Z"
+                    stroke-width="1"
+                    stroke="currentColor"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M7.622 25.905h13.71v1.52H7.622Zm0-6.1h13.71v1.53H7.622Zm0-6.09h13.71v1.52H7.622Zm0-6.1h6.09v1.53h-6.09Z"
+                    stroke-width="1"
+                    stroke="currentColor"
                   />
                 </svg>
                 <span class="whitespace-nowrap gradient">Rules</span>
@@ -104,15 +128,52 @@ import { LockeService } from '../../../core/services/locke-service';
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-8 gradient"
-                  viewBox="0 0 24 24"
+                  viewBox="0 0 32 32"
                 >
-                  <rect width="24" height="24" fill="none" />
+                  <rect width="32" height="32" fill="none" />
                   <path
                     fill="currentColor"
-                    d="M9 2H2v2h5v4H2v2h7V7h5v10H9v-3H2v2h5v4H2v2h7v-3h7v-6h6v-2h-6V5H9z"
+                    d="M22.86 18.28v-4.57H9.14v4.57H0V32h32V18.28ZM9.14 30.47H1.53V19.81h7.61Zm12.19 0H10.67V15.24h10.66Zm9.15 0h-7.62V19.81h7.62Z"
+                    stroke-width="1"
+                    stroke="currentColor"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M28.95 21.33h-4.57v1.53h3.05v1.52h-3.05v1.52h3.05v1.53h-3.05v1.52h4.57zM25.91 6.09h3.04v1.53h-3.04ZM24.38 0h1.53v1.52h-1.53Zm-1.52 1.52h1.52v1.53h-1.52Zm-4.57 21.34h-1.53v-6.1h-3.04v1.52h1.52v4.58h-1.52v1.52h4.57zM15.24 0h1.52v3.05h-1.52Zm-6.1 4.57v6.09h1.53v1.53h10.66v-1.53h1.53V4.57h-1.53v1.52h-1.52v1.53h-1.52V6.09h-1.53V4.57h-1.52v1.52h-1.52v1.53h-1.53V6.09h-1.52V4.57Zm9.15 4.57h1.52v1.52h-1.52Zm-3.05 0h1.52v1.52h-1.52Zm-3.05 0h1.53v1.52h-1.53ZM7.62 1.52h1.52v1.53H7.62ZM6.1 0h1.52v1.52H6.1Zm1.52 27.43H4.57V25.9h3.05v-4.57H3.05v1.53H6.1v1.52H3.05v4.57h4.57zM3.05 6.09H6.1v1.53H3.05Z"
+                    stroke-width="1"
+                    stroke="currentColor"
                   />
                 </svg>
                 <span class="whitespace-nowrap gradient">Tournaments</span>
+              </div>
+            </a>
+            <a
+              [routerLink]="['/locke', testId]"
+              [routerLinkActive]="'border-pixel bg-white'"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="lg:w-full"
+            >
+              <div class="link">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-8 gradient"
+                  viewBox="0 0 32 32"
+                >
+                  <rect width="32" height="32" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M28.945 6.1h1.53v6.09h-1.53Zm-1.52 6.09h1.52v4.57h-1.52Zm-1.52 4.57h1.52v6.1h-1.52Zm-1.53 6.1h1.53v6.09h-1.53Z"
+                    stroke-width="1"
+                    stroke="currentColor"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M22.855 6.1h6.09V4.57h-6.09V1.52h-1.53v28.96h3.05v-1.53h-1.52zM3.045 30.48h18.28V32H3.045Zm15.24-4.58h1.52v3.05h-1.52Zm-4.57-16.76h-3.05v3.05h-3.05v3.05h3.05v1.52h-1.53v1.53h6.1v-1.53h-1.52v-1.52h3.04v-3.05h-3.04zm-9.15-6.09h1.53V6.1h-1.53ZM3.045 0h18.28v1.52H3.045Zm-1.52 1.52h1.52v28.96h-1.52Z"
+                    stroke-width="1"
+                    stroke="currentColor"
+                  />
+                </svg>
+                <span class="whitespace-nowrap gradient">Pasives</span>
               </div>
             </a>
           </div>
