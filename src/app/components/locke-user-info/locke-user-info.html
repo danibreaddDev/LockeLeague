@@ -78,6 +78,7 @@
       title="change lifes"
       type="number"
       [value]="lifes()"
+      (change)="changeValueLifes($event)"
       class="text-red-600 px-2 py-2 font-title outline-0 border-pixel-input hover:border-pixel-input"
     />
     <button

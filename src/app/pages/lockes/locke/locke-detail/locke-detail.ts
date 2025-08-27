@@ -39,19 +39,20 @@ export class LockeDetail {
     dialogRef.closed.subscribe((result) => {
       const wasSubmitted = result as boolean | undefined;
       console.log(wasSubmitted);
-      if (!wasSubmitted) {
-        return;
+      if (wasSubmitted) {
+        this.getInfoAboutLocke();
       }
-      this.getInfoAboutLocke();
     });
   }
   private getInfoAboutLocke() {
     this.lockeService
       .getGeneralInfoLocke(this.test_id())
-      .then((res: any) => {
-        console.log(res.data[0]);
-        this.generalInfo.set(res.data[0]);
+      .then((res) => {
+        if (res.error) {
+          alert('error: ' + res.error.message);
+          return;
+        } else if (res.data) this.generalInfo.set(res.data[0]);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   }
 }

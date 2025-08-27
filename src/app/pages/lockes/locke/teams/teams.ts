@@ -9,12 +9,12 @@ import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { LockeUserInfo } from '../../../../components/locke-user-info/locke-user-info';
 
 @Component({
-  selector: 'app-members',
+  selector: 'app-teams',
   imports: [LockeUserInfo],
-  templateUrl: './members.html',
-  styleUrl: './members.css',
+  templateUrl: './teams.html',
+  styleUrl: './teams.css',
 })
-export class Members {
+export class Teams {
   test_id: Signal<string> = inject(ROUTER_OUTLET_DATA) as Signal<string>;
   lockeUsersInfo = signal<any>(null);
   lifesUser = signal<number>(0);
@@ -30,10 +30,13 @@ export class Members {
     this.lockeService
       .getLocke(this.test_id())
       .then((res) => {
+        if (res.error) {
+          alert('error: ' + res.error.message);
+          return;
+        }
         this.lockeUsersInfo.set(res.data);
-        console.log(res.data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   }
   getInfoUser(user: any): Signal<any | null> {
     if (this.userInfoMap.has(user.user_id)) {
@@ -43,10 +46,13 @@ export class Members {
     const userInfo = signal<any | null>(null);
     this.userService
       .getUser(user.user_id)
-      .then((res: any) => {
-        userInfo.set(res.data[0]);
+      .then((res) => {
+        if (res.error) {
+          alert('error: ' + res.error.message);
+          return;
+        } else if (res.data) userInfo.set(res.data[0]);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
 
     this.userInfoMap.set(user.user_id, userInfo);
     return userInfo;
@@ -60,8 +66,7 @@ export class Members {
     });
     dialogRef.closed.subscribe((result) => {
       const wasSubmitted = result as boolean | undefined;
-      if (!wasSubmitted) {
-        return;
+      if (wasSubmitted) {
       }
     });
   }
@@ -81,13 +86,13 @@ export class Members {
   }
 
   updateLifes(userToEdit: any) {
-    this.lockeService.updateLifesUser(userToEdit).then((err: any) => {
-      if (!err.error) {
-        alert('vidas actualizadas');
-        this.getInfoUser(userToEdit.user);
+    this.lockeService.updateLifesUser(userToEdit).then((res) => {
+      if (res.error) {
+        alert('error: ' + res.error.message);
         return;
       }
-      alert(err.error);
+      alert('Updated Lifes successfully');
+      this.getInfoUser(userToEdit.user);
     });
   }
 }

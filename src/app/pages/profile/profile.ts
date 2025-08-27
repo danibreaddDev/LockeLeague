@@ -33,7 +33,7 @@ export class Profile {
   dialog = inject(Dialog);
   profileInfo = signal<profile | null>(null);
   users = signal<profile[]>([]);
-  groups = signal<[]>([]);
+  groups = signal<any[]>([]);
   groupSelected = signal<any>(null);
   lockes = signal<any[] | null | undefined>(null);
   usersToAdd = signal<profile[]>([]);
@@ -92,25 +92,39 @@ export class Profile {
     this.getUsers();
     this.groupService
       .getGroupsCreated()
-      .then((res: any) => {
-        this.groups.set(res.data);
-        this.groupSelected.set(res.data[0]);
+      .then((res) => {
+        if (res.error) {
+          alert('error: ' + res.error.message);
+          return;
+        } else if (res.data) {
+          this.groups.set(res.data);
+          this.groupSelected.set(res.data[0]);
+        }
       })
       .catch((error) => console.error(error));
   }
   getGroupsJoined() {
     this.groupService
       .getGroupsJoined()
-      .then((res: any) => {
-        this.groups.set(res.data);
-        this.groupSelected.set(res.data[0]);
+      .then((res) => {
+        if (res.error) {
+          alert('error: ' + res.error.message);
+          return;
+        } else if (res.data) {
+          this.groups.set(res.data);
+          this.groupSelected.set(res.data[0]);
+        }
       })
       .catch((error) => console.error(error));
   }
   getBestLockes() {
     this.lockeService
       .getBestLockes()
-      .then((res: any) => {
+      .then((res) => {
+        if (res.error) {
+          alert('error: ' + res.error.message);
+          return;
+        }
         this.lockes.set(res.data);
         this.getInfoJson();
       })

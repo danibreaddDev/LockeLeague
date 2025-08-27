@@ -57,7 +57,7 @@ import { LockeService } from '../../../core/services/locke-service';
               </div>
             </a>
             <a
-              [routerLink]="['/locke', testId, 'members']"
+              [routerLink]="['/locke', testId, 'teams']"
               routerLinkActive="border-pixel bg-white"
               class="lg:w-full"
             >
@@ -70,24 +70,18 @@ import { LockeService } from '../../../core/services/locke-service';
                   <rect width="32" height="32" fill="none" />
                   <path
                     fill="currentColor"
-                    d="M30.48 18.285H32v1.53h-1.52Zm-3.05-1.52h3.05v1.52h-3.05Zm0-3.05h1.52v1.53h-1.52Z"
+                    d="M0 6.1v19.81h32V6.1Zm18.29 18.29H1.52V7.625h16.77Zm6.09 0h-4.57V7.625h3.05v6.09h1.52Zm6.1 0h-4.57V13.715h1.52v-6.09h3.05Z"
                     stroke-width="1"
                     stroke="currentColor"
                   />
                   <path
                     fill="currentColor"
-                    d="M22.86 15.245v-3.05h-1.52v-1.53h-1.53v-3.04h1.53v-1.53h6.09v1.53h1.52v6.09h1.53v-9.14h-1.53v-1.53h-1.52v-1.52h-6.09v1.52h-1.53v1.53h-1.52v4.57h-4.57v-4.57h-1.53v-1.53h-1.52v-1.52h-6.1v1.52H3.05v1.53H1.53v9.14h1.52v-6.09h1.52v-1.53h6.1v1.53h1.52v3.04h-1.52v1.53H9.15v3.05H4.57v1.52h4.58v6.09h1.52v-7.61h1.52v-1.53h7.62v1.53h1.53v7.61h1.52v-6.09h4.57v-1.52zm1.52 13.71h1.53v1.52h-1.53Zm-1.52-1.52h1.52v1.52h-1.52Zm-3.05-1.53h3.05v1.53h-3.05Zm0-3.05h1.53v1.53h-1.53Z"
-                    stroke-width="1"
-                    stroke="currentColor"
-                  />
-                  <path
-                    fill="currentColor"
-                    d="M18.29 16.765h1.52v3.05h-1.52Zm-6.1 7.62h7.62v1.52h-7.62Zm1.53-3.05h4.57v1.52h-4.57Zm-1.53-4.57h1.53v3.05h-1.53Zm-1.52 6.09h1.52v1.53h-1.52Zm-1.52 3.05h3.04v1.53H9.15Zm-1.53 1.53h1.53v1.52H7.62Zm-1.52 1.52h1.52v1.52H6.1Zm-3.05-15.24h1.52v1.53H3.05Zm-1.52 3.05h3.04v1.52H1.53ZM0 18.285h1.53v1.53H0Z"
+                    d="M15.24 9.145h1.52v3.05h-1.52Zm-4.57 0h1.52v3.05h-1.52Zm-7.62 12.19h4.57v1.53H3.05Zm0-3.05h4.57v1.53H3.05Z"
                     stroke-width="1"
                     stroke="currentColor"
                   />
                 </svg>
-                <span class="whitespace-nowrap gradient">Members</span>
+                <span class="whitespace-nowrap gradient">Teams</span>
               </div>
             </a>
             <a
@@ -145,35 +139,6 @@ import { LockeService } from '../../../core/services/locke-service';
                   />
                 </svg>
                 <span class="whitespace-nowrap gradient">Tournaments</span>
-              </div>
-            </a>
-            <a
-              [routerLink]="['/locke', testId]"
-              [routerLinkActive]="'border-pixel bg-white'"
-              [routerLinkActiveOptions]="{ exact: true }"
-              class="lg:w-full"
-            >
-              <div class="link">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-8 gradient"
-                  viewBox="0 0 32 32"
-                >
-                  <rect width="32" height="32" fill="none" />
-                  <path
-                    fill="currentColor"
-                    d="M28.945 6.1h1.53v6.09h-1.53Zm-1.52 6.09h1.52v4.57h-1.52Zm-1.52 4.57h1.52v6.1h-1.52Zm-1.53 6.1h1.53v6.09h-1.53Z"
-                    stroke-width="1"
-                    stroke="currentColor"
-                  />
-                  <path
-                    fill="currentColor"
-                    d="M22.855 6.1h6.09V4.57h-6.09V1.52h-1.53v28.96h3.05v-1.53h-1.52zM3.045 30.48h18.28V32H3.045Zm15.24-4.58h1.52v3.05h-1.52Zm-4.57-16.76h-3.05v3.05h-3.05v3.05h3.05v1.52h-1.53v1.53h6.1v-1.53h-1.52v-1.52h3.04v-3.05h-3.04zm-9.15-6.09h1.53V6.1h-1.53ZM3.045 0h18.28v1.52H3.045Zm-1.52 1.52h1.52v28.96h-1.52Z"
-                    stroke-width="1"
-                    stroke="currentColor"
-                  />
-                </svg>
-                <span class="whitespace-nowrap gradient">Pasives</span>
               </div>
             </a>
           </div>

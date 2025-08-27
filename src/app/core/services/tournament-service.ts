@@ -31,6 +31,7 @@ export class TournamentService {
       .insert(tournamentData)
       .select('*')
       .single();
+
     return { data, error };
   }
   async startTournament(tournamentId: string, idLocke: string) {
@@ -63,7 +64,24 @@ export class TournamentService {
         started_at: new Date().toISOString(),
       })
       .eq('id', tournamentId);
-    return { updateTournament };
+    const { data: tournamentCount, error: errorGettingTournament } =
+      await this._clientSupabase
+        .from('lockes')
+        .select('tournaments')
+        .eq('id', idLocke)
+        .single();
+
+    const { error: errorAddingTournamentLocke } = await this._clientSupabase
+      .from('lockes')
+      .update({
+        tournaments: tournamentCount?.tournaments + 1,
+      })
+      .eq('id', idLocke);
+    return {
+      updateTournament,
+      errorGettingTournament,
+      errorAddingTournamentLocke,
+    };
   }
   async getMatches(tournamentId: string) {
     // 1️⃣ Traer todos los matches
@@ -128,7 +146,6 @@ export class TournamentService {
       completed_at: new Date().toISOString(),
       winner_id: winner.participant.participant_id,
     }));
-    console.log(winnersToUpdate);
 
     const { data, error } = await this._clientSupabase
       .from('matches')
@@ -137,12 +154,9 @@ export class TournamentService {
         'id',
         winners.map((w: any) => w.matchId)
       );
-    if (!data) {
-      const data = await this.generateNextRoundMatches(
-        tournamentId,
-        currentRound
-      );
-    }
+
+    await this.generateNextRoundMatches(tournamentId, currentRound);
+    return { error };
   }
   async getParticipants(tournamentId: string) {
     const { data, error: errorGetParticipants } = await this._clientSupabase

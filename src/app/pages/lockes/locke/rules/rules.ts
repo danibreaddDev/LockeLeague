@@ -29,10 +29,9 @@ export class Rules {
     });
     dialogRef.closed.subscribe((res) => {
       const wasSubmitted = res as boolean | undefined;
-      if (!wasSubmitted) {
-        return;
+      if (wasSubmitted) {
+        this.getRules();
       }
-      this.getRules();
     });
   }
   OpenModalEditRule(rule: any) {
@@ -44,10 +43,9 @@ export class Rules {
     });
     dialogRef.closed.subscribe((res) => {
       const wasSubmitted = res as boolean | undefined;
-      if (!wasSubmitted) {
-        return;
+      if (wasSubmitted) {
+        this.getRules();
       }
-      this.getRules();
     });
   }
   deleteRule(rule: any) {
@@ -55,19 +53,21 @@ export class Rules {
       return;
     }
     this.ruleService.deleteRule(rule.id).then((res) => {
-      if (!res.data) {
-        alert('rule deleted successfully');
-        this.getRules();
-      } else if (!res.data && res.error) {
-        alert('error');
+      if (res.error) {
+        alert('error: ' + res.error.message);
+        return;
       }
+      alert('rule deleted successfully');
+      this.getRules();
     });
   }
   getRules() {
     this.ruleService.getRules(this.idLocke()).then((res) => {
-      if (res.data) {
-        this.rules.set(res.data);
-      } else if (!res.data && res.error) alert(res.error.message);
+      if (res.error) {
+        alert('error: ' + res.error.message);
+        return;
+      }
+      this.rules.set(res.data);
     });
   }
 }

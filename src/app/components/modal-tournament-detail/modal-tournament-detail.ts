@@ -28,11 +28,11 @@ export class ModalTournamentDetail {
   getTournamentDetail() {
     this.tournamentService.getTournament(this.data.tournamentId).then((res) => {
       if (res.error) {
-        alert('error to get tournament detail');
-      } else {
-        this.tournament.set(res.data);
-        this.checkStatusTournament();
+        alert('error:' + res.error.message);
+        return;
       }
+      this.tournament.set(res.data);
+      this.checkStatusTournament();
     });
   }
 
@@ -40,11 +40,11 @@ export class ModalTournamentDetail {
     this.tournamentService
       .startTournament(this.tournament().id, this.tournament().locke_id)
       .then((res) => {
-        if (res!.updateTournament) {
-          console.error(res?.updateTournament.message);
-        } else {
-          this.getTournamentDetail();
+        if (res?.updateTournament) {
+          alert('error: ' + res?.updateTournament.message);
+          return;
         }
+        this.getTournamentDetail();
       });
   }
   completeRound() {
@@ -62,13 +62,13 @@ export class ModalTournamentDetail {
         this.currentRound(),
         this.tournament().id
       )
-      .then((res: any) => {
-        if (res && res.error) {
-          console.error(res.error.message);
-        } else {
-          this.winnersRound.set(null);
-          this.getTournamentDetail();
+      .then((res) => {
+        if (res.error) {
+          alert('error: ' + res.error.message);
+          return;
         }
+        this.winnersRound.set(null);
+        this.getTournamentDetail();
       });
   }
   getMatches() {
@@ -87,14 +87,13 @@ export class ModalTournamentDetail {
   getParticipants() {
     this.tournamentService.getParticipants(this.tournament().id).then((res) => {
       if (res.errorGetParticipants) {
-        console.error(
-          'error to get participants, error:',
-          res.errorGetParticipants.message
+        alert(
+          'error to get participants, error:' + res.errorGetParticipants.message
         );
-      } else {
-        this.participants.set(res.participants);
-        console.log(this.participants());
+        return;
       }
+      this.participants.set(res.participants);
+      console.log(this.participants());
     });
   }
   getOrderedParticipants() {

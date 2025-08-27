@@ -29,8 +29,6 @@ export class Lockes {
     this.isShowedFilterSection.set(!this.isShowedFilterSection());
   }
   openModalCreateLocke() {
-    console.log(this.groups());
-
     const dialogRef = this.dialog.open(CreateLockeForm, {
       disableClose: true,
       data: {
@@ -39,16 +37,19 @@ export class Lockes {
     });
     dialogRef.closed.subscribe((result) => {
       const wasSubmitted = result as boolean | undefined;
-      if (!wasSubmitted) {
-        return;
+      if (wasSubmitted) {
+        this.getLockes();
       }
-      this.getLockes();
     });
   }
   private getLockes() {
     this.lockeService
       .getLockes()
       .then((res) => {
+        if (res.error) {
+          alert('error: ' + res.error.message);
+          return;
+        }
         if (document.startViewTransition) {
           document.startViewTransition(() => {
             this.lockesList.set(res.data);
@@ -57,14 +58,18 @@ export class Lockes {
           this.lockesList.set(res.data);
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   }
   private getGroups() {
     this.groupService
       .getGroupsCreated()
       .then((res) => {
+        if (res.error) {
+          alert('error: ' + res.error.message);
+          return;
+        }
         this.groups.set(res.data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   }
 }

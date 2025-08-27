@@ -77,6 +77,7 @@ export class LockeUserInfo implements OnInit {
   changeValueLifes(event: Event) {
     const input = event.target as HTMLInputElement;
     this.lifes.set(Number(input.value));
+    console.log('valor actualizar', this.lifes());
   }
   emitLifes() {
     const userToUpdate = {

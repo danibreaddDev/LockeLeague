@@ -51,10 +51,13 @@ export class Tournaments {
       .getTournaments(this.idLocke(), this.tournamentStatus())
       .then((res) => {
         if (res.error) {
-          alert('error to get tournaments');
-        } else {
-          this.tournaments.set(res.data);
+          alert(`error:  ${res.error.message}`);
+          return;
         }
+        this.tournaments.set(res.data);
+      })
+      .catch((err) => {
+        alert('Error loading tournaments: ' + err);
       });
   }
   ShowFilterSection() {

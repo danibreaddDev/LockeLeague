@@ -24,7 +24,7 @@ export class ProfileClasification {
   @Output() onClickMyGroups = new EventEmitter<void>();
   @Output() onClickJoinedGroups = new EventEmitter<void>();
   @Input() users!: WritableSignal<profile[]>;
-  @Input() groups!: WritableSignal<[]>;
+  @Input() groups!: WritableSignal<any[]>;
   @Input() groupSelected!: WritableSignal<any>;
 
   isMyGrouposShowed: boolean = true;

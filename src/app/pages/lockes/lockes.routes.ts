@@ -17,9 +17,8 @@ export default [
           ),
       },
       {
-        path: 'members',
-        loadComponent: () =>
-          import('./locke/members/members').then((m) => m.Members),
+        path: 'teams',
+        loadComponent: () => import('./locke/teams/teams').then((m) => m.Teams),
       },
       {
         path: 'rules',
