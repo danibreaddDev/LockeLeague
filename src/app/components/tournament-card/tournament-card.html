@@ -1,6 +1,6 @@
 <article
   (click)="openTournamentDetail()"
-  class="p-5 border-pixel-card bg-white flex flex-col gap-5 w-full h-full"
+  class="p-5 border-pixel bg-white flex flex-col gap-5 w-full h-full cursor-pointer hover:bg-slate-100"
 >
   <div class="flex flex-row gap-5">
     @if (tournament.status === 'draft') {
@@ -55,4 +55,13 @@
   <p class="text-lg">
     {{ tournament.description }}
   </p>
+  <div class="flex flex-row gap-5 items-center flex-wrap">
+    @for (rule of tournament.rules; track $index) {
+    <span
+      class="px-2 py-1 border-pixel-input w-fit bg-slate-200 font-semibold"
+      >{{ rule }}</span
+    >
+
+    }
+  </div>
 </article>
