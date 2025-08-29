@@ -6,6 +6,8 @@ import { TournamentService } from '../../../../core/services/tournament-service'
 import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { Loader } from '../../../../shared/components/loader/loader';
 import { CreateTournamentForm } from '../../../../components/create-tournament-form/create-tournament-form';
+import { LockeService } from '../../../../core/services/locke-service';
+import { AuthService } from '../../../../core/services/auth-service';
 
 @Component({
   selector: 'app-tournaments',
@@ -19,17 +21,24 @@ export class Tournaments {
   tournaments = signal<any | null>(null);
   isShowedFilterSection = signal<boolean>(false);
   tournamentStatus = signal<string>('active');
+  creatorLocke = signal<string>('');
+  currentUser = inject(AuthService).user$;
+  canManageTournament = signal<boolean>(false);
   constructor(
     private dialog: Dialog,
-    private tournamentService: TournamentService
+    private tournamentService: TournamentService,
+    private lockeService: LockeService
   ) {
+    this.getCreatorLocke();
     this.getTournaments();
   }
+
   openModalTournamentDetail(tournamentId: string) {
     this.dialog.open(ModalTournamentDetail, {
       disableClose: true,
       data: {
         tournamentId: tournamentId,
+        canManageTournament: this.canManageTournament(),
       },
     });
   }
@@ -44,6 +53,16 @@ export class Tournaments {
         this.setStatus('draft');
         this.getTournaments();
       }
+    });
+  }
+  getCreatorLocke() {
+    this.lockeService.getCreatorLocke(this.idLocke()).then((res) => {
+      if (res.error) {
+        alert('error: ' + res.error.message);
+        return;
+      }
+      this.creatorLocke.set(res.data?.created_by);
+      this.checkManageTournaments();
     });
   }
   getTournaments() {
@@ -66,5 +85,12 @@ export class Tournaments {
   setStatus(status: string) {
     this.tournamentStatus.set(status);
     this.getTournaments();
+  }
+  private checkManageTournaments() {
+    this.currentUser.subscribe((user) => {
+      if (user?.id === this.creatorLocke()) {
+        this.canManageTournament.set(true);
+      }
+    });
   }
 }

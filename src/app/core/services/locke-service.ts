@@ -67,6 +67,14 @@ export class LockeService {
 
     return { data, error };
   }
+  async getCreatorLocke(id: string) {
+    const { data, error } = await this._clientSupabase
+      .from('lockes')
+      .select('created_by')
+      .eq('id', id)
+      .single();
+    return { data, error };
+  }
   async createLocke(lockeObjForm: any) {
     const user = await firstValueFrom(
       this._currentUser$.pipe(filter((user) => !!user))

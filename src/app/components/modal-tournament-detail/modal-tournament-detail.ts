@@ -15,13 +15,16 @@ export class ModalTournamentDetail {
   winnersRound = signal<any[] | null>(null);
   currentRound = signal<string>('');
   participants = signal<any[] | null>(null);
+  canManageTournament = signal<boolean>(false);
   constructor(
     private tournamentService: TournamentService,
-    @Inject(DIALOG_DATA) public data: { tournamentId: string },
+    @Inject(DIALOG_DATA)
+    public data: { tournamentId: string; canManageTournament: boolean },
     private dialogRef: DialogRef
   ) {
     this.getTournamentDetail();
   }
+
   closeModal() {
     this.dialogRef.close();
   }
