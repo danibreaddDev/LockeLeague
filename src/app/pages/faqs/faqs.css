@@ -1,0 +1,24 @@
+.button {
+  cursor: pointer;
+  font-size: 20pt;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: -1;
+}
+
+.content {
+  width: 100%;
+  overflow: hidden;
+  max-height: 0;
+  transition: all 0.3s ease-in-out;
+  font-size: 18pt;
+  box-sizing: border-box;
+  background: white;
+}
+input[type="checkbox"]:checked + .content {
+  max-height: 100vh;
+}
+.inner {
+  padding: 16px;
+}

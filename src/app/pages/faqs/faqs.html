@@ -1,0 +1,20 @@
+<app-header></app-header>
+<main class="container p-5 mx-auto font-text">
+  @if (!faqs()) {
+  <app-loader class="flex justify-center items-center h-full"></app-loader>
+  } @else { @for (faq of faqs(); track $index) {
+  <div class="w-full">
+    <label for="{{ 'state' + $index }}">
+      <div class="button border-pixel bg-blue-600">
+        <h2 class="font-title text-xl">{{ faq.question }}</h2>
+      </div>
+    </label>
+    <input type="checkbox" id="{{ 'state' + $index }}" hidden />
+    <div class="content border-pixel">
+      <div class="inner">
+        {{ faq.answer }}
+      </div>
+    </div>
+  </div>
+  } }
+</main>
