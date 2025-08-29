@@ -332,6 +332,43 @@ export class TournamentService {
       if (errorDeletingMatches) {
         return { errorDeletingMatches };
       }
+      const { error: errorSetingPoints } = await this._clientSupabase.rpc(
+        'tournament_setpoints',
+        {
+          tournament: tournamentId,
+        }
+      );
+
+      if (errorSetingPoints) {
+        return { errorSetingPoints };
+      }
+      const { data: winner, error: errorGetingwinner } =
+        await this._clientSupabase
+          .from('participants')
+          .select('user_id')
+          .eq('id', winners[0].winner_id)
+          .single();
+      if (errorGetingwinner) {
+        return { errorGetingwinner };
+      }
+      const { data: user, error: errorGetingwinCount } =
+        await this._clientSupabase
+          .from('users')
+          .select('tournament_wins')
+          .eq('id', winner.user_id)
+          .single();
+      if (errorGetingwinCount) {
+        return { errorGetingwinCount };
+      }
+      const { error: errorUpdatingWin } = await this._clientSupabase
+        .from('users')
+        .update({
+          tournament_wins: user.tournament_wins + 1,
+        })
+        .eq('id', winner.user_id);
+      if (errorUpdatingWin) {
+        return { errorUpdatingWin };
+      }
     } else {
       const matches = [];
       let matchNumber = 1;
