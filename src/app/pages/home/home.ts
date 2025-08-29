@@ -7,10 +7,11 @@ import { Router, Routes } from '@angular/router';
 import { User } from '@supabase/supabase-js';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { SettingsMenu } from '../../shared/components/settings-menu/settings-menu';
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Footer, Hero, CommonModule],
+  imports: [Header, Hero, CommonModule, SettingsMenu],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

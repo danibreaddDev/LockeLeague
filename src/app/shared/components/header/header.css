@@ -1,10 +1,28 @@
 header {
+  width: 100%;
+}
+
+.nav__mobile {
+  display: none;
+}
+@media screen and (width <= 800px) {
+  .nav__pc {
+    display: none;
+  }
+  .nav__mobile {
+    display: flex;
+  }
+  .content-nav {
+    animation: appear 0.2s ease-in-out;
+  }
+}
+@keyframes appear {
+  from {
+    display: none;
+    width: 10%;
+  }
+  to {
+    display: flex;
     width: 100%;
   }
-  header svg {
-    transition: all 0.2s ease-in-out;
-  }
-  header svg:hover {
-    transform: rotate(-12deg);
-    cursor: pointer;
-  }
+}

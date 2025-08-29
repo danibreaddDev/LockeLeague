@@ -1,11 +1,101 @@
 <header class="container p-5 mx-auto font-title">
-  <nav>
+  <nav class="nav__mobile">
+    <button
+      class="btn-iniciar p-2 bg-white"
+      (click)="isShowNavMobile.set(!isShowNavMobile())"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-12 gradient"
+        viewBox="0 0 32 32"
+      >
+        <rect width="32" height="32" fill="none" />
+        <path
+          fill="currentColor"
+          d="M30.47 10.67H32v3.04h-1.53Zm0-9.15H32v3.05h-1.53Zm-1.52 3.05h1.52v1.52h-1.52ZM27.42 0h3.05v1.52h-3.05Zm-9.14 13.71h12.19v1.53H18.28Zm9.14-7.62h1.53v1.53h-1.53ZM25.9 9.14h-1.52v1.53h6.09V9.14h-3.05V7.62H25.9zm0-7.62h1.52v1.53H25.9Zm-1.52 1.53h1.52v1.52h-1.52Zm-3.05 4.57h1.52V6.09h1.53V4.57h-1.53V1.52h-1.52zM18.28 0h3.05v1.52h-3.05Zm-1.52 1.52h1.52v12.19h-1.52Zm-3.05 16.77h1.52v12.19h-1.52Zm-3.05 12.19h3.05V32h-3.05Zm0-6.1H9.14v1.52H7.61v1.53h1.53v3.05h1.52zm-4.57 3.05h1.52v1.52H6.09Zm-1.52 1.52h1.52v1.53H4.57Zm1.52-6.09h1.52v-1.53H1.52v1.53h3.05v1.52h1.52zm-3.05 1.52h1.53v1.52H3.04Zm-1.52-7.62h12.19v1.53H1.52Zm0 13.72h3.05V32H1.52Zm0-4.58h1.52v1.53H1.52ZM0 27.43h1.52v3.05H0Zm0-9.14h1.52v3.04H0Z"
+          stroke-width="1"
+          stroke="currentColor"
+        />
+      </svg>
+    </button>
     <ul
-      class="flex flex-row justify-between items-center border-pixel bg-amber-400 p-5 text-3xl"
+      [style]="isShowNavMobile() ? 'display:flex;' : 'display:none;'"
+      class="p-5 mx-auto content-nav absolute bg-amber-500 flex flex-col justify-between gap-5 h-screen z-50 inset-0"
     >
       <li>
+        <div class="flex flex-row justify-between gap-5">
+          <button
+            (click)="isShowNavMobile.set(!isShowNavMobile())"
+            class="btn-iniciar bg-white p-2 size-fit"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-12 gradient"
+              viewBox="0 0 32 32"
+            >
+              <rect width="32" height="32" fill="none" />
+              <path
+                fill="currentColor"
+                d="M30.47 10.67H32v3.04h-1.53Zm0-9.15H32v3.05h-1.53Zm-1.52 3.05h1.52v1.52h-1.52ZM27.42 0h3.05v1.52h-3.05Zm-9.14 13.71h12.19v1.53H18.28Zm9.14-7.62h1.53v1.53h-1.53ZM25.9 9.14h-1.52v1.53h6.09V9.14h-3.05V7.62H25.9zm0-7.62h1.52v1.53H25.9Zm-1.52 1.53h1.52v1.52h-1.52Zm-3.05 4.57h1.52V6.09h1.53V4.57h-1.53V1.52h-1.52zM18.28 0h3.05v1.52h-3.05Zm-1.52 1.52h1.52v12.19h-1.52Zm-3.05 16.77h1.52v12.19h-1.52Zm-3.05 12.19h3.05V32h-3.05Zm0-6.1H9.14v1.52H7.61v1.53h1.53v3.05h1.52zm-4.57 3.05h1.52v1.52H6.09Zm-1.52 1.52h1.52v1.53H4.57Zm1.52-6.09h1.52v-1.53H1.52v1.53h3.05v1.52h1.52zm-3.05 1.52h1.53v1.52H3.04Zm-1.52-7.62h12.19v1.53H1.52Zm0 13.72h3.05V32H1.52Zm0-4.58h1.52v1.53H1.52ZM0 27.43h1.52v3.05H0Zm0-9.14h1.52v3.04H0Z"
+                stroke-width="1"
+                stroke="currentColor"
+              />
+            </svg>
+          </button>
+
+          <a routerLink="/">
+            <img src="/logo.png" alt="Logo" class="size-18 object-cover" />
+          </a>
+        </div>
+      </li>
+      <div class="flex flex-col gap-5">
+        <li class="border-pixel p-2 bg-white">
+          <a
+            routerLink="/faqs"
+            class="gradient text-decoration-none press-start-2p-regular gradient"
+            >Faqs</a
+          >
+        </li>
+        <li class="border-pixel p-2 bg-white">
+          <a
+            href=""
+            class="gradient text-decoration-none press-start-2p-regular gradient"
+            >Features</a
+          >
+        </li>
+      </div>
+      <li class="flex flex-row gap-5 items-center justify-between w-full">
+        <div class="flex flex-row gap-5 items-center justify-between w-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-16 text-purple-800"
+            viewBox="0 0 24 24"
+          >
+            <rect width="24" height="24" fill="none" />
+            <path
+              fill="currentColor"
+              d="M22 11V8h-1V6h-1V5h-2V4h-3v1H9V4H6v1H4v1H3v2H2v3H1v7h2v1h2v1h2v-2H6v-1h2v1h1v1h6v-1h1v-1h2v1h-1v2h2v-1h2v-1h2v-7ZM9 15H7v-1H6v-2h1v-1h2v1h1v2H9Zm9-1h-1v1h-2v-1h-1v-2h1v-1h2v1h1Z"
+            />
+          </svg>
+          <app-settings-menu
+            [TranslateValues]="['-70', '-100']"
+          ></app-settings-menu>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <nav class="nav__pc">
+    <ul
+      class="flex flex-row flex-wrap justify-between items-center border-pixel bg-amber-400 p-5 text-3xl"
+    >
+      <li>
+        <a routerLink="/">
+          <img src="/logo.png" alt="Logo" class="size-24 object-cover" />
+        </a>
+      </li>
+      <li>
         <a
-          href=""
+          routerLink="/faqs"
           class="gradient text-decoration-none press-start-2p-regular gradient"
           >Faqs</a
         >
